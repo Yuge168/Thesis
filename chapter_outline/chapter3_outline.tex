@@ -1,0 +1,147 @@
+\documentclass{article}
+\usepackage{outlines}
+\usepackage{enumitem}
+\usepackage{verbatim}
+\setenumerate[1]{label=\Roman*.}
+\setenumerate[2]{label=\Alph*.}
+\setenumerate[3]{label=\roman*.}
+\setenumerate[4]{label=\alph*.}
+\usepackage[backend=bibtex]{biblatex}
+\bibliography{main_ref.bib}
+\usepackage{amssymb}
+\usepackage{comment}
+
+
+\begin{document}
+
+\begin{outline}[enumerate]
+  \par
+
+  \centering
+      {\Large Chapter 3: Fixed-time Step Random Walks on Artificial Images}
+
+    \1 Background
+
+        \2 Purposes
+
+           \3 Validate Research Methodology
+             \par
+             Instead of calculating the asymptotic expansion of heat content as $t \rightarrow 0$ for delineating the shape, the survival distributions of particles' wandering times in the lattice random walks (LRWs) and Pearson's random walks (PRWs) converge to the analytical results.
+               
+           \3 Test Research Assumption
+             \par
+             Without measuring with rulers, random walks can explore and classify not only the geometrical features of the target objects but also their spatial configuration.
+
+        \2 Shape Design
+    
+           \3 Annulus  
+              
+             \4 Purpose: Methodology Validation
+               \par 
+                The explicit solution for the diffusion equation is accessible, which can be used to verify random walks perform as expected for approximating the solutions to the original continuous problem by generating the discrete random trajectories.
+               
+           \3 Simple Shapes: Circle and Rectangular
+               
+             \4 Purposes
+               \begin{itemize}
+                 \item Methodology Validation
+                   \par
+                    Given two distinct convex shapes, the short time behaviours of the survival distributions of numerical simulations are consistent with the theoretical results \cite{DesjardinsS1994HAFO}.
+                 \item Assumption Verification
+                   \par
+                    Random walks can characterize and differentiate known distinct regular shapes.
+               \end{itemize}
+              
+           \3 Branching Structures 
+
+             \4 Purpose: Assumption Verification
+               \par
+               Given more complicated branching structures, which have partially known geometrical attributes, determine random walks can describe and distinguish them.
+               
+              
+    \1 Methodology Validation
+
+       \2 Annulus
+          \par
+          Implementing LRWs and PRWs in Python.
+          
+         \3 Shape Description and Image Generation
+          
+         \3 Model Validation
+         % the task of confirming that the outputs of a statistical model have enough fidelity to the outputs of the data-generating process that the objectives of the investigation can be achieved.
+
+            \4 Sample Size Evaluation
+              \par
+              log-log plot; inequality; 
+         
+            \4 Discrepancy between Theoretical Process and RWs \cite{binder2012monte}
+              \par
+              The sources of statistical fluctuation:  
+               \begin{itemize}
+                 \item Sampling
+                 \item Discretization  
+               \end{itemize}
+                        
+            \4 Convergence Evaluation 
+               \begin{itemize}
+                  \item $S(\tau)$ \& $S(t)$
+                    \par
+                    Two-sample statistical test
+                  \item $<\tau>$ \& $<t>$
+                    \par
+                    Absolute error or relative error                   
+               \end{itemize}
+                         
+         \3 Conclusion
+               
+           \4 Both LRWs and PRWs can mimic the solutions of the diffusion equation, and the simulated first-passage quantities converge to the analytical ones.
+           \4 Random walks can reveal the intrinsic geometrical properties of the annulus.
+           \4 Given a prescribed accuracy, sample size $N$ in the Monte Carlo simulations can be estimated by probabilistic inequalities.
+
+          
+    \1 Assumption Verification
+       \par
+       $C++$ Parallel Implementation of LRWs and PRWs
+
+       \2 Circle and Rectangular
+         \3 Shape Description and Image Generation
+         \3 Sample Size Evaluation
+           \par
+            log-log plot; inequality; 
+         \3 Comparing the Short Time Behaviours of Survival Distributions
+         \3 Two-sample Statistical Tests for $S(t)$
+
+      \2 Branching Structures
+         
+         \3 Shape Description and Image Generation (Algorithm)
+         \3 Comparing the Short Time Behaviours of $S(t)$
+            \par
+            Within the same group
+
+         \3 Applying Two-sample Statistical Tests for $S(t)$
+            \4 Within the same group
+            \4 Between different groups
+            
+         \3 Distribution of Particle's Initial and Stop Positions by
+            \4 Number of steps
+            \4 Displacement
+            \4 Maximum displacement
+
+      \2 Conclusion
+        \3 When $t$ is small, the survival distribution of rectangular decays faster than that of the circle, which conforms with the theoretical results.
+        \3 The circle and rectangular are distinct since the estimated survival distributions are statistically significant, which coincides with the real shape dissimilarities.
+        \3 Within the same group, when $t$ is small, more branching the object is, the survival distribution decays faster.
+        \3 The locations of target objects impact particles' behaviours in the random walks and then change the statistical results of survival distributions. However, the periodic boundary conditions of the image can eliminate the effect of the locations.
+        \3 Without measuring with rulers, random walks can explore and classify the geometrical properties and the spatial configurations of the complicated branching objects within or between groups.  
+          
+
+   \1 Conclusion
+     \2 LRWs and PRWs can be applied further in the real 2D root systems images after verifying the fidelity of the models in the artificial images.
+    
+
+\end{outline}
+
+\newpage
+
+\printbibliography
+\end{document}
