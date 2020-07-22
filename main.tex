@@ -1,0 +1,76 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % set the style
+\usepackage{setspace} % set the line spacing
+\usepackage[margin=1in]{geometry} % set margin
+\usepackage{graphicx}
+%\usepackage{caption}
+%\usepackage{subcaption}
+\usepackage{subfig}
+\graphicspath{ {images/c2/}, {images/c3/} }
+\usepackage[backend=bibtex]{biblatex}
+\bibliography{main_ref.bib}
+\usepackage{amsmath}
+\numberwithin{equation}{chapter}
+\usepackage{amsfonts} % the number sets
+%\usepackage[pdftex]{graphicx} % insert pdf format images
+%\usepackage{pdfpages}
+\usepackage{booktabs}
+\usepackage{color,soul}
+
+\setcounter{tocdepth}{3}
+
+\onehalfspacing % set the line spacing as 1.5
+
+\begin{document}
+
+\begin{titlepage}
+  \begin{center}
+    \vspace{1.5cm}
+    \huge
+    \textbf{An Alternative Method for \\
+      Characterization and Comparison \\
+      of Plant Root Shapes}
+    \par
+    \vspace{1.5cm}
+    \large
+    \textbf{A Thesis Submitted to the \\
+      College of Graduate and Postdoctoral Studies \\
+      In Partial Fulfillment of the Requirements \\
+      For the Degree of Master of Environment and Sustainability \\
+      In the School of Environment and Sustainability \\
+      University of Saskatchewan\\
+      Saskatoon}
+
+    \vspace{3cm}
+    \textbf{By}\\
+    \vspace{1cm}
+    \textbf{Yujie Pei}\\
+    \vspace{1cm}
+    %\textbf{Date}
+    \vfill
+  \end{center}
+\end{titlepage}
+
+
+\tableofcontents
+%\listoftables
+%\listoffigures
+
+\chapter{Existed Morphological Descriptors for Root Systems}
+
+
+\chapter{An Alternatively Mathematical Method for Shape Description}
+\include{chapters/c2/heat_content_on_annulus}
+\include{chapters/c2/monte_carlo_simulations}
+\include{chapters/c2/two_sample_statistical_tests}
+
+
+\chapter{Fixed-time Step Random Walks on Artificial Images}
+\include{chapters/c3/methodology_validation}
+
+
+
+\newpage
+\printbibliography
+\end{document}
