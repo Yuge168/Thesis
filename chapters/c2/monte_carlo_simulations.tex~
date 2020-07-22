@@ -1,0 +1,229 @@
+\section{Monte Carlo Simualtions}
+
+
+\subsection{Background}
+
+Either irregular geometries or discontinnuities cause the complication
+in solving the partial differential eqautions (PDEs) in practice, so
+the nice algebraic solutions are close to non-existed. Therefore, the
+computer simulations and numerical methods are more useful and popular
+in solving differential equations than calculating the pure analytical
+solutions.
+
+\subsection{Numerical Methods}
+
+The techniques for solving the initial-boundary value problems (IBVPs)
+based on numerical approximations have existed for a long time. The
+finite-difference methods (FDM) are widely used and easily implemented
+in solving the differential equations by converting them into a system
+of algebraically solvable equations \cite{grossmann2007numerical}. The
+basic idea is to replace the derivatives in the equations by
+difference quotients. For example, the FTCS (Forward Time Centered
+Space) scheme \cite{pletcher2012computational} is propoesd to
+approximate the numerical solutions of the heat equation and similar
+parabolic partial differential equations. It decretizes the Laplace
+operator in space and the time derivative, and implementing boundary
+conditions on the staggered grid to represent the original continuous
+problem, but it is numerically stable if and only if it satsifies a
+specified condition \cite{pletcher2012computational}. Generally, there
+are two classes of errors appearing in FDM called round-off error and
+truncation error. The former one results from the loss of precision
+due to computer rounding of decimal quantities. The latter one is
+caused by discarding the remainders in the difference apprximation and
+highly depends on the time and space step. In other words, the smaller
+step size, the longer simulation duration and higher data quality
+\cite{hoffman2018numerical}.
+
+
+Compared with FDM, the finite element method (FEM) is particularly
+solving partial differential equations in two or three space
+dimensions with relativly higher quality by dividing the complicated
+geometries and boundarirs of the physical system into a amount of
+smaller and simpler subdomains \cite{logan2011first} (eg. lattice,
+trangle, curvilinear polygons, etc.). Every subdomain is locally
+approximated by a finite set of element equations (piecewise shape
+functions), which are finally assembled into a larger system of
+equations for modeling the entire problem. The goal of FEM is
+approximate a stable solution by minimizing the associated error
+function with the varational calculus. The major advantages of FEM are
+representing the complex geometries accuratly, exploring the local
+character of the approximation, and expressing the solutions in a
+unified formulation \cite{reddy1993introduction}. However, FED method
+needs an amount of mathematical skill that requires human involvement,
+for example, converting the original equation into the equivalent
+weak formulation, choosing and changing the variational formulation
+dicretization strategy in a particular problem, and so on. In this
+thesis, applying the absorbing boundary conditions on the border of
+the roots. However, the complexity of real root systems in 2D images
+make it time-comsuming and challenging to trace and define the problem
+geometry, label the nodes, and generate the coordinates and
+connectivities among the nodes in the stage of preprocessing FEM. 
+
+
+In constrast, the finite volumn method (FVM) converts the two
+dimentional diffusion eqautions into a system of linear equations,
+which can be solved by the direct method
+\cite{eymard2000finite}. However, the accuracy of numerical methods
+will be debased on the integration with respect to both time and
+space. Unlike the domain-type methods (eg. FDM, FEM, FVM, etc.), the
+boundary element method (BEM) is an alternative numerical computential
+technique for sloving PDEs formulated as integral equation based on
+the boundary. It only discretize the boudary and fits the boundary
+values into the integral eqaution \cite{ang2007beginner}. Therefore,
+when the domain extends to infinity or the shape of the boudnary is
+complex, BEM is more efficient in computation than other methods
+because of the smaller surface or volumn ratio
+\cite{katsikadelis2002boundary}. However, all of these methods have an
+intrinsically commom characteristic that is mesh discretization of a
+continuous domain into a set of discrete sub-domains. If the mesh
+becomes finer and the internal points number becomes bigger, the
+solution of the discrete problem will converge to the original
+boundary value problems with the higher level of accuacy, but the
+computational time will be longer. Furthermore, one of the common
+difficulties in applying the numerical method for solving the PDEs is
+that takes much longer time to decide if the answer is right than
+finding the solution. Therefore, before the simulation, it is
+necessary to understand the system qualitatively for checking the
+behaviours of the approximated solutions.
+
+
+\subsection{Monte Carlo Techniques for PDEs}
+
+Monte Carlo (MC) methods, commonly used computational techniques, aims
+to genertate samples from a given proabability distribution, estimate
+the expectations of the functions under this distribution, and
+opyomaize the complicated objective functions by using random numbers
+\cite{kroese2014monte}. Compare with the deterministic numerical
+methods, applying Monte Carlo methdos for sloving PDEs is grid-free on
+the domain, boundary, and the boundary conditions of the problem.
+
+One of the approaches, from the deterministic prospective, for
+sloving PDEs by Monte Carlo procedure is based on the classical
+probabilistic representations (eg. Feynman-Kac representations
+\cite{kac1987enigmas}) in the form of Wiener or diffusion path
+integral \cite{sabelfeld2013random}. For example, when solve the
+d-dimensional heat eqaution, the Brownian motion generated by the
+second-order differential operator are simulated using the numerical
+methods for sloving the stochastic differential equation
+\cite{wiki:MCMheat}. However, the discretization step should be small
+enough to achieve a desired accuracy, which will result in the long
+simulation.
+
+Another straghtforward approach for solving PDEs by Monte Carlo method
+is based on the probabilistic interpretation of integral eqautions
+equivalent to the original continous problem, whose solutions can be
+represented as expectation of some functional of the trajectories of a
+stochastic process
+\cite{varadhan1980lectures}\cite{grebenkov2014efficient}\cite{sabelfeld2013random}.
+Those trajectories can be generated by Monte Carlo techniques for
+approximating the expectations and the solutions. For instance, the
+estimatation of the expectation of the funcational from a Markov
+process was proposed by simulating the successive positions of the
+trajactory of the process at fixed instants with step $\triangle t$
+\cite{kronberg1976solution}\cite{king1951monte}.
+
+
+\subsection{Models for Continious Diffuison Process}
+
+
+\subsubsection{Borwnian Motion and Random Walks}
+
+Brownian motion \cite{brown1828microscopical}, the irregular motion of
+individual pollen particles, have been existed before the exitence of
+random walk theroy. At the begining of the twentieth century, the
+term, random walk, was original proposed by Karl Pearson
+\cite{pearson1905problem}. He set a simple example for modeling the
+random migration of mosquitos invading cleared jungle regions. At each
+time step, the mosquito move to a random direction with a fixed step
+length. Rayleigh \cite{rayleigh1905problem} answered Pearson's question
+about what the distrbitons of mosquitos look like after many steps
+have been taken. Rayleigh 
+
+
+At almost the same time, Louis Bachelier
+\cite{bachelier1900theorie} developed a model of the financial time
+series based on the random walk and explored the connection between
+discrete random walks and the continous diffusion (heat)
+equation. During the course of research on random walks, many
+important fields, such as random processes, random noise, spectral
+analysis and stochastic equations, were developed by some physicists
+\cite{einstein1905electrodynamics} \cite{einstein1906theory}
+\cite{smoluchowski1916drei}.
+
+The heat equation describes the tempeature distribution of a certain
+homogeneous and isotropic domain in which does not exist any heat
+sources \cite{varadhan1980lectures}. The heat spreads randomly in all
+directions at some rate in the domain, so it is more useful to
+understand diffusion type PDEs by considering the individual random
+particle \cite{lawler2010random}. The heat flow is a diffusion process
+defined in continuous time with a continuous state space and
+continuous sample paths \cite{ito2012diffusion}. Brownian motion
+\cite{brown1828microscopical}, also called the Wiener process, is a
+case of diffusion process with the Markov properties that is the
+future states depend only on the present states
+\cite{bharucha2012elements}. From a probabilistic perspective, the
+probability density of Brownian particles satisfies the heat equation
+or diffusion equation \cite{varadhan1980lectures}. The continuous
+Brownian motion can be considered as the limit of discrete random walk
+as the time and space increments go to zero \cite{lawler2010random}.
+
+
+\subsubsection{Theory of Lattice Random Walks (LRWs)}
+
+Let us consider the heat particles perform the simple random walk on
+the d-dimensional integer grid \mathbb{Z^d}. It is a discrete space
+and discrete time symmetric hopping process \cite{redner2001guide}. At
+each time setp, a random walker moves to one of its $2d$ nearest
+neighbors with probability $\frac{1}{2d}$. If $d <= 2$, the random
+walk is recurrent, which means it returns to the origin infinitely
+often with probaility $1$. If $d >= 3$, the random walk is transient,
+which implies it returns to the origin only finitly often with
+probability $1$ \cite{hughes1998random}.
+
+
+For simplicity, we only consider 2-dimensional lattice random walks
+(LRWs) \cite{lawler2010random}. Let $\triangle l$ be the distance
+between two sites (pixel size) and $\tau$ be the time step. Define
+$p(x, t| x_{S})$ as the conditional probability of a particle to be in
+position $x$ at time $t$ starting from $x_{S}$ at time $t=0$. The
+temperature at a site is given by the amonunt of heat going in from
+nerighboring siteThus, $p(x, t + \tau |x_{S})$ is defined as
+probability of a particle to be in position $x$ at time $t + \tau$
+starting from $x_{S}$ at time $t=0$, where
+
+\begin{equation}
+  p(x, t + \tau | x_{S}) = \frac{p(x - \triangle l e_{x}, t| x_{S}) +
+    p(x + \triangle l e_{x}, t| x_{S}) + p(x - \triangle l e_{y}, t|
+    x_{S}) + p(x + \triangle l e_{y}, t| x_{S})}{4}
+\end{equation}
+
+Also, when $\tau \rightarrow 0$, $\triangle l \rightarrow 0$, and
+$\tau \sim (\triangle l)^2$,
+
+\begin{equation}
+  \frac{\partial p(x, t| x_{S})}{\partial t} = \frac{(\triangle
+    l)^2}{4 \tau} (\frac{\partial ^2 p(x, t| x_{S})}{\partial x^2} +
+  \frac{\partial^2 p (x, t| x_{S})}{\partial y^2})
+\end{equation}
+
+where $\frac{(\triangle l)^2}{4 \tau} = 1$, and $\kappa =
+\frac{(\triangle l)^2}{\tau}$ is the diffusion coefficent.
+
+
+The $d$-dimensional heat equation in the discrete set-up is 
+
+\begin{equation}
+  \frac{\partial p(x, t| x_{S})}{\partial t} = \frac{D}{2d}
+  \sum_{i=1}^{d} \frac{\partial ^2 p(x, t| x_{S})}{\partial x_{i}^2}
+\end{equation}
+
+
+
+\subsubsection{Theory of Pearson's Random Walks (PRWs)}
+
+Pearson-Rayleigh 
+
+\section{Output Analysis: Kaplan-Meier Estimator}
+
+
+
