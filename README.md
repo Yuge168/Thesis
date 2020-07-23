@@ -2,5 +2,5 @@ The thesis is written in thesis_uofs.tex based on the template of U of S. I have
 
 
 # Run the following commands:
-(1) BibTex thesis_uofs <br /> (2) pdflatex thesis_uofs 
+(1) BibTex thesis_uofs <br /> (2) pdflatex thesis_uofs <br /> (3) open thesis_uofs.pdf
 
