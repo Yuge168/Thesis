@@ -2,7 +2,8 @@ Thesis are writen in thesis_uofs.tex, which is a template of U of S. Based on th
 
 
 
+
+
 # Run the following commands:
-(1) BibTex thesis_uofs
-(2) pdflatex thesis_uofs 
+(1) BibTex thesis_uofs <br /> (2) pdflatex thesis_uofs 
 
