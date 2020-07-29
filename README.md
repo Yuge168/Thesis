@@ -1,4 +1,4 @@
-The thesis is written in the thesis uofs.text based on the template of U of S. I have highlighted the title of a subsubsection (2.1.1), which is the first trial of collaborative writing.
+The thesis is written in the thesis uofs.tex based on the template of U of S. I have highlighted the title of a subsubsection (2.1.1), which is the first trial of collaborative writing.
 
 
 # Run the following commands:
