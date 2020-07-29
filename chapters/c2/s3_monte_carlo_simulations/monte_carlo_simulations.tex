@@ -18,13 +18,20 @@ functions, which describes the geometrical properties of the shape.
 In the last section in this chapter, the exact analytical solutions of
 the heat equation defined in the annulus with the initial and boundary
 conditions have been derived. And then, the analytical survival
-probability can be calculated by integration on the
-annulus. Nevertheless, either irregular geometries or discontinuities
-cause the complication in solving the PDEs in practice, so the
-explicit algebraic solutions are close to non-existed. Therefore,
-numerical methods and computer simulations are more useful and
-accessible in solving differential equations than calculating pure
-analytical solutions.
+probability can be calculated by the integration over the annulus for
+shape characterization. This analytical method looks useful, but its
+applications to practical problems will present difficulties. Firstly,
+the numerical evaluation of the analytical solutions is usually by no
+means trivial because they are in the form of infinite
+series. Secondly, either irregular geometries or discontinuities cause
+the complication in solving the heat (diffusion) equations by
+analytical methods in practice, so the explicit algebraic solutions
+are close to non-existed. In other words, the analytical techniques
+and solutions have a severe limitation that they can apply strictly
+only to the linear form of the diffusion equations and the boundary
+conditions \cite{crank1979mathematics}. Therefore, numerical methods
+and computer simulations are more useful and accessible in solving
+differential equations than calculating pure analytical solutions.
 
 \subsubsection{Deterministic Numerical Methods}
 
@@ -98,9 +105,9 @@ similar feature - mesh discretization in the time and space
 dimension. They need to deal with the problem in defining the
 extremely complicated boundary of the root systems. Moreover, if the
 mesh becomes finer and the internal points number becomes larger, the
-discrete problem's solutions will converge to the original IBVPs with
-a higher level of accuracy, but the computational time will be
-longer. Furthermore, after applying the numerical methods, it will
+solutions of the discretized problem will converge to the original
+IBVPs with a higher level of accuracy, but the computational time will
+be longer. Furthermore, after applying the numerical methods, it will
 sometimes take a much longer time to decide whether the solution is
 right and adjust the schemes by understanding the systems
 qualitatively. More importantly, the extra efforts are demanded based
@@ -121,7 +128,7 @@ complicated objective functions by using random numbers
 \cite{kroese2014monte}. Compare with the deterministic numerical
 methods, applying Monte Carlo methods for solving PDEs is grid-free on
 the domain, boundary, and the boundary conditions of the problem
-\cite{grebenkov2014efficient}.
+ \cite{grebenkov2014efficient}.
 
 From the deterministic perspective, sloving PDEs by Monte Carlo
 procedure is based on the classical probabilistic representations,
@@ -151,6 +158,18 @@ $\triangle t$ \cite{kronberg1976solution}\cite{king1951monte}.
 
 \subsection{Models for Continious Diffuison Process}
 
+Models, based on the reasoning with the averaged physical quantities,
+usually lead to a diffusion equation, including concentration,
+temperature, and velocity. These quantities at a space-time point
+represent averages around the point in a small time interval and
+spatial volume. Compared to modelling experimental and practical
+situations using diffusion equations and solutions, random walk is
+an entirely distinct and simplified kind of modelling procedure. It
+simulates the underlying physical processes that involve the
+complicated microscopic movement of atoms and molecules, in a simple
+and computationally efficient way. Moreover, when averaged, the random
+walk generates models that are mathematically equivalent to heat
+(diffusion) equations.
 
 \subsubsection{Borwnian Motion and Random Walks}
 
@@ -196,6 +215,8 @@ some physicists \cite{einstein1905electrodynamics}
 \cite{einstein1906theory} \cite{smoluchowski1916drei}. The continuous
 Brownian motion can be considered as the limit of discrete random walk
 as the time and space increments go to zero \cite{lawler2010random}.
+
+
 
 
 
@@ -248,7 +269,9 @@ Finally, the $2$-dimensional heat equation is
     l)^2}{4 \delta} (\frac{\partial ^2 p(x, t| x_{S})}{\partial x^2} +
   \frac{\partial^2 p (x, t| x_{S})}{\partial y^2})
 \end{equation}
-where $D = \frac{(\triangle l)^2}{\delta}$ is the diffusion coefficent.
+where $D = \frac{(\triangle l)^2}{4 \delta}$ is the diffusion
+coefficent. This derivation shows a tight relationship between
+lattice random walks and diffusion.
 
 
 \subsubsection{Theory of Pearson's Random Walks (PRWs)}
