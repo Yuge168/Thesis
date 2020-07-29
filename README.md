@@ -1,4 +1,4 @@
-The thesis is written in thesis_uofs.tex based on the template of U of S. I have highlighted the title of a subsubsection, which is a confusing part for me. Based on the template's introduction, the table of content will be generated automatically if the sectioning commands are appropriately used. However, it does not work. I guess I did something wrong when I insert the sections or subsections.  
+The thesis is written in the thesis uofs.text based on the template of U of S. I have highlighted the title of a subsubsection (2.1.1), which is the first trial of collaborative writing.
 
 
 # Run the following commands:
