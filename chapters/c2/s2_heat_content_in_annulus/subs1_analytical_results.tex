@@ -11,58 +11,56 @@ infinite series, the numerical method will be used to approximate them
 to validate the research methodology in the next chapter.
 
 
-\subsection{\textcolor{red}{\textbf{\hl{Analytical Results}}}} %% highlight the title
+\subsection{\highlight[id=Yuge, comment={The writing of this subsection shared with Dave to revise.}]{Analytical Results}}\label{analytical results}
 
 The $2$-dimensional heat equation \cite{crank1979mathematics}
-Eq.$(2.1)$ defined in the polar coordinate system describes the heat
-distribution or temperature varying in time and positions in the
-domain $\Omega$ shown in Figure $2.1$. $u(r, \theta, t)$ is the
-unknown function to be solved, where $r$ is radial coordinate,
-$\theta$ is the angular coordinate, and $t$ is the time. $D$ is the
-diffusion coefficient and determines how fast $u$ changes in time.
+Eq.~\ref{eq:polar_coordinate_diffusion} defined in the polar
+coordinate system describes the heat distribution or temperature
+varying in time and positions in the domain $\Omega$ shown in
+Figure~\ref{fig:annulus}. $u(r, \theta, t)$ is the unknown function to
+be solved, where $r$ is radial coordinate, $\theta$ is the angular
+coordinate, and $t$ is the time. $D$ is the diffusion coefficient and
+determines how fast $u$ changes in time.
 
-\begin{equation}
-  u_t = D \big(u_{rr} + \frac{1}{r} u_r + \frac{1}{r^2} u_{\theta\theta}\big)  
+\begin{equation}\label{eq:polar_coordinate_diffusion}
+  u_t = D(u_{rr} + \frac{1}{r} u_r + \frac{1}{r^2} u_{\theta\theta})
 \end{equation}
 
-\begin{equation}
+\begin{equation}\label{eq:Dirichlet_bc}
   u = 0 \; \; \; on \; \partial \Omega_1
 \end{equation}
 
-\begin{equation}
+\begin{equation}\label{eq:Neumann_bc}
   u' = 0 \; \; \; on \; \partial \Omega_2
 \end{equation}
 
 
-\begin{equation}
+\begin{equation}\label{eq:initial_bc}
   u(r, \theta, 0) = \frac{1}{|\Omega|}
 \end{equation}
 
-From the microscopic perspective, $u(r, \theta, t)$ is a probability
-density function, which gives the value of heat particles at $(r,
-\theta)$ at time $t$. Eq.$(2.2)$ and Eq.$(2.3)$ are the homogenous
-Dirichlet boundary condition and the homogenous Neumann boundary
-condition, respectively. In other words, the inner boundary $\partial
-\Omega_{1}$ is cooled to the zero temperature because the heat
-particles will be absorbed when they encounter $\partial
-\Omega_1$. The outer boundary $\partial \Omega_{2}$ is perfectly
-insulated since the heat particles will be reflecting when they reach
-$\partial \Omega_2$. Eq.$(2.4)$ states that the heat particles
+From the microscopic and probabilistic perspective, $u(r, \theta, t)$
+is a probability density function, which gives the value of heat
+particles at $(r,\theta)$ at time $t$. Eq.~\ref{eq:Dirichlet_bc} and
+Eq.~\ref{eq:Neumann_bc} are the homogenous Dirichlet boundary
+condition and the homogenous Neumann boundary condition,
+respectively. In other words, the inner boundary $\partial \Omega_{1}$
+is cooled to the zero temperature because the heat particles will be
+absorbed when they encounter $\partial \Omega_1$. The outer boundary
+$\partial \Omega_{2}$ is perfectly insulated since the heat particles
+will be reflecting when they reach $\partial
+\Omega_2$. Eq.~\ref{eq:initial_bc} states that the heat particles
 distribute uniformly over the whole domain at time $t=0$, where
 $|\Omega|$ equals the total area of the annulus.
 
 
-\clearpage
-
-
-\begin{figure}[h!]
-  \begin{center}
-    \includegraphics[width=0.5\linewidth]{annulus.png}
-    \caption{Assume the annulus $\Omega$ is a homogeneous and
-      isotropic medium and has the inner boundary $\partial \Omega_1$
-      with radius $a$ and outer boundary $\partial \Omega_2$ with
-      radius $b$.}
-  \end{center}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{annulus.png}
+  \caption{Assume the annulus $\Omega$ is a homogeneous and isotropic
+    medium and has the inner boundary $\partial \Omega_1$ with radius
+    $a$ and outer boundary $\partial \Omega_2$ with radius
+    $b$. \label{fig:annulus}}
 \end{figure}
 
 
@@ -81,45 +79,57 @@ also describe the phenomenon or system of interest
 Let $\mu = b/a$ be the dimensionless radius ratio, $\tau =
 \frac{Dt}{a^2}$ be the dimensionless time, and $\hat r = \frac{r}{a}$
 be the unitless radius. Substitute these dimensionless variables into
-Eq.$(2.1)$ and rewrite it as
+Eq.~\ref{eq:polar_coordinate_diffusion} and rewrite it as
 
-\begin{equation}
-  u_\tau = \big(u_{\hat r \hat r} + \frac{1}{\hat r} u_{\hat r} + \frac{1}{\hat r ^2} u_{\theta\theta}\big)
+\begin{equation}\label{eq:DA_polar_diffusion}
+  u_\tau = (u_{\hat r \hat r} + \frac{1}{\hat r} u_{\hat r} + \frac{1}{\hat r ^2} u_{\theta\theta})
 \end{equation}
 
 With the uniform initial condition,
-$$u\big(\hat r, \theta, 0\big) = \frac{1}{|\Omega|}$$
+\begin{equation}\label{eq:DA_initial_bc}
+  u(\hat r, \theta, 0) = \frac{1}{|\Omega|}
+\end{equation}
 
 With the homogenous boundary conditions
-$$u\big(1, \theta, \tau\big) = 0$$
-$$u'\big(\mu, \theta, \tau \big) = 0$$
+\begin{equation}\label{eq:DA_Dirichlet_bc}
+  u(1, \theta, \tau) = 0
+\end{equation}
 
-\clearpage
+\begin{equation}\label{eq:DA_Neumann_bc}
+  u'(\mu, \theta, \tau) = 0
+\end{equation}
+
+
 
 After implementing the separation of variables method
-\cite{crank1979mathematics}, the solutions of Eq.$(2.5)$ are
+\cite{crank1979mathematics}, the solutions of
+Eq.~\ref{eq:DA_polar_diffusion} with conditions
+Eq.~\ref{eq:DA_initial_bc}, Eq.~\ref{eq:DA_Dirichlet_bc}, and
+Eq.~\ref{eq:DA_Neumann_bc} are
 
-\begin{equation}
-  u\big(\hat r, \theta, \tau \big) = \sum_{n=1}^{\infty}
-  \tilde{c_{0,n}} \bigg\{J_0\big(\sqrt{\lambda_{0,n}}\big)
-  Y_0\big(\sqrt{\lambda_{0,n}} \hat r\big) -
-  Y_0\big(\sqrt{\lambda_{0,n}}\big) J_0\big(\sqrt{\lambda_{0,n}} \hat
-  r\big)\bigg\} e^{-\lambda_{0,n}\tau}
+\begin{equation}\label{eq:annulus_solutions_u}
+  u(\hat r, \theta, \tau) = \sum_{n=1}^{\infty}
+  \tilde{c_{0,n}} \bigg\{J_0(\sqrt{\lambda_{0,n}})
+  Y_0(\sqrt{\lambda_{0,n}} \hat r) -
+  Y_0(\sqrt{\lambda_{0,n}}) J_0(\sqrt{\lambda_{0,n}} \hat
+  r)\bigg\} e^{-\lambda_{0,n}\tau}
 \end{equation}
 
 where
 
-$$\tilde{c_{0,n}} = \frac{1}{\big(\mu^2 - 1\big)}
-\frac{1}{\bigg[\frac{J_0\big(\sqrt{\lambda_{0,n}}\big)}{J'_0\big(\mu
-      \sqrt{\lambda_{0,n}}\big)}\bigg]^2 -1}$$
+\begin{equation}\label{eq:coeff_u}
+  \tilde{c_{0,n}} = \frac{1}{(\mu^2 - 1)}
+\frac{1}{\bigg[\frac{J_0(\sqrt{\lambda_{0,n}})}{J'_0(\mu
+      \sqrt{\lambda_{0,n}})}\bigg]^2 -1}
+\end{equation}
 
 
 Eigenvalues $\lambda_{0, n}$ $(n \in \mathbb{N}_{+})$ appeared in
-Eq.$(2.6)$ is the $n$th positive root of the eigenfunction Eq.$(2.7)$,
-which is a cross-product of the Bessel function
-\cite{watson1995treatise}
+Eq.~\ref{eq:annulus_solutions_u} and Eq.~\ref{eq:coeff_u} is the $n$th
+positive root of the eigenfunction Eq.~\ref{eq:eigenfunction}, which
+is a cross-product of the Bessel function \cite{watson1995treatise}
 
-\begin{equation}
+\begin{equation}\label{eq:eigenfunction}
   F_0(\lambda) = J_0(\sqrt{\lambda}) Y_0'(\sqrt{\lambda} \mu) -
   J_0'(\sqrt{\lambda} \mu) Y_0(\sqrt{\lambda})
 \end{equation}
@@ -136,7 +146,7 @@ literatures \cite{birkhoff1954note} \cite{van1994heat}
 particles remain diffusing in the domain $\Omega$ at time $\tau > 0$
 \cite{aalen2008survival}. Survival probability can be expressed by
 
-\begin{equation}
+\begin{equation}\label{eq:annulus_analytical_s}
   \begin{split}
     S(\tau) &= \int_{0}^{2\pi} d\theta \int_{1}^{\mu} \hat r d \hat r
     u(\hat r, \theta, \tau)\\ &= \sum_{n=1}^{\infty} \frac{4}{\mu^2 -
@@ -147,17 +157,17 @@ particles remain diffusing in the domain $\Omega$ at time $\tau > 0$
   \end{split}
 \end{equation}
 
-Eq.$(2.8)$ reveals some basic properties of $S(\tau)$. Firstly, when
-$\tau=0$, the survival probability is $1$ since all the particles are
-just generated over the whole domain and not be absorbed by
-$\Omega_1$. Secondly, $S(\tau)$ is a convergent series with
-multiexponential decay. Thirdly, $S(\tau)$ interconnects the overall
-geometric characteristics of $\Omega$. For example, the decay rate of
-$S(\tau)$ in a short time heavily depends on the geometrical features
-of $\Omega_1$, as only the particles inserted close to $\Omega_1$ have
-the high probabilities of being absorbed. Finally, as the lone-time
-limit, $S(\tau)$ is represented by the lowest eigenvalue
-$\lambda_{0,1}$.
+Eq.~\ref{eq:annulus_analytical_s} reveals some basic properties of
+$S(\tau)$. Firstly, when $\tau=0$, the survival probability is $1$
+since all the particles are just generated over the whole domain and
+not be absorbed by $\Omega_1$. Secondly, $S(\tau)$ is a convergent
+series with multiexponential decay. Thirdly, $S(\tau)$ interconnects
+the overall geometric characteristics of $\Omega$. For example, the
+decay rate of $S(\tau)$ in a short time heavily depends on the
+geometrical features of $\Omega_1$, as only the particles inserted
+close to $\Omega_1$ have the high probabilities of being
+absorbed. Finally, as the lone-time limit, $S(\tau)$ is represented by
+the lowest eigenvalue $\lambda_{0,1}$.
 
 
 \subsubsection{Mean First-Passage Time}
@@ -165,7 +175,7 @@ $\lambda_{0,1}$.
 The first passage phenomena play a fundamental role in stochastic
 processes triggered by a first-passage event
 \cite{van1992stochastic}. In this thesis, we only focus on the
-stochastic evolution of $u(\hat r, \theta, \tau$ until the
+stochastic evolution of $u(\hat r, \theta, \tau)$ until the
 first-passage time, at which a heat particle reaches any sites of
 target boundary $\Omega_1$ for the first time. Similarly, another
 essential first-passage-related quantity is the first-passage
@@ -176,29 +186,30 @@ characteristics can be expressed in terms of the first-passage
 probability. For example, the survival probability of heat particles
 at time $\tau$ calculated in the last subsection is
 
-\begin{equation}
-  F(\tau) = - \frac{\partial S(\tau)}{\partial \tau}
+\begin{equation}\label{eq:pdf_fpt}
+  f(\tau) = - \frac{\partial S(\tau)}{\partial \tau}
 \end{equation}
 
-where $F(\tau)$ is the first-passage probability to the target
-boundary $\Omega_1$ at time $\tau$. By the definition, the $n$th
-moment of the exit time \cite{redner2001guide} is
+where $f(\tau)$ is the first-passage probability to the target
+boundary $\Omega_1$ at time $\tau$ regardless of particles' stop
+positions. By the definition, the $n$th moment of the exit time
+\cite{redner2001guide} is
 
-\begin{equation}
+\begin{equation}\label{eq:nth_fpt}
   \begin{split}
-    \langle \tau^n \rangle &= \int_{0}^{\infty} \tau^n F(\tau) d\tau \\
+    \langle \tau^n \rangle &= \int_{0}^{\infty} \tau^n f(\tau) d\tau \\
     &= - \int_{0}^{\infty} \tau^n  \frac{\partial S(\tau)}{\partial \tau} d\tau \\
     &= -\tau^n S(\tau) |_{0}^{\infty} + n\int_{0}^{\infty} \tau^{n-1}S(\tau) d\tau
 \end{split}
 \end{equation}
 
 
-Substitue $n=1$ in Eq.$(2.10)$, the mean-first passage time $\langle
-\tau \rangle$, also called the average first-passage time, of heat
-particles implies an overall property of the system and can be
+Substitue $n=1$ in Eq.~\ref{eq:nth_fpt}, the mean-first passage time
+$\langle \tau \rangle$, also called the average first-passage time, of
+heat particles implies an overall property of the system and can be
 expressed as
 
-\begin{equation}
+\begin{equation}\label{eq:mfpt}
   \begin{split}
     \langle \tau \rangle &= \int_{0}^{\infty} \tau dS\\
     &=\sum_{n=1}^{\infty} \frac{4}{\mu^2 - 1}
