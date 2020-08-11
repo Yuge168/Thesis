@@ -1,6 +1,6 @@
 
 \newpage
-\subsection{Numerical Approximation}\label{numerical approximation}
+\subsection{\highlight[id=Yuge, comment={Dave, Please give me the feedback or comments on this subsection.}]{Numerical Approximation}}\label{numerical approximation}
 
 The problem solved in the subsection~\ref{analytical results} is
 defined in the continuous-space and continuous-time, and all the
@@ -59,14 +59,14 @@ S(0) &= \sum_{n=1}^{\infty} \frac{4}{\mu^2 - 1} \frac{1}{\lambda_{0,n} \bigg\{\b
 \end{split}
 \end{equation}
 
-The individual terms of the series Eq.~\ref{eq:s0} are monotonically
-decreasing and approach to $0$. Calculating the $1000-$th partial sum
-directly, $S(0)$ is $0.9998649050990541$ to $16$ decimal places with
-$3$ digit accuracy. However, Aitken’s method can speed up the
-convergence rate of the partial sum sequence and improve the accuracy
-of the estimation by constructing a new series. Moreover, it does not
-matter whether the series is alternating or not. Aitken's acceleration
-is
+As displayed in Figure~\ref{fig:s0_coeff}, the individual terms of the
+series Eq.~\ref{eq:s0} are monotonically decreasing and approach to
+$0$. Calculating the $1000-$th partial sum directly, $S(0)$ is
+$0.9998649050990541$ to $16$ decimal places with $3$ digit
+accuracy. However, Aitken’s method can speed up the convergence rate
+of the partial sum sequence and improve the accuracy of the estimation
+by constructing a new series. Moreover, it does not matter whether the
+series is alternating or not. Aitken's acceleration is
 
 \begin{equation}\label{eq:Aitken_method}
 A^{(1)}_n = s_{n+1} - \frac{(s_{n+1} - s_n)^2}{s_{n+1} - 2s_n + s_{n-1}}
