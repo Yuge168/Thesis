@@ -103,8 +103,8 @@ integral equation \cite{ang2007beginner}.
 However, all of the mentioned numerical methods have an intrinsically
 similar feature - mesh discretization in the time and space
 dimension. They need to deal with the problem in defining the
-extremely complicated boundary of the root systems. Moreover, if the
-mesh becomes finer and the internal points number becomes larger, the
+extremely complicated boundary of the root systems. If the mesh
+becomes finer and the internal points number becomes larger, the
 solutions of the discretized problem will converge to the original
 IBVPs with a higher level of accuracy, but the computational time will
 be longer. Furthermore, after applying the numerical methods, it will
@@ -128,7 +128,15 @@ complicated objective functions by using random numbers
 \cite{kroese2014monte}. Compare with the deterministic numerical
 methods, applying Monte Carlo methods for solving PDEs is grid-free on
 the domain, boundary, and the boundary conditions of the problem
- \cite{grebenkov2014efficient}.
+\cite{grebenkov2014efficient}. Moreover, as the dimension of the
+problem increase, those methods often become computationally expensive
+while Monte Carlo methods can still provide with reasonably good
+estimate at a fixed computational cost. 
+
+Monte Carlo methods has been applied in solving $1$-dimensional and
+$2$-dimensional time-dependent heat equation. The drawback of this
+method is that we can only calculate the solution at one point at a
+time. 
 
 From the deterministic perspective, sloving PDEs by Monte Carlo
 procedure is based on the classical probabilistic representations,
