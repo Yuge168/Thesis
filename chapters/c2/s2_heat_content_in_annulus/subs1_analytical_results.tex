@@ -13,57 +13,54 @@ to validate the research methodology in the next chapter.
 
 \subsection{\highlight[id=Yuge, comment={Dave, Please give me the feedback or comments on this subsection.}]{Analytical Results}}\label{analytical results}
 
-The $2$-dimensional heat equation \cite{crank1979mathematics}
+The \added[id=djs]{solution to the} $2$-dimensional heat equation \cite{crank1979mathematics}
 Eq.~\ref{eq:polar_coordinate_diffusion} defined in the polar
-coordinate system describes the heat distribution or temperature
+coordinate system \added[id=djs]{, $u(r, \theta, t)$,} describes the heat distribution or temperature
 varying in time and positions in the domain $\Omega$ shown in
-Figure~\ref{fig:annulus}. $u(r, \theta, t)$ is the unknown function to
-be solved, where $r$ is radial coordinate, $\theta$ is the angular
-coordinate, and $t$ is the time. $D$ is the diffusion coefficient and
-determines how fast $u$ changes in time.
+Figure~\ref{fig:annulus} \deleted[id=djs]{. $u(r, \theta, t)$ is the unknown function to
+be solved}, where $r$ is radial coordinate, $\theta$ is the angular
+coordinate, $t$ is the time, $D$ is the diffusion coefficient \replaced[id=djs]{and
+determines how fast $u$ changes in time}{and subscripts denote
+derivatives with respect to the indicated independent variable}.
 
-\begin{equation}\label{eq:polar_coordinate_diffusion}
-  u_t = D(u_{rr} + \frac{1}{r} u_r + \frac{1}{r^2} u_{\theta\theta})
-\end{equation}
-
-\begin{equation}\label{eq:Dirichlet_bc}
-  u = 0 \; \; \; on \; \partial \Omega_1
-\end{equation}
-
-\begin{equation}\label{eq:Neumann_bc}
-  u' = 0 \; \; \; on \; \partial \Omega_2
-\end{equation}
-
-
-\begin{equation}\label{eq:initial_bc}
-  u(r, \theta, 0) = \frac{1}{|\Omega|}
-\end{equation}
+\comment[id=djs]{Use amslatex macros to improve formatting of equations and consistently use subscripts to indicate derivatives}
+\begin{align}
+  u_t & = D\left(u_{rr} + \frac{1}{r} u_r + \frac{1}{r^2} u_{\theta\theta}\right)
+  \qquad\text{in $\Omega$}\label{eq:polar_coordinate_diffusion} \\
+  u & = 0
+  \qquad\text{on $\partial \Omega_1$}\label{eq:Dirichlet_bc} \\
+  ru_r & = 0
+  \qquad\text{on $\partial \Omega_2$}\label{eq:Neumann_bc} \\
+  u(r, \theta, 0) & = \frac{1}{|\Omega|}
+  \qquad\text{in $\Omega$}\label{eq:initial_bc}  
+\end{align}
+\added[id=djs]{Note, $|\Omega|$ is the area of the dark annulus in Fig.~\ref{fig:annulus}
+  and $\partial \Omega_1$ and $\partial \Omega_2$ are disjoint subsets of the boundary of $\Omega$.}
 
 From the microscopic and probabilistic perspective, $u(r, \theta, t)$
-is a probability density function, which gives the value of heat
-particles at $(r,\theta)$ at time $t$. Eq.~\ref{eq:Dirichlet_bc} and
+\comment[id=djs]{This is correct at $t=0$}{is a probability density function}, which gives the value of
+\comment[id=djs]{There is no such thing as a ``heat particle''}{heat
+particles at $(r,\theta, t)$\deleted[id=djs]{at time $t$}. Eq.~\ref{eq:Dirichlet_bc} and
 Eq.~\ref{eq:Neumann_bc} are the homogenous Dirichlet boundary
 condition and the homogenous Neumann boundary condition,
-respectively. In other words, the inner boundary $\partial \Omega_{1}$
+respectively. \replaced[id=djs]{In other words}{Using the heat interpretation}, the inner boundary $\partial \Omega_{1}$
 is cooled to the zero temperature because the heat particles will be
 absorbed when they encounter $\partial \Omega_1$. The outer boundary
 $\partial \Omega_{2}$ is perfectly insulated since the heat particles
 will be reflecting when they reach $\partial
 \Omega_2$. Eq.~\ref{eq:initial_bc} states that the heat particles
-distribute uniformly over the whole domain at time $t=0$, where
-$|\Omega|$ equals the total area of the annulus.
-
+distribute uniformly over the whole domain at \deleted[id=djs]{time} $t=0$\deleted[id=djs]{, where
+$|\Omega|$ equals the total area of the annulus}.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.5\textwidth]{annulus.png}
-  \caption{Assume the annulus $\Omega$ is a homogeneous and isotropic
-    medium and has the inner boundary $\partial \Omega_1$ with radius
-    $a$ and outer boundary $\partial \Omega_2$ with radius
+  \comment{I changed the caption text to show how to be more clear and comprehensive.}
+  \caption{The dark annulular region, $\Omega$, is treated as a homogeneous and isotropic
+    medium with relecting (Neumann) inner boundary $\partial \Omega_1$ at radius
+    $a$ and absorbing (Dirichlet) outer boundary $\partial \Omega_2$ at radius
     $b$. \label{fig:annulus}}
 \end{figure}
-
-
 
 \subsubsection{Solving Heat Equation}
 
