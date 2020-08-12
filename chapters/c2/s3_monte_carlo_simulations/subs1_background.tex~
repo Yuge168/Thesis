@@ -1,0 +1,34 @@
+\section{Monte Carlo Simulations}
+
+In this section, several widely used numerical methods for solving
+partial differential equations (PDEs), such as the diffusion equation,
+and their limitations in practice are introduced. From the
+deterministic perspective, one of the probabilistic algorithms,
+Monte-Carlo (CM) methods, is proposed. However, discretization errors
+also affect the accuracy of the solutions. Finally, based on the
+theories of two random walk models, Pearson's random walks (PRWs) and
+lattice random walks (LRWs), two fixed-time step Monte Carlo
+simulations are designed. Those simulations can approximate the
+integration of the heat equations' solutions, named survival
+functions, which describes the geometrical properties of the shape.
+
+
+\subsection{Background}
+
+In the last section in this chapter, the exact analytical solutions of
+the heat equation defined in the annulus with the initial and boundary
+conditions have been derived. And then, the analytical survival
+probability can be calculated by the integration over the annulus for
+shape characterization. This analytical method looks useful, but its
+applications to practical problems will present difficulties. Firstly,
+the numerical evaluation of the analytical solutions is usually by no
+means trivial because they are in the form of infinite
+series. Secondly, either irregular geometries or discontinuities cause
+the complication in solving the heat (diffusion) equations by
+analytical methods in practice, so the explicit algebraic solutions
+are close to non-existed. In other words, the analytical techniques
+and solutions have a severe limitation that they can apply strictly
+only to the linear form of the diffusion equations and the boundary
+conditions \cite{crank1979mathematics}. Therefore, numerical methods
+and computer simulations are more useful and accessible in solving
+differential equations than calculating pure analytical solutions.
