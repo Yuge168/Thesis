@@ -1,0 +1,189 @@
+\subsubsection{Probabilistic Interpretation}\label{probabilistic interpretation}
+
+In the subsection~\ref{analytical results}, the heat equation
+describes the temperature distribution of a homogeneous and isotropic
+domain \cite{varadhan1980lectures}, and its solution characterizes how
+the temperature changes over the position and time. From the
+probabilistic perspective, the heat equation and its solution can also
+be understood by the Brownian
+motion \cite{brown1828microscopical}. The Brownian motion also called
+the Wiener process, is a continuous-time and continuous-space
+stochastic process \cite{karlin2014first} with the continuous sample
+paths and stationary independent
+increments \cite{ito2012diffusion}. This process also has the Markov
+property: the future state depends only on the present
+state \cite{bharucha2012elements}. In the probability theory, if a
+large number of free particles undergoing the Brownian motion
+independently, the density of particles at a specific time becomes a
+deterministic process called diffusion, which satisfies the heat
+equation \cite{kac1947random}\cite{varadhan1980lectures}.
+
+
+
+\paragraph{Survival Probability}
+
+
+\newcommand{\cpu}{\rho(\hat r, \theta, \tau | \hat{r_0}, \theta_0, 0)}
+\newcommand{\cpuf}[1]{\ensuremath{\rho_{#1}}} 
+\newcommand{\cpus}[2]{\ensuremath{\rho_{#1#2}}}
+% Define the conditional probability u, which will be used frequently. 
+                                 
+
+For simplicity, we only investigate the probabilistic interpretation
+of the heat equation defined in the annulus with the boundary and
+initial conditions as same as described in the
+subsection~\ref{analytical results}. Consider a particle undergoing
+the Brownian motion from $(\hat{r_0}, \theta_0) \in \Omega$ at
+$\tau=0$, and let $\cpu$ be the conditional probability of finding the
+particle at $(\hat r, \theta) \in \Omega$ at time $\tau>0$. Moreover,
+particle's initial position $(\hat{r_0}, \theta_0)$ is distributed
+uniformly over the whole domain $\Omega$. $\cpu$ satisfies the following
+equations
+
+\begin{align}
+  \cpuf{\tau} & = \cpus{\hat r}{\hat r} + \frac{1}{\hat r} \cpuf{\hat r} + \frac{1}{\hat{r}^2} \cpus{\theta}{\theta}
+  \qquad\text{for $(\hat r, \theta) \in \Omega$}\label{eq:polar_coordinate_diffusion_conditional_prob} \\
+  \rho & = 0
+  \qquad\text{for $(\hat r, \theta) \in \partial \Omega_1$}\label{eq:Dirichlet_bc_conditional_prob} \\
+  \cpuf{\hat r} & = 0
+  \qquad\text{for $(\hat r, \theta) \in \partial \Omega_2$}\label{eq:Neumann_bc_conditional_prob} \\
+\end{align}
+
+
+The "local" survival probability $S(\tau | \hat{r_0}, \theta_0, 0)$,
+represents the probability that a particle, localized at
+$(\hat{r_0}, \theta_0)$ at $\tau=0$, keeps diffusing in $\Omega$ at
+time $\tau > 0$ and is unabsorbed by the boundary $\Omega_1$. 
+
+\begin{equation}\label{eq:cpu_s_local}
+  S(\tau | \hat{r_0}, \theta_0, 0) = \iint_{\Omega} \hat r \cpu d \hat r d\theta 
+\end{equation}
+
+Our interest is the "global" survival probability $S(\tau)$, the average of the local
+survival probability over $\Omega$, expressed as
+
+\begin{equation}\label{eq:cpu_s_global}
+  S(\tau) = \frac{1}{|\Omega|}\iint_{\Omega} \hat{r_0} S(\tau | \hat{r_0}, \theta_0, 0) d \hat{r_0} d \theta_0
+\end{equation}
+
+Eq.~\ref{eq:cpu_s_local} and Eq.~\ref{eq:cpu_s_global} reveal that the
+heat content $Q_{\Omega}(\tau)$ expressed in
+Eq.~\ref{eq:annulus_analytical_s} is proportional to the survival
+probability $S(\tau)$ \cite{kalinay2011survival}. 
+
+
+\paragraph{Mean First-Passage Time}
+
+The first passage phenomena play a fundamental role in the stochastic
+processes triggered by a first-passage
+event \cite{van1992stochastic}. In this thesis, one of the essential
+first-passage-related quantities is the first-passage time or the
+first-hitting time \cite{redner2001guide}, which is the time taken by
+particle undergoing the Brownian motion from an initial position to
+any sites of $\Omega_1$ for the first time. Particles' mean
+first-passage time $\langle \tau \rangle$, also called the average
+first-passage time, has a closed relationship with the survival
+probability \cite{redner2001guide}
+
+\begin{equation}\label{eq:mfpt_conditional_prob}
+  \begin{split}
+    \langle \tau \rangle &= \int_{0}^{\infty} \tau dS(\tau)\\
+    &=\sum_{n=1}^{\infty} \frac{4}{\mu^2 - 1}
+    \frac{1}{\lambda^2_{0,n}\bigg\{\bigg[\frac{J_0(\sqrt{\lambda_{0,n}})}{J'_0(\mu\sqrt{\lambda_{0,n}})}\bigg]^2
+      -1\bigg\}}
+  \end{split}
+\end{equation}
+
+From Eq.~\ref{eq:mfpt_conditional_prob} and
+Eq.~\ref{eq:eigenfunction}, it is clear that $\langle \tau \rangle$
+implies an overall property of the annulus since it only depends on
+the radius ratio of annulus $\mu$.
+
+
+
+
+\paragraph{Brownian Motion and Random Walks}
+
+Brownian motion, the irregular motion of individual particles, has
+been existed for a long time before the random-walk theory was
+developed. At the beginning of the twentieth century, the term, random
+walk, was initially proposed by Karl
+Pearson \cite{pearson1905problem}. He utilized the isotropic planar
+random flights to model how mosquitoes migrate and invade randomly in
+the cleared jungle regions. At each time step, the mosquito moves to a
+random direction with a fixed step
+length. Rayleigh \cite{rayleigh1905problem} answered Pearson's
+question in the same year, the distributions of mosquitos after many
+steps have been taken, is identical to superposition the sound
+vibrations with unit amplitude and arbitrary
+phase \cite{de2012flying}. At almost the same time, Louis
+Bachelier \cite{bachelier1900theorie} designed a model for the
+financial time series by the random walks. He also explored the
+connection between discrete random walks and the continuous heat
+equation. During the development of random-walk theory, many other
+scientific fields, including the random processes, random noise,
+spectral analysis, and stochastic equations, were developed by some
+physicists \cite{einstein1905electrodynamics} \cite{einstein1906theory} \cite{smoluchowski1916drei}. The
+continuous Brownian motion can be considered as the limit of the
+discrete random walks as the time and space increments go to
+zero \cite{lawler2010random}\cite{varadhan1980lectures}.
+
+
+\paragraph{Lattice Random Walks (LRWs)}
+
+Let us consider a large number of particles performing the simple
+random walk on the $d$-dimensional integer grid $\mathbb{Z}^d$. It is
+a discrete-space and discrete-time symmetric hopping
+process \cite{redner2001guide} on the lattice. At each time step, the
+particle moves to one of its $2d$ nearest neighbours with probability
+$\frac{1}{2d}$. If $d \leq 2$, the random walk is
+recurrent \cite{hughes1998random}, which means the particle will
+return to its origin infinitely often with the probability $1$. If
+$d \geq 3$, the random walk is transient \cite{hughes1998random},
+which indicates the particle will return to its origin only finitely
+often with the probability $1$ \cite{hughes1998random}.
+
+$2$-dimensional lattice random walks
+(LRWs) are considered and bec.
+
+Let $\triangle l$ be the distance between
+two sites and $\delta$ be the time step. Define $p(x,t| x_{S})$ as the
+conditional probability of a particle to be in position $x$ at time
+$t$ starting from $x_{S}$ at time $t=0$. $p(x, t + \delta |x_{S})$ is
+defined as probability of a particle to be in position $x$ at time $t
++ \delta$ starting from $x_{S}$ at time $t=0$, \cite{lawler2010random}
+
+
+\begin{equation}\label{eq:lrws_next}
+  p(x, t + \delta | x_{S}) = \frac{p(x - \triangle l e_{x}, t| x_{S}) +
+    p(x + \triangle l e_{x}, t| x_{S}) + p(x - \triangle l e_{y}, t|
+    x_{S}) + p(x + \triangle l e_{y}, t| x_{S})}{4}
+\end{equation}
+
+where $e_x$ and $e_y$ are unit vectors of $x-$ axis and $y-$ axis, respectively.
+
+
+When $\delta \rightarrow 0$, $\triangle l \rightarrow 0$, and $\delta \sim (\triangle l)^2$, 
+
+\begin{equation}\label{eq:lrws_prob}
+  p(x, t | x_{S}) + \delta p(x, t | x_{S}) = p(x, t | x_{S}) +
+  \frac{(\triangle l)^2}{4} (\frac{\partial ^2 p(x, t|
+    x_{S})}{\partial x^2} + \frac{\partial^2 p (x, t| x_{S})}{\partial
+    y^2})
+\end{equation}
+
+Finally, the $2$-dimensional heat equation is
+
+\begin{equation}\label{eq:lrws_heat}
+  \frac{\partial p(x, t| x_{S})}{\partial t} = \frac{(\triangle
+    l)^2}{4 \delta} (\frac{\partial ^2 p(x, t| x_{S})}{\partial x^2} +
+  \frac{\partial^2 p (x, t| x_{S})}{\partial y^2})
+\end{equation}
+where $D = \frac{(\triangle l)^2}{4 \delta}$ is the diffusion coefficent. This derivation shows a tight relationship between lattice random walks and diffusion.
+
+
+
+\paragraph{Pearson's Random Walks (PRWs)}
+
+Based on Pearson's problem and Rayleigh's answer, Stadje
+\cite{stadje1987exact} and Masoliver et al. \cite{masoliver1993some} considered a two-dimensional continuous-time and continuous-space random walk, defined as Pearson's random walks (PRWs) in this thesis. In PRWs, particle moves with constant speed and with random directions distributed uniformly in $[0, 2\pi)$. Moreover, the lengths of the straight-line paths and the turn angles are stochastically independent. If the mean step length approaches zero and the walking time is big enough, the behaviours of particles in PRWs weakly converges to the Wiener Process \cite{stadje1987exact}, which satisfies the traditional heat equation.

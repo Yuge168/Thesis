@@ -1,0 +1,44 @@
+\subsubsection{Dvoretzky–Kiefer–Wolfowitz (DKW) inequality}
+
+Although the sample size estimated by the general method does not
+depend on the geometries characterized by the random walk models, how
+long the simulation will run is unknown, and the final calculated
+sample size will be larger than the really necessary value
+sometimes. Therefore, an alternative method, named the
+Dvoretzky–Kiefer–Wolfowitz (DKW) inequality
+\cite{dvoretzky1956asymptotic}, is proposed for the sample size
+determination without simulating random walk models and considering
+the shape of objects in the images.
+
+Let $F_N(x)$ denote the empirical distribution functions (empirical
+CDF) for a sample of $N$ real-valued $i.i.d.$ random variables,
+$X_{1}, ... , X_{N}$, with continuous cumulative distrbution function
+(CDF) $F(x)$. The DKW inequality, as expressed in Eq.$(2.18)$, bounds the
+probability that the random function $F_{N}(x)$ differs from the true
+$F(x)$ by more than a given constant $\varepsilon$
+\cite{dvoretzky1956asymptotic}.
+
+\begin{equation}
+  Pr(\sup_{x \in \mathbb{R}} |F_{N}(x) - F(x)| > \varepsilon) \leq
+  2e^{-2N\varepsilon^2} \;\; \;\; for \; every \; \varepsilon > 0
+\end{equation}
+
+The equally spaced confidence bounds or simultaneous band around the
+$F_{N}$ encompassing the entire $F(x)$ can be expressed by
+\begin{equation}
+  F_{N}(x) - \varepsilon \leq F(x) \leq F_N(x) + \varepsilon \; \; \; \; 
+\end{equation}
+
+On the other hand, assume the simultaneous band produced by Eq.$(2.19)$
+containing the $F(x)$ at a given confidence level $1-\alpha$, the
+interval $\varepsilon$ can be calculated by
+
+\begin{equation}
+  \varepsilon = \sqrt{\frac{\ln{\frac{2}{\alpha}}}{2N}}
+\end{equation}
+
+
+Given a converge probability $\alpha$ and constant $\varepsilon$, it is
+straightforward to estimate the sample size $N$ in the fixed-time step
+Monte Carlo simulations in any images by Eq.$(2.20)$.
+

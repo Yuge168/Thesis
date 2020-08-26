@@ -1,0 +1,30 @@
+\subsubsection{Relationship between $t$ and $\tau$}
+
+Particles' average one-step displacement $\triangle l$ in the
+fixed-time step Monte Carlo simulations, LRWs and PRWs, are associated
+with the time step is $\delta$:
+
+\begin{equation}
+  \triangle l = 2 \sqrt{D \delta}
+\end{equation}
+where $D$ is the diffusion coefficent.
+
+Eq.$(2.15)$ implies that the time step $\delta$ must be designed small
+enough to make sure that $\triangle l$ is shorter than the smallest
+geometrical features of the boundaries. Thus, $\triangle l$ should
+equal or be less than one-pixel size in the simulations. Furthermore,
+the $\delta$ is regarded as a fundamental bridge between particles'
+number of steps $t$ and unitless continuous-time $\tau$,
+
+\begin{equation}
+ \tau = t \delta = \frac{(\triangle l)^2 t}{4D}
+\end{equation}
+where $D$ is 1.
+
+When running the LRWs in the annulus, $\triangle l$ is always
+$\frac{1}{100}$ since particle's step length is as same as one-pixel
+size. However, $\triangle l$ is related to the particle's step length
+in PRWs. If particle's step length is $0.5$, a half of a pixel, then
+$\triangle l$ equals $\frac{1}{100} \times \frac{1}{2} =
+\frac{1}{200}$.  Similiarly, when the step length in PRWs is $0.1$,
+then $\triangle l$ is $\frac{1}{1000}$. 
