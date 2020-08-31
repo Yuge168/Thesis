@@ -1,20 +1,6 @@
-\ChangesListline {highlight}{Highlighted\nobreakspace {}(Yuge)}{Analytical Results}{4}
-\ChangesListline {added}{Added\nobreakspace {}(djs)}{solution to the}{4}
-\ChangesListline {added}{Added\nobreakspace {}(djs)}{, $u(r, \theta , t)$,}{4}
-\ChangesListline {deleted}{Deleted\nobreakspace {}(djs)}{. $u(r, \theta , t)$ is the unknown function to be solved}{4}
-\ChangesListline {replaced}{Replaced\nobreakspace {}(djs)}{and determines how fast $u$ changes in time}{4}
-\ChangesListline {comment}{Commented\nobreakspace {}(djs)}{Use amslatex macros to improve formatting of equations and consistently use subscripts to indicate derivatives}{4}
-\ChangesListline {added}{Added\nobreakspace {}(djs)}{Note, $|\Omega |$ is the area of the dark annulus in Fig.\nobreakspace {}2.1\hbox {} and $\partial \Omega _1$ and $\partial \Omega _2$ are disjoint subsets of the boundary of $\Omega $.}{4}
-\ChangesListline {comment}{Commented\nobreakspace {}(djs)}{This is correct at $t=0$}{4}
-\ChangesListline {comment}{Commented\nobreakspace {}(djs)}{There is no such thing as a ``heat particle''}{4}
-\ChangesListline {deleted}{Deleted\nobreakspace {}(djs)}{at time $t$}{4}
-\ChangesListline {replaced}{Replaced\nobreakspace {}(djs)}{In other words}{4}
-\ChangesListline {deleted}{Deleted\nobreakspace {}(djs)}{time}{4}
-\ChangesListline {deleted}{Deleted\nobreakspace {}(djs)}{, where $|\Omega |$ equals the total area of the annulus}{4}
-\ChangesListline {comment}{Commented}{I changed the caption text to show how to be more clear and comprehensive.}{7}
-\ChangesListline {highlight}{Highlighted\nobreakspace {}(Yuge)}{Numerical Approximation}{7}
-\ChangesListline {highlight}{Highlighted\nobreakspace {}(Yuge)}{Two-sample Statistical Tests}{9}
-\ChangesListline {highlight}{Highlighted\nobreakspace {}(Yuge)}{Eq.$(2.16)$}{15}
-\ChangesListline {highlight}{Highlighted\nobreakspace {}(Yuge)}{Eq}{17}
-\ChangesListline {highlight}{Highlighted\nobreakspace {}(Yuge)}{Eq.$(2.20)$}{19}
-\ChangesListline {highlight}{Highlighted\nobreakspace {}(Yuge)}{Eq.$(2.20)$}{19}
+\ChangesListline {highlight}{Highlighted\nobreakspace {}(Yuge)}{Numerical Methods}{16}
+\ChangesListline {highlight}{Highlighted\nobreakspace {}(Yuge)}{Probabilistic Interpretation}{18}
+\ChangesListline {highlight}{Highlighted\nobreakspace {}(Yuge)}{Eq.$(2.16)$}{39}
+\ChangesListline {highlight}{Highlighted\nobreakspace {}(Yuge)}{Eq}{41}
+\ChangesListline {highlight}{Highlighted\nobreakspace {}(Yuge)}{Eq.$(2.20)$}{42}
+\ChangesListline {highlight}{Highlighted\nobreakspace {}(Yuge)}{Eq.$(2.20)$}{42}

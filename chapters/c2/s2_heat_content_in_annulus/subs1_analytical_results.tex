@@ -5,62 +5,79 @@ Since the heat equation, also known as the diffusion equation, defined
 in an annulus possesses explicit solutions, the analytical expressions
 of heat content, derived by the integration over the whole domain, are
 then accessible. In this section, the preliminary step is to solve the
-initial-boundary value problem (IBVP) defined in the annulus. As the
-solution of IBVP and its related quantities are in the form of the
-infinite series, the numerical method will be used to approximate them
-to validate the research methodology in the next chapter.
+initial-boundary value problem (IBVP) defined in the annulus as shown
+in Figure~\ref{fig:annulus}. As the solution of IBVP and its related
+quantities are in the form of the infinite series, the numerical
+method will be used to approximate them to validate the research
+methodology in the next chapter.
 
 
-\subsection{\highlight[id=Yuge, comment={Dave, Please give me the feedback or comments on this subsection.}]{Analytical Results}}\label{analytical results}
+%_______________ Define Latex Macro ______________________
+\newcommand{\uold}{u(r, \theta, t)} % the original u
+\newcommand{\unew}{u(\hat r, \theta, \tau)} % u with dimensionless variables
+\newcommand{\udf}[1]{\ensuremath{u_{#1}}} 
+\newcommand{\uds}[2]{\ensuremath{u_{#1#2}}}
+%________________________________________________________
 
-The \added[id=djs]{solution to the} $2$-dimensional heat equation \cite{crank1979mathematics}
-Eq.~\ref{eq:polar_coordinate_diffusion} defined in the polar
-coordinate system \added[id=djs]{, $u(r, \theta, t)$,} describes the heat distribution or temperature
-varying in time and positions in the domain $\Omega$ shown in
-Figure~\ref{fig:annulus} \deleted[id=djs]{. $u(r, \theta, t)$ is the unknown function to
-be solved}, where $r$ is radial coordinate, $\theta$ is the angular
-coordinate, $t$ is the time, $D$ is the diffusion coefficient \replaced[id=djs]{and
-determines how fast $u$ changes in time}{and subscripts denote
-derivatives with respect to the indicated independent variable}.
 
-\comment[id=djs]{Use amslatex macros to improve formatting of equations and consistently use subscripts to indicate derivatives}
+\subsection{Analytical Results}\label{analytical results}
+
+
+The solution to the $2$-dimensional heat equation
+\cite{crank1979mathematics} Eq.~\ref{eq:polar_coordinate_diffusion}
+defined in the polar coordinate system, $\uold$, describes
+the heat distribution or temperature varying in time and positions in
+the domain $\Omega$ shown in Figure~\ref{fig:annulus}, where $r$ is
+radial coordinate, $\theta$ is the angular coordinate, $t$ is the
+time, $D$ is the diffusion coefficient, and subscripts denote
+derivatives with respect to the indicated independent variable.
+
+%\comment[id=djs]{Use amslatex macros to improve formatting of equations and consistently use subscripts to indicate derivatives}
+
 \begin{align}
-  u_t & = D\left(u_{rr} + \frac{1}{r} u_r + \frac{1}{r^2} u_{\theta\theta}\right)
+  \udf{t} & = D\left(\uds{r}{r} + \frac{1}{r} \udf{r} + \frac{1}{r^2} \uds{\theta}{\theta}\right)
   \qquad\text{in $\Omega$}\label{eq:polar_coordinate_diffusion} \\
   u & = 0
   \qquad\text{on $\partial \Omega_1$}\label{eq:Dirichlet_bc} \\
-  ru_r & = 0
+  r\udf{r} & = 0 % r? yes
   \qquad\text{on $\partial \Omega_2$}\label{eq:Neumann_bc} \\
   u(r, \theta, 0) & = \frac{1}{|\Omega|}
-  \qquad\text{in $\Omega$}\label{eq:initial_bc}  
+  \qquad\text{in $\Omega$}\label{eq:initial_cd}  
 \end{align}
-\added[id=djs]{Note, $|\Omega|$ is the area of the dark annulus in Fig.~\ref{fig:annulus}
-  and $\partial \Omega_1$ and $\partial \Omega_2$ are disjoint subsets of the boundary of $\Omega$.}
 
-From the microscopic and probabilistic perspective, $u(r, \theta, t)$
-\comment[id=djs]{This is correct at $t=0$}{is a probability density function}, which gives the value of
-\comment[id=djs]{There is no such thing as a ``heat particle''}{heat
-particles at $(r,\theta, t)$\deleted[id=djs]{at time $t$}. Eq.~\ref{eq:Dirichlet_bc} and
-Eq.~\ref{eq:Neumann_bc} are the homogenous Dirichlet boundary
-condition and the homogenous Neumann boundary condition,
-respectively. \replaced[id=djs]{In other words}{Using the heat interpretation}, the inner boundary $\partial \Omega_{1}$
-is cooled to the zero temperature because the heat particles will be
-absorbed when they encounter $\partial \Omega_1$. The outer boundary
-$\partial \Omega_{2}$ is perfectly insulated since the heat particles
-will be reflecting when they reach $\partial
-\Omega_2$. Eq.~\ref{eq:initial_bc} states that the heat particles
-distribute uniformly over the whole domain at \deleted[id=djs]{time} $t=0$\deleted[id=djs]{, where
-$|\Omega|$ equals the total area of the annulus}.
+Note, $|\Omega|$ is the area of the dark annulus in
+Fig.~\ref{fig:annulus} and $\partial \Omega_1$ and $\partial \Omega_2$
+are disjoint subsets of the boundary of $\Omega$.
+
+Consider a memoryless particle, whose movement afterwards is
+independent of how it gets the previous positions. From the
+microscopic and probabilistic perspective, $\uold$ gives the
+probability of the particles at $(r,\theta, t)$.
+
+
+%\comment[id=djs]{This is correct at $t=0$}{is a probability density
+  %function}, which gives the value of \comment[id=djs]{There is no
+  %such thing as a ``heat particle''}{heat particles at $(r,\theta,
+  %t)$\deleted[id=djs]{at time $t$}. Eq.~\ref{eq:Dirichlet_bc} and
+  %Eq.~\ref{eq:Neumann_bc} are the homogenous Dirichlet boundary
+  %condition and the homogenous Neumann boundary condition,
+  %respectively. Using the heat interpretation, the inner boundary
+  %$\partial \Omega_{1}$ is cooled to the zero temperature because the
+  %heat particles will be absorbed when they encounter $\partial \Omega_1$. The outer boundary $\partial \Omega_{2}$ is perfectly insulated since the heat particles will be reflecting when they reach $\partial \Omega_2$. Eq.~\ref{eq:initial_cd} states that the heat particles distribute uniformly over the whole domain at \deleted[id=djs]{time} $t=0$\deleted[id=djs]{, where $|\Omega|$ equals the total area of the annulus}.
+
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.5\textwidth]{annulus.png}
-  \comment{I changed the caption text to show how to be more clear and comprehensive.}
+  \includegraphics[width=0.5\textwidth]{annulus}
+  %\comment{I changed the caption text to show how to be more clear and comprehensive.}
   \caption{The dark annulular region, $\Omega$, is treated as a homogeneous and isotropic
     medium with relecting (Neumann) inner boundary $\partial \Omega_1$ at radius
     $a$ and absorbing (Dirichlet) outer boundary $\partial \Omega_2$ at radius
-    $b$. \label{fig:annulus}}
+    $b$.}\label{fig:annulus}
 \end{figure}
+
+
+
 
 \subsubsection{Solving Heat Equation}
 
