@@ -1,0 +1,45 @@
+\section{Numerical Methods for Solving Parabolic Partial Differential Equations}\label{numerical_methdos}
+
+
+The heat equation is a critical time-dependent parabolic partial
+differential equation characterizing how a quantity diffuses through a
+given region over time. From the physical interpretation of the heat
+equation, its solution describes the heat distribution or temperature
+varying in time and positions and can be obtained uniquely by
+considering specific initial and boundary conditions. As described in
+the section~\ref{traditinal_heat_content}, this thesis aims to
+calculate the asymptotic expansion of the heat content, defined as the
+integration of the solution over the space-dimension, for the shape
+description of a bounded domain.  The general solution of the heat
+equation is in one of the two standard forms
+\cite{crank1979mathematics}. One is constituted of a series of error
+functions or related integrals, which is most suitable for evaluating
+short-time diffusion behaviour numerically. Another is in the form of
+a trigonometrical series, which converges rapidly for a long time. If
+the heat equation is defined in a cylinder, a series of Bessel
+functions will replace the trigonometrical series.
+
+However, the traditional analytical techniques for solving the heat
+equation has many restrictions, and its applications to practical
+problems will exhibit difficulties. Firstly, the numerical evaluation
+of the analytical solutions is usually by no means trivial because
+they are in the form of infinite series. Secondly, either irregular
+geometries or discontinuities lead to the complexities, so the
+explicit algebraic solutions are close to non-existed. Thirdly, the
+purely analytical techniques can apply strictly only to the linear
+form of the boundary conditions and to constant diffusion properties
+\cite{crank1979mathematics}.
+
+Therefore, numerical methods and computer simulations are more helpful
+and applicable to find solutions to the partial differential equations
+(PDEs) than calculating pure analytical solutions. The techniques for
+solving initial-boundary value problems (IBVPs) based on numerical
+approximations have existed for a long time and been developed
+considerably including the finite-difference method (FDM), finite
+element method (FEM), finite volume method (FVM), boundary element
+method (BEM), and so forth.
+
+
+
+
+

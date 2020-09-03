@@ -1,0 +1,27 @@
+FDM is frequently utilized to converting the heat equation into a
+system of algebraically solvable
+equations \cite{grossmann2007numerical}. The basic idea is to replace
+the derivatives in the equation by the difference quotients. For
+example, the FTCS (Forward Time Centered Space)
+scheme \cite{pletcher2012computational} discretize the Laplace
+operator in space and the time derivative and implement the boundary
+conditions on the staggered grid for representing the original
+continuous problem, but it is conditionally
+stable \cite{pletcher2012computational}. If the spatial resolution
+becomes doubled, the time-step should be reduced by a factor of four
+to maintain the numerical stability, which causes the extremely tiny
+time-step in the high-resolution calculations. There are three kinds
+of errors needed to be considered when using FDM. First of all, in the
+derivation of the finite-difference equations, the higher-order terms
+in the Taylor series are neglected, constituting the truncation
+error. If the time and space interval tends to $0$, the truncation
+errors will approach $0$, or the FDM is incompatible or inconsistent
+with the original heat equation \cite{crank1979mathematics}. Another
+class of error appearing in FDM, called round-off error, results from
+the loss of precision due to the computer rounding of decimal
+quantities. \cite{hoffman2018numerical}. The last type of error is the
+discretization error, which can be reduced by decreasing the time
+size, grid size, or both \cite{crank1979mathematics}. Moreover, DFM
+becomes less accurate and hard to implement when the problem is
+defined in the irregular geometries since the heat equation must be
+transformed before applying the Taylor series.

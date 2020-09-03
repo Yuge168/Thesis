@@ -1,0 +1,25 @@
+\subsection{}
+
+
+
+In this thesis, the heat equation defined in $2$-dimensional domain,
+which is bounded by the border of the image and the whole root system,
+with millions of pixels, the extremely complex roots and various
+boundary conditions. Before the calculation of the heat content
+contained in the domain, the numerical computational techniques can be
+used to approximate the solutions of the heat equation, but some
+practical difficulities have to be considered since all the described
+numerical methods have an intrinsically similar feature - mesh
+discretization in the time and space dimension. For instance, the far
+more efforts are required in sovling heat equation by FDM and FVM
+because of the complicated boundary of the roots and non-continuous
+issues. Although the whole $2$-dimensional root image can be regarded
+as a discretized domain, it is still time-consuming and challenging to
+trace and identify the boundary of roots, label the nodes, and
+generate the coordinates and connectivities among the nodes in the
+preprocessing stage of FEM. The finer discrtization, the more accurate
+approximation of the original IBVP in the numerical methods. More
+importantly, the heat content defined as the integration of the
+numerical solution of the heat equation over the space dimension
+should also be approximated numerically, which results in the extra
+effort and errors.

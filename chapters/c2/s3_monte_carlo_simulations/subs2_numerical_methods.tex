@@ -56,10 +56,45 @@ updating the model design. Moreover, compared with FDM, FEM demands a
 longer execution time and a larger amount of input data.
 
 
-Another method closely related to the FEM is the finite volume method (FVM). It converts the original heat equation into the integral forms \cite{eymard2000finite}. However, the accuracy of FVM is related to the integration with respect to the time and space. Unlike the domain-type methods (e.g. FDM, FEM, FVM, etc.), the boundary element method (BEM) transforms the heat equation, defined in a given domain, into an integral equation over the boundary of the domain using the boundary integral equation method \cite{attaway1991boundary}. Especially, when the domain extends to infinity or the boundary is complex, BEM is more efficient in computation than other methods because of the smaller surface or volume ratio \cite{katsikadelis2002boundary} since it only discretizes the boundary and fits the boundary values into the integral equation \cite{ang2007beginner}. However, the matrics resulted in BEM are generally unsymmetric and fully populated, which are difficult to be solved \cite{mushtaq2010advantages}. 
+Another method closely related to the FEM is the finite volume method
+(FVM). It converts the original heat equation into the integral
+forms \cite{eymard2000finite}. However, the accuracy of FVM is related
+to the integration with respect to the time and space. Unlike the
+domain-type methods (e.g. FDM, FEM, FVM, etc.), the boundary element
+method (BEM) transforms the heat equation, defined in a given domain,
+into an integral equation over the boundary of the domain using the
+boundary integral equation
+method \cite{attaway1991boundary}. Especially, when the domain extends
+to infinity or the boundary is complex, BEM is more efficient in
+computation than other methods because of the smaller surface or
+volume ratio \cite{katsikadelis2002boundary} since it only discretizes
+the boundary and fits the boundary values into the integral
+equation \cite{ang2007beginner}. However, the matrics resulted in BEM
+are generally unsymmetric and fully populated, which are difficult to
+be solved \cite{mushtaq2010advantages}.
 
 
-In this thesis, the heat equation defined in $2$-dimensional domain, which is bounded by the border of the image and the whole root system, with millions of pixels, the extremely complex roots and various boundary conditions. Before the calculation of the heat content contained in the domain, the numerical computational techniques can be used to approximate the solutions of the heat equation, but some practical difficulities have to be considered since all the described numerical methods have an intrinsically similar feature - mesh discretization in the time and space dimension. For instance, the far more efforts are required in sovling heat equation by FDM and FVM because of the complicated boundary of the roots and non-continuous issues. Although the whole $2$-dimensional root image can be regarded as a discretized domain, it is still time-consuming and challenging to trace and identify the boundary of roots, label the nodes, and generate the coordinates and connectivities among the nodes in the preprocessing stage of FEM. The finer discrtization, the more accurate approximation of the original IBVP in the numerical methods. More importantly, the heat content defined as the integration of the numerical solution of the heat equation over the space dimension should also be approximated numerically, which results in the extra effort and errors. 
+In this thesis, the heat equation defined in $2$-dimensional domain,
+which is bounded by the border of the image and the whole root system,
+with millions of pixels, the extremely complex roots and various
+boundary conditions. Before the calculation of the heat content
+contained in the domain, the numerical computational techniques can be
+used to approximate the solutions of the heat equation, but some
+practical difficulities have to be considered since all the described
+numerical methods have an intrinsically similar feature - mesh
+discretization in the time and space dimension. For instance, the far
+more efforts are required in sovling heat equation by FDM and FVM
+because of the complicated boundary of the roots and non-continuous
+issues. Although the whole $2$-dimensional root image can be regarded
+as a discretized domain, it is still time-consuming and challenging to
+trace and identify the boundary of roots, label the nodes, and
+generate the coordinates and connectivities among the nodes in the
+preprocessing stage of FEM. The finer discrtization, the more accurate
+approximation of the original IBVP in the numerical methods. More
+importantly, the heat content defined as the integration of the
+numerical solution of the heat equation over the space dimension
+should also be approximated numerically, which results in the extra
+effort and errors.
 
 
 

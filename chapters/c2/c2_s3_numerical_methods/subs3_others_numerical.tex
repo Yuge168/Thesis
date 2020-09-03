@@ -1,0 +1,21 @@
+\subsection{Other Numerical Techniques}
+
+
+Another method closely related to the FEM is the finite volume method
+(FVM). It converts the original heat equation into the integral
+forms \cite{eymard2000finite}. However, the accuracy of FVM is related
+to the integration with respect to the time and space. Unlike the
+domain-type methods (e.g. FDM, FEM, FVM, etc.), the boundary element
+method (BEM) transforms the heat equation, defined in a given domain,
+into an integral equation over the boundary of the domain using the
+boundary integral equation
+method \cite{attaway1991boundary}. Especially, when the domain extends
+to infinity or the boundary is complex, BEM is more efficient in
+computation than other methods because of the smaller surface or
+volume ratio \cite{katsikadelis2002boundary} since it only discretizes
+the boundary and fits the boundary values into the integral
+equation \cite{ang2007beginner}. However, the matrics resulted in BEM
+are generally unsymmetric and fully populated, which are difficult to
+be solved \cite{mushtaq2010advantages}.
+
+
