@@ -1,0 +1,58 @@
+\subsection{Monte Carlo Techniques for Solving Partial Differential Equations}
+
+Another experimental method, Monte Carlo method, provides the dirct
+statistical estimates of the solution to the PDEs. Monte Carlo methods
+(MCMs), the commonly used computational techniques, aim to generate
+samples from a given probability distribution, estimate the functions'
+expectations under this distribution, and optimize the complicated
+objective functions by using random numbers \cite{kroese2014monte}
+\cite{rubinstein2016simulation}. MCMs can be used to solve the IBVPs
+by generating the random numbers to simulate the successive positions
+of the trajectory of a stochastic process at fixed instants
+\cite{kronberg1976solution}\cite{king1951monte}, since the original
+continuous problem can be represented by the probabilistic
+interpretation and the solution can be approximated by the expectation
+of some functional of the trajectories of a stochastic process
+\cite{grebenkov2014efficient}\cite{sabelfeld2013random}. Therefore,
+unlike the numerical techniques proposed in the
+subsubsection~\ref{numerical methods}, the nondeterministic Monte
+Carlo simulations are grid-free on the domain, boundary, and the
+boundary conditions of the problem
+\cite{grebenkov2014efficient}. Moreover, since MCMs are essentially
+based on the statistical sampling, it has the inherent possible source
+of errors result from the statistical fluctuations.
+
+
+\subsubsection{Conventional Monte Carlo Methods}
+
+In subsection~\ref{numerical_methdos}, the probabilistic
+interpretation of Eq.~\ref{eq:final_FDM_heat_equation} is a free
+Brownian motion particle randomly moving one step to $(i-1, j)$,
+$(i+1, j)$, $(i, j-1)$, and $(i, j+1)$ with probabilities $\beta$ or
+remaining at $(i, j)$ with probability $(1-4\beta)$. Monte Carlo
+method is a straightfoward way to determine which direction the
+particle should move by generating the random numbers. For example, 
+
+
+
+
+
+
+\subsubsection{Continuous Monte Carlo Methods}
+
+
+MCMs have been applied frequently in solving the elliptic partial
+differential equations, for example, the Laplace’s equation and
+Poisson’s equation \cite{haji1967application} \cite{booth1981exact}
+\cite{muller1956some}. Unlike some studies initially replace the
+domain of the problem by a network of points, generate the difference
+approximation for the derivatives, and use MCMs to solve the
+finite-difference equations, some continuous MCMs are developed for
+approximating the solution of the elliptic partial differential
+equations. The essential idea of those continous MCMs is to explore the
+domain as fast as possible.  
+
+
+
+\subsubsection{Discrete Monte Carlo Methods}
+

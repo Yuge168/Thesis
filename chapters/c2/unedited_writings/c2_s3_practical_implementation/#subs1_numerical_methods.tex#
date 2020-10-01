@@ -1,0 +1,226 @@
+\subsection{Numerical Methods for Solving Parabolic Partial Differential Equations}\label{numerical_methdos}
+
+
+The heat equation is a critical time-dependent parabolic partial
+differential equation characterizing how a quantity diffuses through a
+given region over time. From the physical interpretation of the heat
+equation, its solution describes the heat distribution or temperature
+varying in time and positions and can be obtained uniquely by
+considering specific initial and boundary conditions. As described in
+the section~\ref{traditinal_heat_content}, this thesis aims to
+calculate the asymptotic expansion of the heat content, defined as the
+integration of the solution over the space-dimension, for the shape
+description of a bounded domain.  The general solution of the heat
+equation is in one of the two standard forms
+\cite{crank1979mathematics}. One is constituted of a series of error
+functions or related integrals, which is most suitable for evaluating
+short-time diffusion behaviour numerically. Another is in the form of
+a trigonometrical series, which converges rapidly for a long time. If
+the heat equation is defined in a cylinder, a series of Bessel
+functions will replace the trigonometrical series.
+
+However, the traditional analytical techniques for solving the heat
+equation has many restrictions, and its applications to practical
+problems will exhibit difficulties. Firstly, the numerical evaluation
+of the analytical solutions is usually by no means trivial because
+they are in the form of infinite series. Secondly, either irregular
+geometries or discontinuities lead to the complexities, so the
+explicit algebraic solutions are close to non-existed. Thirdly, the
+purely analytical techniques can apply strictly only to the linear
+form of the boundary conditions and to constant diffusion properties
+\cite{crank1979mathematics}.
+
+Therefore, numerical methods and computer simulations are more helpful
+and applicable to find solutions to the partial differential equations
+(PDEs) than calculating pure analytical solutions. The techniques for
+solving initial-boundary value problems (IBVPs) based on numerical
+approximations have existed for a long time and been developed
+considerably including the finite-difference method (FDM), finite
+element method (FEM), finite volume method (FVM), boundary element
+method (BEM), and so forth.
+
+
+
+
+\subsubsection{Finite Difference Method}
+
+FDM is frequently utilized to converting the heat equation into a
+system of algebraically solvable equations
+\cite{grossmann2007numerical}. The basic idea is to replace the
+derivatives in the equation by the difference quotients. For example,
+the FTCS (Forward Time Centered Space) scheme
+\cite{pletcher2012computational} discretizes the Laplace operator in
+space and the time derivative, and then implements the boundary
+conditions on the staggered grid for representing the original
+continuous problem.
+
+
+Let $u(x, y, t)$ be the heat distribution at position $(x, y)$ and
+time $t$ in a $2-$dimensional homogeneous and isotropic domain $\Omega$. It is
+well-known that without any internal heat sources in the domain, $u(x,
+y)$ satisfies the heat equation
+
+\begin{equation}\label{eq:Cartesian_heat_equation}
+  u_t = D (u_{xx} + u_{yy})
+\end{equation}
+
+Note, $D$ is a constant diffusion coefficient and $u_t$ inidicates
+partial derivative with respect to time $t$, while $u_{xx}$ and
+$u_{yy}$ indicate second partial derivative with respect to $x$ and
+$y$ repectively.
+
+Before the implementation of FTCS, let descrtize $\Omega$ along the
+$x-$axis and $y-$axis as a regular lattice. In other words, both the
+range of $x$ and that of $y$ are divided into equal intervals
+$\triangle l$. Also, the time is devided into equal interval
+$\delta$. Let the corrdinates of a representative grid point $(x, y,
+t)$ be $(i \triangle l, j \triangle l, n \delta)$, where $\triangle l$
+is the distance between two neighboring sites of the lattice and
+$\delta$ is the time step. For simplicity, we denote the value of $u$
+at the point $(i \triangle l, j \triangle l)$ at time $n \delta$ by
+$u(i, j, n)$.
+
+The difference formula for time derivative is
+
+\begin{equation}\label{eq:time_difference}
+  u_t = \frac{u(i, j, n+1) - u(i, j, n)}{\delta} + \mathcal{O}(\delta)
+\end{equation}
+
+The difference formula for the spatial derivaive of $x$ and $y$ are
+
+\begin{align}
+  u_{xx} = \frac{u(i-1, j, n) - 2 u(i, j, n) + u(i+1, j, n)}{(\triangle l)^2} + \mathcal{O}((\triangle l)^2) \label{eq:x_difference} \\
+  u_{yy} = \frac{u(i, j-1, n) - 2 u(i, j, n) + u(i, j+1, n)}{(\triangle l)^2} + \mathcal{O}((\triangle l)^2) \label{eq:y_difference}
+\end{align}
+
+Dropping the error terms $\mathcal{O}(\delta)$ and
+$\mathcal{O}((\triangle l)^2)$ and substituting the
+Eq.~\ref{eq:time_difference}, Eq.~\ref{eq:x_difference}, and
+Eq.~\ref{eq:y_difference} into original heat equation
+Eq.~\ref{eq:Cartesian_heat_equation}, there will have
+
+\begin{equation}\label{eq:FDM_heat_equation}
+  \frac{u(i, j, n+1) - u(i, j, n)}{\delta} = D(\frac{u(i-1, j, n) + u(i+1, j, n) - 4u(i, j, n) + u(i, j-1, n) + u(i, j+1, n)}{(\triangle l)^2})
+\end{equation}
+
+Rearranged Eq.~\ref{eq:FDM_heat_equation} as
+
+\begin{equation}\label{eq:rearrange_FDM}
+  u(i, j, n+1) = \frac{D\delta}{(\triangle l)^2} (u(i-1, j, n) - 2 u(i, j, n) + u(i+1, j, n) + u(i, j-1, n) - 2 u(i, j, n) + u(i, j+1, n)) + u(i, j, n)
+\end{equation}
+
+Finally, the value of $u(i, j, n+1)$ can be expressed explicitly in
+terms of $u(i-1, j, n)$, $u(i+1, j, n)$, $u(i, j-1, n)$, $u(i, j+1, n)$, and $u(i, j, n)$ by
+
+\begin{align}\label{eq:final_FDM_heat_equation}
+  u(i, j, n+1) &= \beta (u(i-1, j, n) + u(i+1, j, n) + u(i, j-1, n) + u(i, j+1, n)) \\
+               & + (1-4\beta) u(i, j, n) \\
+  \beta &= \frac{D\delta}{(\triangle l)^2}
+\end{align}
+
+
+The FTCS is conditionally stable \cite{pletcher2012computational}
+because the explicit formula in Eq.~\ref{eq:final_FDM_heat_equation}
+is stable if and only if $\beta \leq \frac{1}{2}$, which means
+
+\begin{equation}\label{eq:stable_condition}
+  \delta \leq \frac{(\triangle l)^2}{2D}
+\end{equation}
+
+Eq.~\ref{eq:stable_condition} implies that if the spatial resolution
+$\triangle l$ becomes doubled, the time-step $\delta$ should be
+reduced by a factor of four to maintain the numerical stability, which
+causes the extremely tiny time-step in the high-resolution
+calculations. Moreover, there are three kinds of errors needed to be
+considered when using FDM. First of all, in the derivation of the
+finite-difference equations, the higher-order terms in the Taylor
+series are neglected, constituting the truncation error. If the time
+and space interval tends to $0$, the truncation errors will approach
+$0$, or the FDM is incompatible or inconsistent with the original heat
+equation \cite{crank1979mathematics}. Another class of error appearing
+in FDM, called round-off error, results from the loss of precision due
+to the computer rounding of decimal
+quantities. \cite{hoffman2018numerical}. The last type of error is the
+discretization error, which can be reduced by decreasing the time
+size, grid size, or both \cite{crank1979mathematics}. Moreover, DFM
+becomes less accurate and hard to implement when the problem is
+defined in the irregular geometries since the heat equation must be
+transformed before applying the Taylor series.
+
+
+
+
+
+\subsubsection{Finite Element Method}
+
+
+Unlike the FDM, the finite element method
+(FEM) \cite{zlamal1968finite} divides the complicated geometries,
+irregular shapes, and boundaries into the union of smaller and simpler
+subdomains (eg. lattice, triangle, curvilinear polygons, etc.), which
+are called finite elements \cite{logan2011first}. The smaller size of
+the finite element mesh, the more accurate the approximate
+solution. Therefore, FEM has great flexibilites or
+adaptivities \cite{reddy1993introduction}. For example, FEM can
+provide higher fidelity or higher accuracy in a local region and keep
+elsewhere the same. Each subdomain is locally represented by the
+element equation, continuous piecewise shape functions, which are
+finally assembled into a larger system of algebraic equations for
+modelling the entire problem. FEM aims to approximate the numerical
+solution by minimizing the associated error function to meet certain
+specification of the accuracy, which can be done by the
+parallelization. Nevertheless, FEM heavily relies on the numerical
+integration, where the quadrature rules sometimes cause
+difficulties. FEM requires an amount of human involvement in the
+process of building the FE model, checking the result, detecting and
+updating the model design. Moreover, compared with FDM, FEM demands a
+longer execution time and a larger amount of input data.
+
+
+
+\subsubsection{Other Numerical Techniques}
+
+
+Another method closely related to the FEM is the finite volume method
+(FVM). It converts the original heat equation into the integral
+forms \cite{eymard2000finite}. However, the accuracy of FVM is related
+to the integration with respect to the time and space. Unlike the
+domain-type methods (e.g. FDM, FEM, FVM, etc.), the boundary element
+method (BEM) transforms the heat equation, defined in a given domain,
+into an integral equation over the boundary of the domain using the
+boundary integral equation
+method \cite{attaway1991boundary}. Especially, when the domain extends
+to infinity or the boundary is complex, BEM is more efficient in
+computation than other methods because of the smaller surface or
+volume ratio \cite{katsikadelis2002boundary} since it only discretizes
+the boundary and fits the boundary values into the integral
+equation \cite{ang2007beginner}. However, the matrics resulted in BEM
+are generally unsymmetric and fully populated, which are difficult to
+be solved \cite{mushtaq2010advantages}.
+
+
+\subsubsection{Limitations in Practice}
+
+
+
+In this thesis, the heat equation defined in $2$-dimensional domain,
+which is bounded by the border of the image and the whole root system,
+with millions of pixels, the extremely complex roots and various
+boundary conditions. Before the calculation of the heat content
+contained in the domain, the numerical computational techniques can be
+used to approximate the solutions of the heat equation, but some
+practical difficulities have to be considered since all the described
+numerical methods have an intrinsically similar feature - mesh
+discretization in the time and space dimension. For instance, the far
+more efforts are required in sovling heat equation by FDM and FVM
+because of the complicated boundary of the roots and non-continuous
+issues. Although the whole $2$-dimensional root image can be regarded
+as a discretized domain, it is still time-consuming and challenging to
+trace and identify the boundary of roots, label the nodes, and
+generate the coordinates and connectivities among the nodes in the
+preprocessing stage of FEM. The finer discrtization, the more accurate
+approximation of the original IBVP in the numerical methods. More
+importantly, the heat content defined as the integration of the
+numerical solution of the heat equation over the space dimension
+should also be approximated numerically, which results in the extra
+effort and errors.

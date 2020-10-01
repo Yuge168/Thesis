@@ -4,12 +4,14 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{changes}
+\usepackage{bm}
 \definechangesauthor[name=Dave Schneider, color=red]{djs}
 \definechangesauthor[name=Yujie Pei, color=green]{Yuge}
 \usepackage{subcaption}
 \usepackage{algorithmic} % package for generating algorithms
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
+
 
 
 
@@ -45,7 +47,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Existed Morphological Descriptors for Root Systems} 
+\chapter{Existing Morphological Descriptors for Root Systems} 
 
   %___________ Section 1: Background ______________________
   \include{chapters/c1/c1_s1_background/background}
@@ -57,7 +59,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{An Alternatively Mathematical Method for Shape Description}
+\chapter{An Alternative Mathematical Method for Shape Description}
 
   %__________ Section 1: Kac's idea _______________________
   \include{chapters/c2/c2_s1_kac_idea/kac_idea}
@@ -67,7 +69,7 @@
   \include{chapters/c2/c2_s2_heat_content/heat_content}
 
   %__________ Section 3: Numerical Methods ________________
-  \include{chapters/c2/c2_s3_numerical_methods/numerical_methods}
+  \include{chapters/c2/c2_s3_numerical_methods/numerical_methods} % background
     \include{chapters/c2/c2_s3_numerical_methods/subs1_FDM}
     \include{chapters/c2/c2_s3_numerical_methods/subs2_FEM}
     \include{chapters/c2/c2_s3_numerical_methods/subs3_others_numerical}
@@ -77,8 +79,9 @@
   %__________ Section 4: Monte Carlo Methods ______________
   \include{chapters/c2/c2_s4_mcm/monte_carlo_method}
     \include{chapters/c2/c2_s4_mcm/subs1_background}
-    \include{chapters/c2/c2_s4_mcm/subs2_lrws}
-    \include{chapters/c2/c2_s4_mcm/subs3_output_analysis}
+    \include{chapters/c2/c2_s4_mcm/subs2_integration}
+    \include{chapters/c2/c2_s4_mcm/subs3_lrws}
+    \include{chapters/c2/c2_s4_mcm/subs4_output_analysis}
     
 
 
@@ -115,10 +118,10 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Efficient Random Walks in Real Root Images}
+\chapter{Lattice Random Walks in Real Root Images}
   
   %___________ Section 1: Description of ERWs ___________
-  \include{chapters/c5/c5_s1_description_efficient_random_walks/description_erws}
+  %\include{chapters/c5/c5_s1_description_efficient_random_walks/description_erws}
 
   %__________ Section 2: Image Description _____________
   \include{chapters/c5/c5_s2_image_description/real_root_image_description}

@@ -1,0 +1,234 @@
+
+\section{Heat Content in Annulus}
+
+Since the heat equation, also known as the diffusion equation, defined
+in an annulus possesses explicit solutions, the analytical expressions
+of heat content, derived by the integration over the whole domain, are
+then accessible. In this section, the preliminary step is to solve the
+initial-boundary value problem (IBVP) defined in the annulus as shown
+in Figure~\ref{fig:annulus}. As the solution of IBVP and its related
+quantities are in the form of the infinite series, the numerical
+method will be used to approximate them to validate the research
+methodology in the next chapter.
+
+
+%_______________ Define Latex Macro ______________________
+\newcommand{\uold}{u(r, \theta, t)} % the original u
+\newcommand{\unew}{u(\hat r, \theta, \tau)} % u with dimensionless variables
+\newcommand{\udf}[1]{\ensuremath{u_{#1}}} 
+\newcommand{\uds}[2]{\ensuremath{u_{#1#2}}}
+%________________________________________________________
+
+
+\subsection{Analytical Results}\label{analytical results}
+
+
+The solution to the $2$-dimensional heat equation
+\cite{crank1979mathematics} Eq.~\ref{eq:polar_coordinate_diffusion}
+defined in the polar coordinate system, $\uold$, describes
+the heat distribution or temperature varying in time and positions in
+the domain $\Omega$ shown in Figure~\ref{fig:annulus}, where $r$ is
+radial coordinate, $\theta$ is the angular coordinate, $t$ is the
+time, $D$ is the diffusion coefficient, and subscripts denote
+derivatives with respect to the indicated independent variable.
+
+%\comment[id=djs]{Use amslatex macros to improve formatting of equations and consistently use subscripts to indicate derivatives}
+
+\begin{align}
+  \udf{t} & = D\left(\uds{r}{r} + \frac{1}{r} \udf{r} + \frac{1}{r^2} \uds{\theta}{\theta}\right)
+  \qquad\text{in $\Omega$}\label{eq:polar_coordinate_diffusion} \\
+  u & = 0
+  \qquad\text{on $\partial \Omega_1$}\label{eq:Dirichlet_bc} \\
+  r\udf{r} & = 0 % r? yes
+  \qquad\text{on $\partial \Omega_2$}\label{eq:Neumann_bc} \\
+  u(r, \theta, 0) & = \frac{1}{|\Omega|}
+  \qquad\text{in $\Omega$}\label{eq:initial_cd}  
+\end{align}
+
+Note, $|\Omega|$ is the area of the dark annulus in
+Fig.~\ref{fig:annulus} and $\partial \Omega_1$ and $\partial \Omega_2$
+are disjoint subsets of the boundary of $\Omega$.
+
+Consider a memoryless particle, whose movement afterwards is
+independent of how it gets the previous positions. From the
+microscopic and probabilistic perspective, $\uold$ gives the
+probability of the particles at $(r,\theta, t)$.
+
+
+%\comment[id=djs]{This is correct at $t=0$}{is a probability density
+  %function}, which gives the value of \comment[id=djs]{There is no
+  %such thing as a ``heat particle''}{heat particles at $(r,\theta,
+  %t)$\deleted[id=djs]{at time $t$}. Eq.~\ref{eq:Dirichlet_bc} and
+  %Eq.~\ref{eq:Neumann_bc} are the homogenous Dirichlet boundary
+  %condition and the homogenous Neumann boundary condition,
+  %respectively. Using the heat interpretation, the inner boundary
+  %$\partial \Omega_{1}$ is cooled to the zero temperature because the
+  %heat particles will be absorbed when they encounter $\partial \Omega_1$. The outer boundary $\partial \Omega_{2}$ is perfectly insulated since the heat particles will be reflecting when they reach $\partial \Omega_2$. Eq.~\ref{eq:initial_cd} states that the heat particles distribute uniformly over the whole domain at \deleted[id=djs]{time} $t=0$\deleted[id=djs]{, where $|\Omega|$ equals the total area of the annulus}.
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{annulus}
+  %\comment{I changed the caption text to show how to be more clear and comprehensive.}
+  \caption{The dark annulular region, $\Omega$, is treated as a homogeneous and isotropic
+    medium with relecting (Neumann) inner boundary $\partial \Omega_1$ at radius
+    $a$ and absorbing (Dirichlet) outer boundary $\partial \Omega_2$ at radius
+    $b$.}\label{fig:annulus}
+\end{figure}
+
+
+
+
+\subsubsection{Solving Heat Equation}
+
+Generally, before solving the heat equation, it is convenient and
+efficient to generate a group of dimensionless variables by
+dimensional analysis. The benefit of dimensional analysis is that many
+physical parameters can be combined into a smaller number of unitless
+variables, which do not depend on the unit of the measurements and can
+also describe the phenomenon or system of interest
+\cite{barenblatt1996scaling}.
+
+
+Let $\mu = b/a$ be the dimensionless radius ratio, $\tau =
+\frac{Dt}{a^2}$ be the dimensionless time, and $\hat r = \frac{r}{a}$
+be the unitless radius. Substitute these dimensionless variables into
+Eq.~\ref{eq:polar_coordinate_diffusion} and rewrite it as
+
+\begin{equation}\label{eq:DA_polar_diffusion}
+  u_\tau = (u_{\hat r \hat r} + \frac{1}{\hat r} u_{\hat r} + \frac{1}{\hat r ^2} u_{\theta\theta})
+\end{equation}
+
+With the uniform initial condition,
+\begin{equation}\label{eq:DA_initial_bc}
+  u(\hat r, \theta, 0) = \frac{1}{|\Omega|}
+\end{equation}
+
+With the homogenous boundary conditions
+\begin{equation}\label{eq:DA_Dirichlet_bc}
+  u(1, \theta, \tau) = 0
+\end{equation}
+
+\begin{equation}\label{eq:DA_Neumann_bc}
+  u'(\mu, \theta, \tau) = 0
+\end{equation}
+
+
+
+After implementing the separation of variables method
+\cite{crank1979mathematics}, the solutions of
+Eq.~\ref{eq:DA_polar_diffusion} with conditions
+Eq.~\ref{eq:DA_initial_bc}, Eq.~\ref{eq:DA_Dirichlet_bc}, and
+Eq.~\ref{eq:DA_Neumann_bc} are
+
+\begin{equation}\label{eq:annulus_solutions_u}
+  u(\hat r, \theta, \tau) = \sum_{n=1}^{\infty}
+  \tilde{c_{0,n}} \bigg\{J_0(\sqrt{\lambda_{0,n}})
+  Y_0(\sqrt{\lambda_{0,n}} \hat r) -
+  Y_0(\sqrt{\lambda_{0,n}}) J_0(\sqrt{\lambda_{0,n}} \hat
+  r)\bigg\} e^{-\lambda_{0,n}\tau}
+\end{equation}
+
+where
+
+\begin{equation}\label{eq:coeff_u}
+  \tilde{c_{0,n}} = \frac{1}{(\mu^2 - 1)}
+\frac{1}{\bigg[\frac{J_0(\sqrt{\lambda_{0,n}})}{J'_0(\mu
+      \sqrt{\lambda_{0,n}})}\bigg]^2 -1}
+\end{equation}
+
+
+Eigenvalues $\lambda_{0, n}$ $(n \in \mathbb{N}_{+})$ appeared in
+Eq.~\ref{eq:annulus_solutions_u} and Eq.~\ref{eq:coeff_u} is the $n$th
+positive root of the eigenfunction Eq.~\ref{eq:eigenfunction}, which
+is a cross-product of the Bessel function \cite{watson1995treatise}
+
+\begin{equation}\label{eq:eigenfunction}
+  F_0(\lambda) = J_0(\sqrt{\lambda}) Y_0'(\sqrt{\lambda} \mu) -
+  J_0'(\sqrt{\lambda} \mu) Y_0(\sqrt{\lambda})
+\end{equation}
+
+
+\subsubsection{Heat Content (Survival Probability)}
+
+The amount of heat contained in $\Omega$ at the moment $\tau > 0$
+defined as heat content $Q_{\Omega}(\tau)$, which is an alternative
+terminology of survival probability $S(\tau)$ in some mathematical
+literatures \cite{birkhoff1954note} \cite{van1994heat}
+\cite{gilkey1994heat}. $S(\tau)$ is proportional to $Q_{\Omega}(\tau)$
+\cite{kalinay2011survival}, which gives the probability of the
+particles remain diffusing in the domain $\Omega$ at time $\tau > 0$
+\cite{aalen2008survival}. Survival probability can be expressed by
+
+\begin{equation}\label{eq:annulus_analytical_s}
+  \begin{split}
+    S(\tau) &= \int_{0}^{2\pi} d\theta \int_{1}^{\mu} \hat r d \hat r
+    u(\hat r, \theta, \tau)\\ &= \sum_{n=1}^{\infty} \frac{4}{\mu^2 -
+      1} \frac{1}{\lambda_{0,n}
+      \bigg\{\bigg[\frac{J_0(\sqrt{\lambda_{0,n}})}{J'_0(\mu
+          \sqrt{\lambda_{0,n}})}\bigg]^2 -1\bigg\}} e^{-\lambda_{0, n}
+      \tau}
+  \end{split}
+\end{equation}
+
+Eq.~\ref{eq:annulus_analytical_s} reveals some basic properties of
+$S(\tau)$. Firstly, when $\tau=0$, the survival probability is $1$
+since all the particles are just generated over the whole domain and
+not be absorbed by $\Omega_1$. Secondly, $S(\tau)$ is a convergent
+series with multiexponential decay. Thirdly, $S(\tau)$ interconnects
+the overall geometric characteristics of $\Omega$. For example, the
+decay rate of $S(\tau)$ in a short time heavily depends on the
+geometrical features of $\Omega_1$, as only the particles inserted
+close to $\Omega_1$ have the high probabilities of being
+absorbed. Finally, as the lone-time limit, $S(\tau)$ is represented by
+the lowest eigenvalue $\lambda_{0,1}$.
+
+
+\subsubsection{Mean First-Passage Time}
+
+The first passage phenomena play a fundamental role in stochastic
+processes triggered by a first-passage event
+\cite{van1992stochastic}. In this thesis, we only focus on the
+stochastic evolution of $u(\hat r, \theta, \tau)$ until the
+first-passage time, at which a heat particle reaches any sites of
+target boundary $\Omega_1$ for the first time. Similarly, another
+essential first-passage-related quantity is the first-passage
+probability, which is a probability of the diffusing heat particles
+hitting a specified site or a set of sites at a specified time for the
+first time \cite{redner2001guide}. All the first-passage
+characteristics can be expressed in terms of the first-passage
+probability. For example, the survival probability of heat particles
+at time $\tau$ calculated in the last subsection is
+
+\begin{equation}\label{eq:pdf_fpt}
+  f(\tau) = - \frac{\partial S(\tau)}{\partial \tau}
+\end{equation}
+
+where $f(\tau)$ is the first-passage probability to the target
+boundary $\Omega_1$ at time $\tau$ regardless of particles' stop
+positions. By the definition, the $n$th moment of the exit time
+\cite{redner2001guide} is
+
+\begin{equation}\label{eq:nth_fpt}
+  \begin{split}
+    \langle \tau^n \rangle &= \int_{0}^{\infty} \tau^n f(\tau) d\tau \\
+    &= - \int_{0}^{\infty} \tau^n  \frac{\partial S(\tau)}{\partial \tau} d\tau \\
+    &= -\tau^n S(\tau) |_{0}^{\infty} + n\int_{0}^{\infty} \tau^{n-1}S(\tau) d\tau
+\end{split}
+\end{equation}
+
+
+Substitue $n=1$ in Eq.~\ref{eq:nth_fpt}, the mean-first passage time
+$\langle \tau \rangle$, also called the average first-passage time, of
+heat particles implies an overall property of the system and can be
+expressed as
+
+\begin{equation}\label{eq:mfpt}
+  \begin{split}
+    \langle \tau \rangle &= \int_{0}^{\infty} \tau dS\\
+    &=\sum_{n=1}^{\infty} \frac{4}{\mu^2 - 1}
+    \frac{1}{\lambda^2_{0,n}\bigg\{\bigg[\frac{J_0(\sqrt{\lambda_{0,n}})}{J'_0(\mu\sqrt{\lambda_{0,n}})}\bigg]^2
+      -1\bigg\}}
+  \end{split}
+\end{equation}
+

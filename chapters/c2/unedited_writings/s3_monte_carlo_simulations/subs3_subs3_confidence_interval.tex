@@ -1,0 +1,31 @@
+\subsubsection{Confidence Interval}
+
+The upper and lower $(1-\alpha) \times 100 \%$ confidence intervals of the survival function $S(t)$ for a fixed time $t$ was firstly proposed and derived by Greenwood in 1926 \cite{greenwoodnatural},
+
+
+\begin{align} \label{eq:greenwood}
+  \widehat{S}(t) \pm z_{\alpha / 2} \sqrt{\widehat{Var}[\widehat{S}(t)]}
+  \qquad\text{where}\\
+  \widehat{Var}[\widehat{S}(t)] = \widehat{S}(t)^2\sum_{t_i \leq t} \frac{d_i}{n_i(n_i - d_i)}
+\end{align}
+
+Note, $z_{\alpha}$ is the $\alpha -$th quantile of the normal distribution.
+
+In 1999, Hosmer and Lemeshow \cite{hosmer2011applied} developed the exponential Greenwood formula based on the earlier works of Kalbfleisch and Prentice \cite{kalbfleisch2011statistical}, which provides an asymmetric confidence interval for $S(t)$
+
+\begin{align} \label{eq:exp_greenwood}
+  e^{-e^{c_{+}(t)}} < S(t) < e^{-e^{c_{-}(t)}}
+  \qquad\text{where}\\
+  c_{\pm}(t) = log(-log\widehat{S}(t)) \pm z_{\alpha / 2} \sqrt{\widehat{V}}
+  \qquad\text{and}\\
+  \widehat{V} = \frac{1}{(log\widehat{S}(t))^2} \sum_{t_i \leq t} \frac{d_i}{n_i(n_i - d_i)}
+\end{align}
+
+Note, if $c1<c2$, there has $e^{-e^{c_2}} < S(t) < e^{-e^{c_1}}$.
+
+
+Compared with the traditional Greenwood confidence intercal calculation, the exponential Greenwood formula will make sure that the endpoints in Eq.~\ref{eq:exp_greenwood} lie in $(0, 1)$, while the endpoints in Eq.~\ref{eq:greenwood} could be negative or larger than $1$ \cite{sawyer2003greenwood}. 
+
+
+
+

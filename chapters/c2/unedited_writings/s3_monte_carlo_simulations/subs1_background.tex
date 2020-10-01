@@ -1,0 +1,41 @@
+\section{Monte Carlo Simulations}
+
+In this section, several generally utilized numerical methods
+\cite{grossmann2007numerical}\cite{zlamal1968finite}
+\cite{eymard2000finite} \cite{attaway1991boundary} for solving the
+heat equation, and their limitations in practice are presented. Also,
+one of the non-deterministic algorithms, Monte Carlo methods (MCM)
+\cite{rubinstein2016simulation} \cite{kroese2014monte}, and its
+application in approximating the solution of the PDEs are proposed. As
+the weaknesses and challenges of applying the numerical techniques in
+solving $2-$dimensional heat equation defined in the real root images
+with millions of pixels and extremely complex root systems, the
+alternative fixed-time step Monte Carlo simulations, lattice random
+walks (LRWs) and Pearson's random walks (PRWs), are designed. The most
+outstanding advantage of the proposed random walk models is that the
+integration, named the heat content, can be approximated directly
+based upon the probabilistic interpretation of Brownian motion and the
+heat equation.  Finally, the methods to analyze the output of the
+Monte Carlo simulations and solve the sampling-related problems in the
+simulations are brought up theoretically.
+
+
+
+\subsection{Background}\label{background}
+
+In the subsection~\ref{analytical results}, the analytical solutions
+of the heat equation defined in the annulus with the initial and
+boundary conditions have been derived. The analytical heat content,
+calculated by the integration over $\Omega$, implies the geometrical
+properties of the annulus. However, the analytical method for solving
+the heat equation has many restrictions, and its applications to
+practical problems will exhibit difficulties. Firstly, the numerical
+evaluation of the analytical solutions is usually by no means trivial
+because they are in the form of infinite series. Secondly, either
+irregular geometries or discontinuities lead to the complexities, so
+the explicit algebraic solutions are close to non-existed. Thirdly,
+the purely analytical techniques can apply strictly only to the linear
+form of the boundary conditions and to constant diffusion properties
+\cite{crank1979mathematics}. Therefore, numerical methods and computer
+simulations are more helpful and applicable to find solutions to the
+heat equation than calculating pure analytical solutions.

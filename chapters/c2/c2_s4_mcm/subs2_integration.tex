@@ -1,0 +1,59 @@
+ 
+\subsection{\highlight[id=Yuge, comment={Dave, please have a look at this section and give me feedback. Thanks!}]{Monte Carlo Integration: Survival Probability $S(t)$}}
+
+
+Brownian motion is a continuous mathematical model for the heat flow
+by averaging the value of a large number of particles. Also, the
+Brownian motion interpretation provides a solution formula for the
+heat equation Eq.~\ref{eq:Cartesian_heat_equation} by $P(\bm{s}, t
+|\bm{s_0})$
+
+\begin{equation}\label{eq:solution_formula}
+  u(\bm{s}, t) = \int_{\Omega}  P(\bm{s}, t | \bm{s_0}) \delta(\bm{s} - \bm{s_0}) d\bm{s_0}
+\end{equation}
+
+In Eq.~\ref{eq:solution_formula}, $P(\bm{s}, t | \bm{s_0})$, also
+called the foundamental solution or heat kernel of $\Omega$, can be
+expressed in terms of the eigenvalues and eigenfunctions of the
+Dirichlet Laplacian
+
+\begin{equation}\label{eq:heat_kernel}
+  P(\bm{s}, t | \bm{s_0}) = \sum_{j=1}^{\infty} \phi_{j}(\bm{s_0})\phi_{j}(\bm{s})e^{-D\lambda_{j}t}
+\end{equation}
+
+where the $\phi_{j}$ form an orthonormal basis of $L^2(\Omega)$ of
+real valued eigenfunctions corresponding to the $\lambda_j \in \mathbb{R}^+$ satisfying
+
+\begin{equation}\label{eq:eigenvalue_equation}
+  - \Delta \phi_{j} = \lambda_{j} \phi_{j} 
+\end{equation}
+
+
+
+Given any starting point $\bm{s_0} \in \Omega$ at $t=0$, let $S(t |
+\bm{s_0})$ be the probability of the Brownian motion keeps diffusing
+in $\Omega$ at time $t > 0$ without being absorbed by $\partial
+\Omega$, which is
+
+\begin{align}
+  S(t | \bm{s_0}) &= \int_{\Omega} d\bm{s} P(\bm{s}, t | \bm{s_0}) \qquad \text{where} \label{eq:local_survival_probability} \\
+  S(t | \bm{s_0}) &= 0 \qquad \text{for $\bm{s_0} \in \partial \Omega$}
+\end{align}
+
+
+If the initial locations spread uniformly in $\Omega$, the survival
+probability $S(t)$ for the Brownian motion wil be the average of the
+local survival probability over $\Omega$.
+
+\begin{align}
+  S(t) &= \frac{1}{|\Omega|} \int_{\Omega} d\bm{s_0} S(t | \bm{s_0}) = \sum_{j=1}^{\infty} \gamma^2_{j} e^{-D\lambda_jt} \qquad \text{where} \label{eq:brownian_survival_probability} \\
+  \gamma_{j} &= \frac{1}{\sqrt{|\Omega|}}\int_{\Omega} d\bm{s}\phi_{j}(\bm{s}) \label{eq:coeff_sum}
+\end{align}
+
+
+Eq.~\ref{eq:local_survival_probability} and
+Eq.~\ref{eq:brownian_survival_probability} reveal that the heat
+content $Q_{\Omega}(t)$, calculated as the integration of the solution
+to the heat equation over $\Omega$, is proportional to the survival
+probability $S(t)$ \cite{kalinay2011survival}. 
+

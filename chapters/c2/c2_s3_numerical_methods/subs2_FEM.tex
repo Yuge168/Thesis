@@ -1,25 +1,24 @@
-\subsection{Finite Element Method}
+\subsection{\highlight[id=Yuge, comment={Dave, please have a look at this section and give me feedback. Thanks!}]{Finite Element Method}}
 
 
-Unlike the FDM, the finite element method
-(FEM) \cite{zlamal1968finite} divides the complicated geometries,
-irregular shapes, and boundaries into the union of smaller and simpler
-subdomains (eg. lattice, triangle, curvilinear polygons, etc.), which
+Unlike the FDM, the finite element method (FEM)
+\cite{zlamal1968finite} divides the complicated geometries, irregular
+shapes, and boundaries into the union of smaller and simpler
+subdomains (e.g. lattice, triangle, curvilinear polygons, etc.), which
 are called finite elements \cite{logan2011first}. The smaller size of
-the finite element mesh, the more accurate the approximate
-solution. Therefore, FEM has great flexibilites or
-adaptivities \cite{reddy1993introduction}. For example, FEM can
-provide higher fidelity or higher accuracy in a local region and keep
-elsewhere the same. Each subdomain is locally represented by the
-element equation, continuous piecewise shape functions, which are
-finally assembled into a larger system of algebraic equations for
-modelling the entire problem. FEM aims to approximate the numerical
-solution by minimizing the associated error function to meet certain
-specification of the accuracy, which can be done by the
-parallelization. Nevertheless, FEM heavily relies on the numerical
-integration, where the quadrature rules sometimes cause
-difficulties. FEM requires an amount of human involvement in the
-process of building the FE model, checking the result, detecting and
-updating the model design. Moreover, compared with FDM, FEM demands a
-longer execution time and a larger amount of input data.
+the finite element mesh, the more accurate approximate for the
+solution. Moreover, FEM has great flexibilities or adaptivity
+\cite{reddy1993introduction}. For example, FEM can provide higher
+fidelity or higher accuracy in a local region and keep other
+subdomains the same. Each subdomain is locally represented by the
+element equation, the continuous piecewise shape functions, which are
+finally assembled into a system of algebraic equations for modelling
+the entire problem. For a considerable number of elements, the
+parallelling computation can approximate the solution numerically by
+minimizing the associated error function. Nevertheless, FEM heavily
+relies on numerical integration, where the quadrature rules sometimes
+cause difficulties. FEM requires an amount of human involvement in
+building the FE model, checking the result, detecting and updating the
+model design. Moreover, FEM demands a longer execution time and an
+enormous amount of input data compared with FDM.
 

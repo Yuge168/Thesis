@@ -1,36 +1,266 @@
 
-\subsection{Background}
+\subsection{\highlight[id=Yuge, comment={Dave, please have a look at this section and give me feedback. Thanks!}]{Background}}\label{background}
 
-...
-
-\subsubsection{Brownian Motion}
-
-...
-
-
-\subsubsection{Probabilistic Interpretation}
-
-...
+Instead of understanding the heat equation
+Eq.~\ref{eq:Cartesian_heat_equation} and its solution from the
+physical point of view at the macroscopic scale, it will be easier to
+think about it from the microscopic peospective: a large amount of
+randomly moving particles. 
 
 
-\paragraph{Survival Probability}
 
-...
+\subsubsection{\highlight[id=Yuge]{Brownian Motion}}\label{Brownian_Motion}
+
+In the early 19th century, the French scientist Jean Baptiste Joseph
+Fourier presented the remarkable heat equation describing the heat
+conduction in a solid and proposed a technique, named the separation
+of variable, to solve the equation subject to the initial and boundary
+conditions \cite{baron1878analytical}. In 1827, the Scottish botanist
+Robert Brown discovered the microscopic motion of the pollen grains,
+which suspended in the water going in an erratic and highly irregular
+zigzag pattern \cite{brown1828microscopical}. Based on his report,
+other scientists verified the existence of the Brownian motion,
+defined as the irregular motion of individual particles, in other
+fields. Originally, in 1905, Albert Einstein
+\cite{einstein1905electrodynamics} developed a satisfactory
+explanation of the Brownian motion from the jostling of the particle
+by the molecules of water. He also utilized a probabilistic model
+showing that the Brownian motion, in a certain sense, provided a
+solution to Fourier's heat equation. In 1918, Norbert Wiener began
+considering the Brownian motion as a mathematical random process with
+the required properties in a rigorous way
+\cite{wiener1923differential}. Therefore, Brownian motion, also called
+the Wiener process, is a continuous-time and continuous-space
+stochastic process with the continuous sample paths and stationary
+independent increments \cite{ito2012diffusion}
+\cite{karlin2014first}. The stationary increment of the Brownian
+motion is a statement of time homogeneity; that is, the distribution
+of the particle's displacement in a time interval depends only on the
+length of the time interval. Brownian particles' independent
+increments imply the Markov property since the particle's displacement
+is independent of its past displacement. Therefore, Brownian motion
+can be considered as one of the fundamental Markov processes.
 
 
-\paragraph{Mean First-Passage Time}
+In the probability theory, if a large number of free particles
+undergoing the Brownian motion independently, the density of particles
+at a specific time becomes a deterministic process, called the
+diffusion process, which satisfies the diffusion equation
+\cite{kac1947random}\cite{varadhan1980lectures} or heat equation. Let
+$P(\bm{s}, t | \bm{s_0})$ be the probability density for Brownian
+motion at a point $\bm{r} \in \Omega$ at time $t>0$ started from
+$\bm{s_0} \in \Omega$ at $t=0$ satisfying the following equations
 
 
-...
+\begin{align}
+  \frac{\partial P(\bm{s}, t | \bm{s_0})}{\partial t} &= \Delta D P(\bm{s}, t | \bm{s_0}) \label{eq:brownian_motion_heat_eq} \\
+  P(\bm{s}, t| \bm{s_0}) &= \delta(\bm{s} - \bm{s_0}) \qquad \text{for $t=0$} \label{eq:initial_brownian_motion} \\
+  P(\bm{s}, t| \bm{s_0}) &= 0 \qquad \text{for $t>0$ and $\bm{s} \in \partial \Omega$} \label{eq:Dirichlet_bc_brownian_motion}
+\end{align}
 
 
-\subsubsection{Random-Walk Theory}
+Note, $D$ is the diffusion constant. To ensure the existence and
+uniqueness of the solution, the heat equation
+Eq.~\ref{eq:brownian_motion_heat_eq} has to be supplemented by the
+initial condition Eq.~\ref{eq:initial_brownian_motion} with the Dirac
+$\delta -$ distribution and the Dirichlet boundary condition
+Eq.~\ref{eq:Dirichlet_bc_brownian_motion}, which indicates the
+absorption and disappearance of the particle hitting the boundary
+$\partial \Omega$.
 
-...
 
-\subsubsection{Monte Carlo Methods for Solving Heat Equation}
+\subsubsection{\highlight[id=Yuge]{Random-Walk Theory}}
 
-...
+
+Brownian motion has existed for a long time before the considerable
+development of the random-walk theory. At the beginning of the
+twentieth century, the term, random walk, was initially proposed by
+Karl Pearson \cite{pearson1905problem}. He utilized the isotropic
+planar random flights to model the erratic migration and invade of
+mosquitoes in the cleared jungle regions. In his model, the mosquito
+moves to a random direction with a fixed step length at each time
+step. Moreover, he asked a question in a paper about the distribution
+of mosquitos after many steps have been taken. Actually, earlier in
+1880, John William Strutt and Baron Rayleigh have used the similar
+concept of random walk in analyzing a certain random vibration problem
+\cite{rayleigh1880xii}. Therefore, in 1905, Rayleigh
+\cite{rayleigh1905problem} answered Pearson's question, that is, the
+distribution is identical to superposition the sound vibrations with
+unit amplitude and arbitrary phase \cite{de2012flying}. At almost the
+same time, Louis Bachelier designed a model for the financial time
+series based on the random walks. Louis Bachelier also explored the
+relationship between discrete random walks and the continuous heat
+equation \cite{bachelier1900theorie}. While Rayleigh only studied the
+symmetric random walk, the nonsymmetric case was considered by Mark
+Kac in 1947 \cite{kac1947random}. Kac provided a proof that the
+nonsymmetric random walk is the mathematical analogy to the
+Smoluchowski's diffusion with drift
+\cite{smoluchowski1916drei}. Moreover, during the development of
+random-walk theory, many other scientific fields, including the random
+processes, random noise, spectral analysis, and stochastic equations,
+were developed by some physicists \cite{einstein1905electrodynamics}
+\cite{einstein1906theory} \cite{smoluchowski1916drei}.
+
+
+\subsubsection{\highlight[id=Yuge]{Lattice Random Walks (LRWs)}}
+
+The continuous Brownian motion is the scaling limit of the discrete
+random walks as the time and space increments approach zero
+\cite{lawler2010random}\cite{varadhan1980lectures}. Let us consider a
+particle performing the simple random walk on the $d$-dimensional
+integer grid $\mathbb{Z}^d$. It is a discrete-space and discrete-time
+symmetric hopping process \cite{redner2001guide} on the lattice. At
+each time step, the particle moves to one of its $2d$ nearest
+neighbours with probability $\frac{1}{2d}$. If $d \leq 2$, the random
+walk is recurrent, which means the particle will return to its origin
+infinitely often with the probability $1$. If $d \geq 3$, the random
+walk is transient, which denotes the particle will return to its
+origin only finitely often with the probability $1$
+\cite{hughes1998random} \cite{lawler2010random}.
+
+
+From the probalistic view, only $2$-dimensional lattice random walks
+(LRWs) and its connection with the heat equation are introduced here
+since this thesis aims to explore and characterize the shape of roots
+in the $2-$dimensional images. In the random walk, let $\triangle l$
+be the distance between two sites in the lattice and $\delta$ be the
+time between two steps. Let $P(x, y, t + \delta | \bm{s_0})$ be the
+conditional probability of a particle to be in position $(x, y)$ at
+time $t + \delta$ starting from $\bm{s_0}$ at time $t=0$. Without
+hitting the boundary $\partial \Omega$ of the domain $\Omega$, $P(x,
+y, t + \delta | \bm{s_0})$ can be expressed by the stochastic
+difference equation
+
+\begin{equation}\label{eq:master_eq}
+  P(x, y, t + \delta | \bm{s_0}) = \frac{P(x - \triangle l, y, t | \bm{s_0}) +  P(x + \triangle l, y, t | \bm{s_0}) + P(x, y - \triangle l, t | \bm{s_0}) + P(x, y + \triangle l, t | \bm{s_0})}{4}
+\end{equation}
+
+After rewriting the master Eq.~\ref{eq:master_eq} by subtracting $P(x, y, t  | \bm{s})$ and dividing by $\delta$,
+
+\begin{equation}
+  \begin{split}
+  \frac{P(x, y, t + \delta| \bm{s_0}) - P(x, y, t | \bm{s_0})}{\delta} &= \frac{1}{4\delta} \Big( P(x - \triangle l, y, t | \bm{s_0}) + P(x + \triangle l, y, t | \bm{s_0}) \label{eq:diff_master_eq} \\
+  &\quad + P(x, y - \triangle l, t  | \bm{s_0}) + P(x, y + \triangle l, t | \bm{s_0}) - 4 P(x, y, t| \bm{s_0}) \Big) 
+  \end{split}
+\end{equation}
+
+
+As $\delta \rightarrow 0$, the left side of
+Eq.~\ref{eq:diff_master_eq} is the definition of a derivative repect
+to time
+
+\begin{equation}\label{eq:time_derivative}
+  P(x, y, t + \delta | \bm{s_0}) \approx P(x, y, t | \bm{s_0}) +
+  \frac{\partial P(x, y, t | \bm{s_0})}{\partial t}\delta
+\end{equation}
+
+
+For the right side of Eq.~\ref{eq:diff_master_eq}, expanding the
+conditional probability $P$ as Taylor series and ignoring the higher
+order terms, there has
+
+\begin{align}
+  P(x \pm \triangle l, y, t | \bm{s_0}) \approx P(x, y, t | \bm{s_0}) \pm \frac{\partial P(x, y, t | \bm{s_0})}{\partial x} \triangle l + \frac{1}{2} \frac{\partial ^2 P(x, y, t | \bm{s_0})}{\partial x^2}(\triangle l)^2 \quad \label{eq:Taylor_x}\\
+  P(x, y \pm \triangle l, t | \bm{s_0}) \approx P(x, y, t | \bm{s_0}) \pm \frac{\partial P(x, y, t | \bm{s_0})}{\partial y} \triangle l + \frac{1}{2} \frac{\partial ^2 P(x, y, t | \bm{s_0})}{\partial y^2}(\triangle l)^2 \quad \label{eq:Taylor_y}
+\end{align}
+
+
+Substituting Eq.~\ref{eq:Taylor_x} and Eq.~\ref{eq:Taylor_y} into
+right side of Eq.~\ref{eq:diff_master_eq} and implementing
+all the obvious cancellations, the Eq.~\ref{eq:diff_master_eq} is
+rearranged as
+
+\begin{equation}\label{eq:lrw_diffusion_eq}
+  \frac{\partial P(x, y, t | \bm{s_0})}{\partial t} \approx
+  \frac{(\triangle l)^2}{4 \delta} \Big( \frac{\partial ^2 P(x, y, t |
+    \bm{s_0})}{\partial x^2} + \frac{\partial ^2 P(x, y, t |
+    \bm{s_0})}{\partial y^2}\Big)
+\end{equation}
+
+When $\tau \rightarrow 0$, $\triangle l \rightarrow 0$, and $\tau \sim (\triangle l)^2$, Eq.~\ref{eq:lrw_diffusion_eq} becomes an exact
+relation.
+
+\begin{equation}\label{eq:limit_lrw_diffusion_eq}
+  \frac{\partial P(x, y, t | \bm{s_0})}{\partial t} = D \Big( \frac{\partial ^2 P(x, y, t | \bm{s_0})}{\partial x^2} + \frac{\partial ^2 P(x, y, t |\bm{s_0})}{\partial y^2}\Big)
+\end{equation}
+
+where $D = \frac{(\triangle l)^2}{4 \delta}$ is the diffusion
+coefficent. This above derivation shows a relationship between a very
+simple microscopic discrete random walk model and a well-known
+macroscopic probalistic partial differential equation.
+
+
+\subsubsection{\highlight[id=Yuge]{Monte Carlo Methods in Solving PDEs}}
+
+
+Monte Carlo methods (MCMs), the commonly used computational
+techniques, aim to generate samples from a given probability
+distribution, estimate the functions' expectations under this
+distribution, and optimize the complicated objective functions by
+using random numbers \cite{kroese2014monte}
+\cite{rubinstein2016simulation}. MCMs can be used to solve the IBVPs
+by generating the random numbers to simulate the successive positions
+of the trajectory of a stochastic process at fixed instants
+\cite{kronberg1976solution}\cite{king1951monte}, since the original
+continuous problem can be represented by the probabilistic
+interpretation and the solution can be approximated by the expectation
+of some functional of the trajectories of a stochastic process
+\cite{grebenkov2014efficient}\cite{sabelfeld2013random}.
+
+
+Monte Carlo methods are barely applied in solving parabolic partial
+differential equations, such as the $1-$ dimensional and $2-$
+dimensional time-dependent heat problem. For example,
+Eq.~\ref{eq:final_FDM_heat_equation} is a Smoluchowski equation
+\cite{smoluchowski1916drei} and provides a probabilistic
+interpretation of the Brownian particle, which is moving randomly one
+step to $u(i-1, j)$, $u(i+1, j)$, $u(i, j-1)$, or $u(i, j+1)$, with
+probability $\beta$, or remaining at the same position $(i, j)$, with
+probability $(1-4\beta)$. As introduced in the papers
+\cite{sadiku2006monte} \cite{gemjoz2017mcmheat}, given any $\beta \leq
+\frac{1}{4}$, the solution of the $2-$dimensional heat equation at a
+specific space-time point can be approximated by averaging the value
+of a large number of random-walking particles, whose trajectories or
+directions for each step are determined by the random numbers
+generated by the Monte Carlo techniques, on the any sites of the
+target boundary. However, the drawbacks of this method are
+obvious. Firstly, there is the error appeared in the finite-difference
+approximation. Secondly, there have statistical sampling errors
+inherent in the Monte Carlo simulations. Thirdly, each particle's
+detailed trajectory will be simulated until it is absorbed by the
+boundary, so it will be time-consuming in the simulation with a high
+spatial resolution. Moreover, this method can only estimate the
+solution to the heat equation at a particular space-time point.
+
+
+Without mimicking the detailed trajectories, another efficient random
+process in the continuous time and continuous space simulated by MCMs
+has been applied frequently in solving the elliptic partial
+differential equation, for example, the Laplace’s and Poisson’s
+equations \cite{haji1967application} \cite{booth1981exact}
+\cite{muller1956some}, and steady-state diffusion equation
+\cite{torquato1989efficient}. For example, let $v(\bm{s_0})$ be the
+value of the solution to an elliptic PDE at a specific point
+$\bm{s_0}$ in the domain $\Omega$ with initial and boundary
+conditions. $v(\bm{s_0})$ can be estimated by a point $\bm{s_1}$,
+which is sampled uniformly on the largest circle $C_0$ centered at
+$\bm{s_0}$ with radius $r_0$ lying entirely in $\Omega$. If $\bm{s_1}$
+gets closed to the target bounday within an error, $v(\bm{s_1})$ is
+known, and it can be considered as one particle's estimate of
+$v(\bm{s_0})$ by multiplying the particle’s statistical weight. If
+not, $v(\bm{s_1})$ should be estimated in the same way as
+$v(\bm{s_0})$, that is, $\bm{s_2}$ is sampled uniformly on the largest
+circle $C_1$ centered at $\bm{s_1}$ with radius $r_1$ lying entirely
+in the domain. Check the position of $\bm{s_2}$, and the procedure
+will be repeated until the simulation is terminates on the traget
+boundary, which is defined as one particle's estimate of
+$v(\bm{s_0})$. Finally, averaging a larger number of one-particle
+estimates, $v(\bm{s_0})$ will be more accurate. However, this process
+has not been used in solving the non-steady-state diffusion problem.
+
+
+
+    
 
 
 

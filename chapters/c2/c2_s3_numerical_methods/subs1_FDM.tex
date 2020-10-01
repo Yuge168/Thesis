@@ -1,24 +1,24 @@
 
-\subsection{Finite Difference Method}
+\subsection{\highlight[id=Yuge, comment={Dave, please have a look at this section and give me feedback. Thanks!}]{Finite Difference Method}}
 
-FDM is frequently utilized to converting the heat equation into a
-system of algebraically solvable equations
+FDM is a frequently utilized technique to convert the heat equation
+into a system of algebraically solvable equations
 \cite{grossmann2007numerical}. The basic idea is to replace the
 derivatives in the equation by the difference quotients. For example,
 the FTCS (Forward Time Centered Space) scheme
 \cite{pletcher2012computational} discretizes the Laplace operator in
-space and the time derivative, and then implements the boundary
+space and the time derivative. And then, it implements the boundary
 conditions on the staggered grid for representing the original
 continuous problem.
 
 
-Let $u(x, y, t)$ be the heat distribution at position $(x, y)$ and
-time $t$ in a $2-$dimensional homogeneous and isotropic domain $\Omega$. It is
-well-known that without any internal heat sources in the domain, $u(x,
-y)$ satisfies the heat equation
+Let $u(x, y, t)$ be the temperature distribution at position $(x, y)$
+and time $t$ in a $2-$dimensional homogeneous and isotropic domain
+$\Omega$. It is well-known that without any internal heat sources in
+$\Omega$, $u(x,y)$ satisfies the heat equation
 
 \begin{equation}\label{eq:Cartesian_heat_equation}
-  u_t = D (u_{xx} + u_{yy})
+  u_t = D \left(u_{xx} + u_{yy}\right)
 \end{equation}
 
 Note, $D$ is a constant diffusion coefficient and $u_t$ inidicates
@@ -26,28 +26,29 @@ partial derivative with respect to time $t$, while $u_{xx}$ and
 $u_{yy}$ indicate second partial derivative with respect to $x$ and
 $y$ repectively.
 
-Before the implementation of FTCS, let descrtize $\Omega$ along the
-$x-$axis and $y-$axis as a regular lattice. In other words, both the
-range of $x$ and that of $y$ are divided into equal intervals
-$\triangle l$. Also, the time is devided into equal interval
-$\delta$. Let the corrdinates of a representative grid point $(x, y,
-t)$ be $(i \triangle l, j \triangle l, n \delta)$, where $\triangle l$
-is the distance between two neighboring sites of the lattice and
-$\delta$ is the time step. For simplicity, we denote the value of $u$
-at the point $(i \triangle l, j \triangle l)$ at time $n \delta$ by
-$u(i, j, n)$.
+Before applying of FTCS, let descrtize $\Omega$ along the $x-$axis and
+$y-$axis as a regular lattice. Both the range of $x$ and $y$ are
+divided into equal intervals $\triangle l$. Also, the time is devided
+into equal interval $\delta$. Let the corrdinates of a representative
+grid point $(x, y, t)$ be $(i \triangle l, j \triangle l, n \delta)$,
+where $\triangle l$ is the distance between two neighboring sites of
+the lattice and $\delta$ is the time step. For simplicity, we denote
+the value of $u$ at the point $(i \triangle l, j \triangle l)$ at time
+$n \delta$ by $u(i, j, n)$.
 
-The difference formula for time derivative is
+By applying the Taylor's series \cite{taylor1715methodus}, the
+difference formula for time derivative is
 
 \begin{equation}\label{eq:time_difference}
   u_t = \frac{u(i, j, n+1) - u(i, j, n)}{\delta} + \mathcal{O}(\delta)
 \end{equation}
 
-The difference formula for the spatial derivaive of $x$ and $y$ are
+Similarly, the difference formula for the spatial derivaive of $x$ and
+$y$ are
 
 \begin{align}
-  u_{xx} = \frac{u(i-1, j, n) - 2 u(i, j, n) + u(i+1, j, n)}{(\triangle l)^2} + \mathcal{O}((\triangle l)^2) \label{eq:x_difference} \\
-  u_{yy} = \frac{u(i, j-1, n) - 2 u(i, j, n) + u(i, j+1, n)}{(\triangle l)^2} + \mathcal{O}((\triangle l)^2) \label{eq:y_difference}
+  u_{xx} = \frac{u(i-1, j, n) - 2 u(i, j, n) + u(i+1, j, n)}{(\triangle l)^2} + \mathcal{O}\left((\triangle l)^2\right) \label{eq:x_difference} \\
+  u_{yy} = \frac{u(i, j-1, n) - 2 u(i, j, n) + u(i, j+1, n)}{(\triangle l)^2} + \mathcal{O}\left((\triangle l)^2\right) \label{eq:y_difference}
 \end{align}
 
 Dropping the error terms $\mathcal{O}(\delta)$ and
@@ -57,51 +58,53 @@ Eq.~\ref{eq:y_difference} into original heat equation
 Eq.~\ref{eq:Cartesian_heat_equation}, there will have
 
 \begin{equation}\label{eq:FDM_heat_equation}
-  \frac{u(i, j, n+1) - u(i, j, n)}{\delta} = D (\frac{u(i-1, j, n) - 2 u(i, j, n) + u(i+1, j, n)}{(\triangle l)^2} + \frac{u(i, j-1, n) - 2 u(i, j, n) + u(i, j+1, n)}{(\triangle l)^2})
+  \frac{u(i, j, n+1) - u(i, j, n)}{\delta} = D\left(\frac{u(i-1, j, n) + u(i+1, j, n) - 4u(i, j, n) + u(i, j-1, n) + u(i, j+1, n)}{(\triangle l)^2}\right)
 \end{equation}
 
 Rearranged Eq.~\ref{eq:FDM_heat_equation} as
 
 \begin{equation}\label{eq:rearrange_FDM}
-  u(i, j, n+1) = \frac{D\delta}{(\triangle l)^2} (u(i-1, j, n) - 2 u(i, j, n) + u(i+1, j, n) + u(i, j-1, n) - 2 u(i, j, n) + u(i, j+1, n)) + u(i, j, n)
+  u(i, j, n+1) = \frac{D\delta}{(\triangle l)^2} \Big( u(i-1, j, n) + u(i+1, j, n) - 4 u(i, j, n) + u(i, j-1, n) + u(i, j+1, n) \Big) + u(i, j, n)
 \end{equation}
 
 Finally, the value of $u(i, j, n+1)$ can be expressed explicitly in
-terms of $u(i-1, j, n)$, $u(i+1, j, n)$, $u(i, j-1, n)$, $u(i, j+1, n)$, and $u(i, j, n)$ by
+terms of $u(i-1, j, n)$, $u(i+1, j, n)$, $u(i, j-1, n)$, $u(i, j+1, n)$, and $u(i, j, n)$ as
 
-\begin{align}\label{eq:final_FDM_heat_equation}
-  u(i, j, n+1) &= \beta (u(i-1, j, n) + u(i+1, j, n) + u(i, j-1, n) + u(i, j+1, n)) \\
-               & + (1-4\beta) u(i, j, n) \\
-  \beta &= \frac{D\delta}{(\triangle l)^2}
-\end{align}
-
-
-The FTCS is conditionally stable \cite{pletcher2012computational}
-because the explicit formula in Eq.~\ref{eq:final_FDM_heat_equation}
-is stable if and only if $\beta \leq \frac{1}{2}$, which means
-
-\begin{equation}\label{eq:stable_condition}
-  \delta \leq \frac{(\triangle l)^2}{2D}
+\begin{equation}\label{eq:final_FDM_heat_equation}
+  u(i, j, n+1) = \beta \Big(u(i-1, j, n) + u(i+1, j, n) + u(i, j-1, n) + u(i, j+1, n) \Big) + (1-4\beta) u(i, j, n)
 \end{equation}
 
-Eq.~\ref{eq:stable_condition} implies that if the spatial resolution
-$\triangle l$ becomes doubled, the time-step $\delta$ should be
-reduced by a factor of four to maintain the numerical stability, which
-causes the extremely tiny time-step in the high-resolution
-calculations. Moreover, there are three kinds of errors needed to be
-considered when using FDM. First of all, in the derivation of the
-finite-difference equations, the higher-order terms in the Taylor
-series are neglected, constituting the truncation error. If the time
-and space interval tends to $0$, the truncation errors will approach
-$0$, or the FDM is incompatible or inconsistent with the original heat
-equation \cite{crank1979mathematics}. Another class of error appearing
-in FDM, called round-off error, results from the loss of precision due
-to the computer rounding of decimal
-quantities. \cite{hoffman2018numerical}. The last type of error is the
-discretization error, which can be reduced by decreasing the time
-size, grid size, or both \cite{crank1979mathematics}. Moreover, DFM
-becomes less accurate and hard to implement when the problem is
-defined in the irregular geometries since the heat equation must be
-transformed before applying the Taylor series.
+Where
+\begin{equation}\label{eq:stable_condition}
+  \beta = \frac{D\delta}{(\triangle l)^2}
+\end{equation}
+
+The FTCS scheme is conditionally stable \cite{pletcher2012computational}
+because the explicit formula in Eq.~\ref{eq:final_FDM_heat_equation}
+is stable if and only if $\beta \leq \frac{1}{4}$, which means
+
+\begin{equation}\label{eq:stable_condition}
+  \delta \leq \frac{(\triangle l)^2}{4D}
+\end{equation}
+
+Eq.~\ref{eq:stable_condition} reveals the relationship between the
+spatial resolution $\triangle l$ and the time-step $\delta$, which
+implies that the high spatial resolution calculations demand an
+extremely tiny time-step to maintain numerical stability. Besides,
+there are three kinds of errors that should be considered when using
+FDM. First of all, the truncation error appears in the process of
+ignoring the higher-order terms in the Taylor series to obtain the
+finite-difference equations. If the time and space interval tends to
+$0$, the truncation errors will approach $0$, or the FDM is
+incompatible or inconsistent with the original heat equation
+\cite{crank1979mathematics}. Another kind of error in FDM is round-off
+error, which results from the loss of precision due to the computer
+rounding of decimal quantities. \cite{hoffman2018numerical}. The last
+type of error is the discretization error, which can be reduced by
+decreasing the time size, grid size, or both of them
+\cite{crank1979mathematics}. Finally, DFM becomes inaccurate and
+arduous in the practical application when the problem is defined in
+the irregular geometries since the heat equation must be transformed
+before applying the Taylor series.
 
 

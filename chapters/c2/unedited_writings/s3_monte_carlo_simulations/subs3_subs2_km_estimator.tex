@@ -1,0 +1,49 @@
+\subsubsection{Kaplan-Meier Estimator}
+
+The general definition of the survival time is the time starting from
+a specified point to the occurrence of a given
+event \cite{bewick2004statistics}, such as death, pregnancy, job loss,
+etc. Also, the analysis of the group of survival data is called
+survival analysis \cite{altman1990practical}. In the survival
+analysis, three kinds of situations will affect the subjects' survival
+time \cite{goel2010understanding}. Firstly, the subjects are
+uncooperative and refused to continue to participate in the
+research. Secondly, some subjects do not experience the event before
+the end of the study, but they would have experienced the event if
+they keep being observed. Finally, the researchers lose touch with the
+subjects in the middle of the investigation. In practice, since these
+subjects have partial information about survival, the scientists will
+label the above circumstances as censored
+observations \cite{bewick2004statistics} instead of ignoring them and
+decreasing sample size.
+
+In clinical trials or community trials, Kaplan-Meier
+Estimator \cite{kaplan1958nonparametric}, a non-parametric analysis,
+is a commonly applied statistical method in the survival analysis for
+the measurement of the fraction of the survival time after the
+treatment \cite{aalen2008survival} and for generating the
+corresponding survival curve. It also works well with the mentioned
+three difficult situations. With various
+assumptions \cite{etikan2017kaplan} \cite{goel2010understanding}, the
+Kaplan-Meier survival curve can be created and provides the
+probability of surviving in a given length of time while considering
+the time in many small intervals \cite{altman1990practical}.
+
+
+Let $0 < t_1 < t_2 < ...$ be the distinct increasing observed times,
+or the number of steps taken by the particle hitting the
+absorbing boundary, in the sample. Let $n_i$ be the number of particles
+who either have not yet stopped moving up to time $t_i$ or else who
+are absorbed on the target boundary at time $t_i$ in the
+simulations. Let $d_i$ the number of particles hitting the target
+boundary at time $t_i$. The Kaplan-Meier or product-limit estimator
+$\widehat{S}(t)$ of the survival function of the numerical simulation
+$S(t)$ is \cite{aalen2008survival}
+
+\begin{equation}
+  \widehat{S}(t) = \prod_{i:t_i \leq t} (1 - \frac{d_i}{n_i})
+\end{equation}
+
+
+
+

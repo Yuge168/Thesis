@@ -1,0 +1,231 @@
+
+
+
+\subsection{Output Analysis}
+
+
+Particles' first-passage time $t$, also called the first-hitting time,
+is the output of the lattice random walks (LRWs). More specifically,
+$t$ is the number of steps taken by the particle encountering any
+positions of the target boundary for the first time. Since the
+first-hitting-time model is a sub-class of survival analysis in
+statistics \cite{altman1990practical}, it is straightforward to
+estimate the survival function $S(t)$ of the numerical simulation by
+the Kaplan-Meier estimator $\widehat{S}(t)$
+\cite{kleinbaum2005competing}. $S(t)$ provides the probability that
+the particle remains simulating in the LRWs beyond any specified
+time. Moreover, the pointwise upper and lower confidence interval of
+$S(t)$ can be estimated by the Greenwood's exponential formula
+\cite{hosmer2011applied}. In this subsection, the Kaplan-Meier
+estimator and pointwise confidence intervals are presented
+theoretically. However, in practice, the existing Python module,
+lifeline \cite{davidson2019lifelines}, helps implement the
+estimation. Based on the scaling relationship between the number of
+steps $t$ and the unitless time $\tau$, non-parametric two-sample
+statistical tests are used to compare $S(t)$ and $S(\tau)$ for
+validating the research methodology.
+
+
+
+\subsubsection{Kaplan-Meier Estimator}
+
+
+The survival time is defined as the time starting from a specified
+point to the occurrence of a given event \cite{bewick2004statistics},
+such as death, pregnancy, job loss, etc. The analysis of the group of
+survival time data is called survival analysis
+\cite{altman1990practical}. In the survival analysis, three kinds of
+situations will affect the subjects' survival time
+\cite{goel2010understanding}. Firstly, the subjects are uncooperative
+and naturally dropout or withdrawal from the research. Secondly, some
+subjects do not experience the event by the end of the study, but
+they would have experienced the event if they keep being
+observed. Finally, the researchers lose touch with the subjects in the
+middle of the investigation. In practice, since these subjects carry
+partial information about survival, the scientists will label the
+above circumstances as censored observations
+\cite{bewick2004statistics} instead of ignoring them and decreasing
+the sample size.
+
+
+In clinical trials, Kaplan-Meier estimator
+\cite{kaplan1958nonparametric}, a non-parametric analysis, is a
+commonly applied statistical method in the survival analysis for the
+measurement of the fraction of the survival time after the treatment
+\cite{aalen2008survival} and for generating the corresponding survival
+curve \cite{altman1990practical}. Kaplan-Meier estimator also works
+well with the mentioned three difficult situations under the
+consideration of various assumptions \cite{etikan2017kaplan}
+\cite{goel2010understanding}. First of all, the event status only
+consists of two mutually exclusive states: censored (0) or failure
+(1).  Secondly, the censored observations have identical survival
+prospects as those who keep being observed. Thirdly, the objects have
+equal survival probabilities no matter they participate in the
+research early or late. Lastly, the survival time, the time to an
+event or censorship, should be clearly defined and precisely recorded
+in the study.
+
+
+
+Let $0 < t_1 < t_2 < ...$ be the monotonously increasing observed
+times, or the number of steps taken by the particle hitting the
+absorbing boundary, in the numerical simulations. Let $n_i$ be the
+number of particles, who have not yet stop the simulation up to $t_i$
+or be absorbed exactly at $t_i$. Let $d_i$ the number of particles
+hitting the target boundary at time $t_i$. The Kaplan-Meier or
+product-limit estimator $\widehat{S}(t)$ of the survival function
+$S(t)$ of the numerical simulation is \cite{aalen2008survival}
+
+\begin{equation}
+  \widehat{S}(t) = \prod_{i:t_i \leq t} (1 - \frac{d_i}{n_i})
+\end{equation}
+
+
+
+\subsubsection{Confidence Interval}
+
+
+The upper and lower $(1-\alpha) \times 100 \%$ confidence intervals of
+the survival function $S(t)$ for a fixed time $t$ was firstly proposed
+by Greenwood in 1926 \cite{greenwoodnatural},
+
+
+\begin{align} \label{eq:greenwood}
+  \widehat{S}(t) \pm z_{\alpha / 2} \sqrt{\widehat{Var}[\widehat{S}(t)]}
+  \qquad\text{where}\\
+  \widehat{Var}[\widehat{S}(t)] = \widehat{S}(t)^2\sum_{t_i \leq t} \frac{d_i}{n_i(n_i - d_i)}
+\end{align}
+
+Note, $z_{\alpha}$ is the $\alpha -$th quantile of the normal distribution.
+
+In 1999, Hosmer and Lemeshow \cite{hosmer2011applied} developed the
+exponential Greenwood formula based on the earlier works
+\cite{kalbfleisch2011statistical}, which provides an asymmetric
+confidence interval for $S(t)$
+
+\begin{align} \label{eq:exp_greenwood}
+  e^{-e^{c_{+}(t)}} < S(t) < e^{-e^{c_{-}(t)}}
+  \qquad\text{where}\\
+  c_{\pm}(t) = log(-log\widehat{S}(t)) \pm z_{\alpha / 2} \sqrt{\widehat{V}}
+  \qquad\text{and}\\
+  \widehat{V} = \frac{1}{(log\widehat{S}(t))^2} \sum_{t_i \leq t} \frac{d_i}{n_i(n_i - d_i)}
+\end{align}
+
+Note, if $c1<c2$, there has $e^{-e^{c_2}} < S(t) < e^{-e^{c_1}}$.
+
+
+Compared with the traditional calculations of the Greenwood confidence
+interval, the exponential Greenwood formula will make sure that the
+endpoints in Eq.~\ref{eq:exp_greenwood} lie in $(0, 1)$, while the
+endpoints in Eq.~\ref{eq:greenwood} could be negative or larger than
+$1$ \cite{sawyer2003greenwood}.
+
+
+
+
+
+\subsubsection{Scaling Relationship}
+
+
+Particles' average one-step displacement $\triangle l$ in the
+fixed-time step Monte Carlo simulations, LRWs, is associated with the
+time step is $\delta$:
+
+\begin{equation}\label{eq:scaling_relationship}
+  \triangle l = 2 \sqrt{D \delta}
+\end{equation}
+where $D$ is the diffusion coefficent.
+
+Eq.~\ref{eq:scaling_relationship} implies that the time step $\delta$
+must be designed small enough to make sure that $\triangle l$ is
+shorter than the smallest geometrical features of the
+boundaries. Thus, $\triangle l$ should equal or be less than one-pixel
+size in the simulations. Furthermore, the $\delta$ is regarded as a
+fundamental bridge between particles' number of steps $t$ and unitless
+continuous-time $\tau$,
+
+\begin{equation}\label{eq:tau}
+ \tau = t \delta = \frac{(\triangle l)^2 t}{4D}
+\end{equation}
+where $D$ is 1.
+
+For example, when running the LRWs in the annulus, $\triangle l$ is always
+$\frac{1}{100}$ since particle's step length is as same as one-pixel
+size. 
+
+
+
+\subsubsection{Two-Sample Statistical Tests}
+
+The differences between the survival curves generated by the
+Kaplan-Meier estimator are visible sometimes. However, the
+dissimilarities won't be easily detected by eyes if the survival
+curves are overlapping over some parts or crossing at some time
+points.  Since the Kaplan-Meier estimator does not provide any
+information on whether two groups of survival data are statistically
+similar or different, some popular statistical tests used specially in
+the survival analysis course are presented in this section. Which test
+should be selected in a specific circumstance is always debated
+because there is a fine line between the statistical tests in the
+survival analysis. Therefore, acknowledging the data in hand and
+identifying the assumptions well is a prerequisite to determine the
+tests appropriately.
+
+Before listing the pros and cons of several statistical tests, the
+censored survival times will be recalled firstly, which indicates the
+time at which a subject is unobserved and the time to the event of a
+subject is not recorded \cite{etikan2018choosing}. In this thesis, it
+is possible to appear the censoring observation in the beginning or at
+any other moment during the Monte Carlo simulations. If the simulation
+finished, but the particle did not reach the target boundary, the
+particle will be regarded as a right-censored. When the particle is
+abandoned and not been observed during the simulations, it is termed
+the random right censoring \cite{etikan2018choosing}. Another cause of
+a deficient observation of particles' survival times is the left
+censoring, which hints that the particles had stopped diffusing before
+the simulation began. For instance, the particle is generated in or on
+the pixels of roots. As mentioned in the last section, the
+Kaplan-Meier method can still cope well with the right-censored and
+left-censored observations in output.
+
+
+In survival analysis, as the time interval gets close to $0$, the
+instantaneous hazard rate can be calculated by limiting the number of
+events per unit time divided by the number of events at risk
+\cite{case2002interpreting}. The hazard ratio is an estimate of the
+hazard rate in one group relative to that in another group
+\cite{singh2011survival}. If the survival curves are parallel with the
+identical shape, the hazard ratio is constant at any interval of
+time. In this situation, the log-rank tests, also named the
+Mantel-Haenszel, are reliable \cite{custodio2007diagnostics}.
+
+If the hazard ratio does not satisfy the assumption, the log-rank test
+will not be powerful to detect the differences in the survival
+functions. In such a case, the Gehan-Breslow-Wilcoxon test, also
+called Gehan’s generalized Wilcohon procedure, should be considered
+alternatively \cite{agarwal2012statistics}. Also, under the constant
+hazard ratio assumption, the Wilcoxon tests might be more reliable
+than the log-rank tests \cite{custodio2007diagnostics}. The former one
+gives more weight to the early failures, but the latter one is more
+suitable for comparing the later events in the data
+\cite{custodio2007diagnostics}. Generally, some general non-parametric
+tests, based on the rank ordering (e.g. Mann-Whitney U test,
+Kruskal-Wallis, etc.), are not always feasible in censoring survival
+data \cite{agarwal2012statistics}. However, Gehan’s generalized
+Wilcohon test is still robust when the censoring rates are low, and
+the censoring distributions of groups are equal
+\cite{karadeniz2017examining}.
+
+
+Neither log-rank test nor Gehan’s generalized Wilcohon test can work
+well when the survival curves cross while the Tarone-Ware test should
+be chosen \cite{leton2001equivalence}. It pays more attention to the
+failures happening somewhere in the middle of study
+\cite{etikan2017kaplan}. Moreover, there is no limitation of the
+number of groups when the Tarone-Ware test is applied
+\cite{custodio2007diagnostics}. Similarly, the Fleming-Harrington test
+is also accessible and robust for testing the differences between two
+or more survival curves in the right-censored data based on the
+counting process \cite{harrington1982class}.
+
+
