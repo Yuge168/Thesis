@@ -1,4 +1,3 @@
-
 \subsection{\highlight[id=Yuge, comment={Dave, please have a look at this section and give me feedback. Thanks!}]{Finite Difference Method}}
 
 FDM is a frequently utilized technique to convert the heat equation
@@ -7,24 +6,32 @@ into a system of algebraically solvable equations
 derivatives in the equation by the difference quotients. For example,
 the FTCS (Forward Time Centered Space) scheme
 \cite{pletcher2012computational} discretizes the Laplace operator in
-space and the time derivative. And then, it implements the boundary
-conditions on the staggered grid for representing the original
-continuous problem.
+space and the time derivative. The discretization results in the
+integer number of points in space and an integer number of times. At a
+specific space-time point, the field variables can be calculated by
+considering the initial and boundary conditions. In the following
+case, field variable is the temperature.
 
 
 Let $u(x, y, t)$ be the temperature distribution at position $(x, y)$
 and time $t$ in a $2-$dimensional homogeneous and isotropic domain
 $\Omega$. It is well-known that without any internal heat sources in
-$\Omega$, $u(x,y)$ satisfies the heat equation
+$\Omega$, $u(x,y)$ satisfies the heat equation.
 
-\begin{equation}\label{eq:Cartesian_heat_equation}
-  u_t = D \left(u_{xx} + u_{yy}\right)
-\end{equation}
+\begin{align}
+  u_t &= D \left(u_{xx} + u_{yy}\right) \label{eq:Cartesian_heat_equation}\\
+  u(x, y, t) &= 0 \qquad \text{for $(x, y) \in \partial \Omega$} \label{eq:Dirichlet_bc_Cartesian}\\
+  u(x, y, 0) &= \frac{1}{|\Omega|} \qquad \text{for $t=0$} \label{eq:initial_Cartesian}
+\end{align}
 
-Note, $D$ is a constant diffusion coefficient and $u_t$ inidicates
+Note, $D$ is a constant diffusion coefficient. $u_t$ inidicates
 partial derivative with respect to time $t$, while $u_{xx}$ and
 $u_{yy}$ indicate second partial derivative with respect to $x$ and
-$y$ repectively.
+$y$ repectively. Eq.~\ref{eq:Dirichlet_bc_Cartesian} is the Dirichlet
+boundary condition, also called the absorbing boundary condition,
+implying the temperature at the boundary of the domain is cooled down
+to $0$. Eq.~\ref{eq:initial_Cartesian} denotes the constant initial
+temperature distribution.
 
 Before applying of FTCS, let descrtize $\Omega$ along the $x-$axis and
 $y-$axis as a regular lattice. Both the range of $x$ and $y$ are
@@ -90,8 +97,22 @@ is stable if and only if $\beta \leq \frac{1}{4}$, which means
 Eq.~\ref{eq:stable_condition} reveals the relationship between the
 spatial resolution $\triangle l$ and the time-step $\delta$, which
 implies that the high spatial resolution calculations demand an
-extremely tiny time-step to maintain numerical stability. Besides,
-there are three kinds of errors that should be considered when using
+extremely tiny time-step to maintain numerical stability.
+
+
+
+After discretizing the time and space, defining the condition for
+stability and initializing the solution's matrix, the next step of
+FTCS is to fill in initial and boundary conditions. Based on
+Eq.~\ref{eq:final_FDM_heat_equation}, the field values at the finite
+number of space-time points can be estimated by the iterations or
+solving the linear algebraic equations. Finally, visualizing the
+numerical result and checking the approximation based on the known
+knowledge of the systems.
+
+
+
+There are three kinds of errors that should be considered when using
 FDM. First of all, the truncation error appears in the process of
 ignoring the higher-order terms in the Taylor series to obtain the
 finite-difference equations. If the time and space interval tends to
