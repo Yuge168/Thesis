@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{outlines}
+\usepackage{enumitem}
+\usepackage{verbatim}
+\setenumerate[1]{label=\Roman*.}
+\setenumerate[2]{label=\Alph*.}
+\setenumerate[3]{label=\roman*.}
+\setenumerate[4]{label=\alph*.}
+\usepackage[backend=bibtex]{biblatex}
+\usepackage{amssymb}
+\usepackage{comment}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\bibliography{../thesisref.bib}
+\usepackage{changes}
+\definechangesauthor[name=Yujie Pei, color=green]{Yuge}
+
+\begin{document}
+
+\begin{outline}[enumerate]
+
+  \centering{C2: An Alternative Mathematical Method for Shape Description}
+
+  

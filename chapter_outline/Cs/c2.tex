@@ -1,0 +1,280 @@
+
+
+
+
+%_________________________________________
+ \subsection{Kac’s Idea: Can One Hear the Shape of a Drum? \cite{kac1966can}}
+  
+   \subsubsection{Interpretations of Kac's Problem}
+
+     \begin{itemize}
+       \item When the drum vibrates, one can hear the sound, which is composed of tones of various frequencies. How much can shape features be inferred from hearing a discrete spectrum of pure tones produced by a drum?
+       \item If a complete sequence of eigenvalues of the Dirichlet problem for the Laplacian can be obtained precisely, will people determine the shape of a planar?
+     \end{itemize}
+     
+      
+   \subsubsection{Problem Statement by Mathematical Language}
+
+     \begin{itemize}     
+       \item Consider a simply connected membrane $\Omega$ in the Euclidean space bounded by a smooth convex curve $\partial \Omega$ (e.g. a drum without any holes)
+       \item Find function $\phi$ on the closure of $\Omega$, which vanishes at the boundary $\partial \Omega$, and a number $\lambda$ satisfying $-\Delta \phi = \lambda \phi$.
+
+         \begin{itemize}
+           \item $\Delta$ is the Laplace operator. e.g. $\Delta = \sum_{i=1}^{n} \frac{\partial ^2}{\partial x_i^2}$ in Cartesian coordinate system.
+           \item If there exists a solution $\phi \neq 0$, the corresponding $\lambda$ is defined as a Dirichlet eigenvalue.
+           \item For each domain $\Omega$, there has a sequence of eigenvalues $\lambda_1, \lambda_2, \lambda_3, ... $ corresponding to a set of eigenfunction $\phi_1, \phi_2, \phi_3, ...$.
+           \item $\phi_k$ form an orthonormal basis of $L^2(\Omega)$ of real valued eigenfunctions; the corresponding discrete Dirichlet eigenvalues are positive ($\lambda_k \in \mathbb{R^{+}}$).
+         \end{itemize}
+         
+       \item An important function \cite{grieser2013hearing}: $h(t) = \sum_{k=1}^{k=\infty} e^{-\lambda_kt}$
+         \begin{itemize}  
+           \item It is a Dirichlet series.
+           \item It is called the spectral function or the heat trace.
+           \item It is smooth and converges for every $t>0$.
+         \end{itemize}
+     \end{itemize}
+     
+        
+    \subsubsection{Summarize the Results of Kac's Idea}
+     
+      \begin{itemize} 
+        \item As $t \rightarrow 0^{+}$, the leading terms of the asymptotic expansion of $h(t)$ imply the geometrical attributes of $\Omega$
+          \begin{itemize}
+            \item the total area
+            \item the perimeter
+            \item the curvature
+          \end{itemize}
+          
+        \item If the domain $\Omega$ has the polygonal boundary, the third term shows in the information about the interior angles of the polygon \cite{grieser2013hearing}.
+      \end{itemize}
+      
+
+   \subsubsection{Conclusion}
+
+     \subsubsubsection{Advantages}
+
+        \begin{itemize}
+          \item Kac proposed a novel analytical mathematical method for the shape description without using measuring tools, e.g. rulers.
+          \item Other mathematicians extended Kac's idea in exploring the geometrical information of more complex domains with various boundary conditions \cite{khabou2007shape}\cite{gottlieb1985eigenvalues}\cite{gottlieb1983hearing} \cite{zayed1989heat}\cite{sleeman1984trace}.
+        \end{itemize}
+        
+     \subsubsubsection{Limitations}
+        
+        \begin{itemize}
+          \item It is only available for the convex domain, which has a smooth or piecewise smooth boundary.  
+          \item Except in very few cases (i.e. rectangular, disk, certain triangles), the complete sequence of eigenvalues $\lambda_k$ can not be calculated \cite{grieser2013hearing}.
+          \item Only the first few terms in the asymptotic expansion of $h(t)$ are explicitly available.
+        \end{itemize}
+
+
+        
+%___________________________________________
+
+  \subsection{Extended Work of Kac’s Idea \cite{desjardins1994heat}\cite{vandenberg1994heat}: Heat Content}
+        
+    \subsubsection{Fouier's Heat Equation \cite{baron1878analytical}}
+     \subsubsubsection{Mathematical Formula}
+        \par
+        \begin{equation}\label{eq:heat_equation}
+          \frac{\partial u(\bm{s}, t)}{\partial t} = \Delta u(\bm{s}, t)
+        \end{equation}
+        
+      \subsubsubsection{Interpretation}
+        \par
+        It is a deterministic model used to characterize the evolution of quantities over the space and time. (e.g. the flow of heat)
+        
+     \subsubsection{Summarize the Idea}
+        
+      \subsubsubsection{Initial-Boundary Value Problem (IBVP)}
+        \par
+        $u(\bm{s}, t)$ indicates the value of the tempretature at $\bm{s} \in \Omega$ at time $t$ satisfying
+          \begin{itemize}
+            \item Eq.~\ref{eq:heat_equation}
+            \item Initial condition: $u(\bm{s}, t) = f(\bm{s})$ as $t \rightarrow 0$.
+            \item Dirichlet boundary condition: $u(\bm{s}, t)=0$ for $\bm{s} \in \partial \Omega$
+             \par
+             It is also called the absorbing boundary condition; i.e. any molecule will be instantly absorbed when it touches the boundary $\partial \Omega$;
+          \end{itemize}
+          
+         
+     \subsubsubsection{A Basic Integration}
+          \par
+          \begin{align}
+            \beta_{\Omega}(f, g)(t) &= \int_{\Omega} \int_{\Omega} H_{\Omega}(\bm{s}, t | \bm{s_0}) f(\bm{s_0}) g(\bm{s}) d\bm{s_0} d\bm{s} \label{eq:integral_full} \\
+            &= \int_{\Omega} u(\bm{s}, t) g(\bm{s}) d\bm{s} \label{eq:integral_convol}
+          \end{align}
+
+          \begin{itemize}
+            \item $H_{\Omega}(\bm{s}, t | \bm{s_0})$ is called the heat kernel of $\Omega$ describing the density of the heat at $\bm{s}$ after time $t$ when initially there is only one single hot source at $\bm{s_0}$. 
+            \item $u(\bm{s}, t)$ is the general solution to Eq.~\ref{eq:heat_equation}, which can be expressed as the convolution of the initial condition with the heat kernel of the domain.
+            \item $g(\bm{s})$ is an auxiliary test function for studying the distributional nature of the tempretature function $u(\bm{s}, t)$ near $\partial \Omega$.
+          \end{itemize}
+          
+
+     \subsubsubsection{Heat Content Calculation}
+       \par
+       Given 
+       \begin{equation} \label{eq:g}
+         g(\bm{s}) = 1  
+       \end{equation}
+
+       \begin{align}
+         Q_{\Omega}(t) &= \int_{\Omega} \int_{\Omega} H_{\Omega}(\bm{s}, t | \bm{s_0}) f(\bm{s_0})  d\bm{s_0} d\bm{s} \label{eq:heat_content_integral_full} \\
+            &= \int_{\Omega} u(\bm{s}, t) d\bm{s} \label{eq:heat_content_integral_convol}
+       \end{align}
+       
+          
+        
+     \subsubsubsection{Shape Characterization}
+
+        \begin{itemize}  
+          \item As $t \rightarrow 0^{+}$, $Q_{\Omega}(t) \simeq \sum_{n=1}^{\infty} \beta_n(\Omega) t ^{\frac{n}{2}}$
+          \item Obtain geometrical information of $\Omega$ from $\beta_n$
+            \begin{itemize}
+              \item area
+              \item length
+              \item scalar curvature
+              \item mass
+           \end{itemize}
+        \end{itemize}
+            
+    
+    \subsubsection{Conclusion}
+        
+      \subsubsubsection{Strengthness}
+        \par
+        Instead of calculating a complete sequence of the Dirichlet eigenvalues for exploring the shape attributes of geometry, the asymptotic expansion of the heat content, defined as integrating the solution to the heat equation over the space-dimension, also implies the geometrical characteristics.  
+
+      \subsubsubsection{Limitations}
+        \begin{itemize}  
+          \item Only the infinitly differentiable boundary $\partial \Omega$ is considered.
+          \item Only the first few terms in the asymptotic expansion are explicitly known.
+          \item Either irregular geometries or discontinuities lead to the complexities, so the explicit solutions $u(\bm{s}, t)$ are close to non-existed.
+          \item The numerical evaluation of the analytical $u(\bm{s}, t)$ and $Q_{\Omega}(t)$ is usually by no means trivial because they are in the form of infinite series.
+          \item Similiarly, only the first few coeffients $\beta_n$ in the asymptotic expansion of $Q_{\Omega}(t)$ can be expressed as the complicated explicit forms.
+        \end{itemize}
+        
+        
+
+%_________________________________________________
+        
+  \subsection{Monte Carlo Simulation for Approximating Heat Content $Q_{\Omega}(t)$}
+
+    \subsubsection{Background \cite{jacobs2010stochastic}}
+
+      \subsubsubsection{Stachastic Differential Equations (SDEs) and Stochastic Process}
+      \subsubsubsection{Brownian motion}
+
+      \subsubsubsection{Connection Between SDEs and Heat Equation }
+
+        \begin{itemize}
+          \item Ito calculus
+          \item Intepretating the heat equation by the probability density of particles undergoing Brownian motion
+        \end{itemize}
+        
+
+    \subsubsection{A Special Case of Heat Content Calculation: $S_{\Omega}(\tau)$}
+
+      \begin{itemize}    
+        \item Uniform initial tempretaure distribution in Eq.~\ref{eq:heat_content_integral_full}
+          \par
+          \begin{equation}\label{eq:uniform_initial_condition}
+             f(\bm{s_0}) = \frac{1}{|\Omega|} 
+          \end{equation}
+
+          \begin{itemize}
+            \item $|\Omega|$ is the area of the domain $\Omega$.
+            \item Particles's initial positions are distributed uniformly in $\Omega$.
+          \end{itemize}
+          
+        \item Intepretation of Eq.~\ref{eq:g}: observing all the Brownian particles unbiasedly.
+           
+        \item Probabilistic Intepretation of Heat Kernel $H_{\Omega}(\bm{s}, t | \bm{s_0})$: conditional probability density function of Brownian particles
+
+        \item Probabilistic Interpretation of $Q_{\Omega}(t)$: Survival Probability $S_{\Omega}(\tau)$
+          \begin{itemize}
+            \item First passgae time $\tau$: the time taken by the particle to encounter the absorbing boudary $\partial \Omega$ from the initial position.
+            \item Derivation of $S_{\Omega}(\tau)$ based on $H_{\Omega}(\bm{s}, t | \bm{s_0})$.
+          \end{itemize}
+      \end{itemize}
+      
+
+      
+         
+    \subsubsection{Monte Carlo Simulation (LRWs) for Approximating $S_{\Omega}(\tau)$}
+          
+     \subsubsubsection{Monte Carlo Integration}
+
+        \begin{itemize}
+          \item Introduction
+            \begin{itemize}
+              \item Definition: utilizing the random sampling of a function to compute an estimate of its integral numerically \cite{hammersley1960monte}.
+              \item Uniform Sampling Method
+            \end{itemize}
+            
+          \item Given an initial position $\bm{s_0} \in \Omega$, approximating $H_{\Omega}(\bm{s}, t | \bm{s_0})$ by simulating the trajectories of a large number of particles by Lattice Random Walks (LRWs).
+          \item Sampling a lager number of particles, whose initial sites are distributed uniformly within $\Omega$ to estimate $S_{\Omega}(\tau)$.
+        \end{itemize}
+        
+          
+    \subsubsubsection{Design LRWs in the $2-$ dimensional image}
+        \begin{itemize}    
+          \item Initial condition: uniform distribution within $\Omega$, which is bounded by the border of the image and the edge of the target object.
+          \item Boundary condition
+            \begin{itemize}
+              \item Perodic boundary condition the edges of the image;
+              \item Absorbing boundary condition on the boundary of the target shape.
+           \end{itemize}
+          \item Algorithm
+        \end{itemize}
+        
+        %\4 Efficent Random Walks (ERWs) - Dave's code
+             
+    \subsubsubsection{Sample Size Determination - Dvoretzky–Kiefer–Wolfowitz (DKW) inequality \cite{dvoretzky1956asymptotic}}
+        \begin{itemize}        
+          \item Mathematical formula and interpretation
+          \item Strengths
+            \begin{itemize}
+              \item Distribution-free
+              \item Sample size calculation does not depend on 
+                \begin{itemize}
+                  \item Domain shape and size
+                  \item Target geometry
+                  \item B.C.s
+                \end{itemize}
+            \end{itemize}
+          \item Sample Size Calculation
+        \end{itemize}
+
+          
+    \subsubsubsection{Output Analysis (in theory)}    
+
+        \subparagraph{Kaplan-Meier Estimator \cite{kaplan1958nonparametric} \cite{aalen2008survival}}
+        \subparagraph{Confidence Interval \cite{greenwoodnatural} \cite{hosmer2011applied} \cite{kalbfleisch2011statistical}\cite{sawyer2003greenwood}}
+        \subparagraph{Two-Sample Statistical Tests (weighted logrank tests) \cite{custodio2007diagnostics} \cite{agarwal2012statistics} \cite{karadeniz2017examining} \cite{leton2001equivalence} \cite{etikan2017kaplan} \cite{harrington1982class}}
+          \begin{itemize}
+            \item Wilcoxon
+            \item Tarone-Ware
+            \item Peto
+            \item Fleming-Harrington
+          \end{itemize}
+
+          
+
+
+%_________________________________________________          
+\subsection{Extended Ideas of Shape Description from Monte Carlo Simulation}
+
+   \subsubsection{$S(d)$}
+     \begin{itemize}
+       \item Definition of $d$ in $2-$dimensional tiling
+       \item Survival Analysis of $d$ \cite{kleinbaum2010survival}
+         \par
+         Distance can be used in the survival analysis as survival time.\cite{anastasopoulos2017transport} \cite{anastasopoulos2012hazard}
+     \end{itemize}    
+
+   \subsubsection{$S(R)$}       
+     \begin{itemize}
+       \item Definition of $R$
+       \item Survival Analysis of $R$
+     \end{itemize}

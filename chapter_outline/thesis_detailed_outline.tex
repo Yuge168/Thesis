@@ -1,0 +1,513 @@
+\documentclass{article}
+\usepackage{outlines}
+\usepackage{enumitem}
+\usepackage{verbatim}
+\setenumerate[1]{label=\Roman*.}
+\setenumerate[2]{label=\Alph*.}
+\setenumerate[3]{label=\roman*.}
+\setenumerate[4]{label=\alph*.}
+\usepackage[backend=bibtex]{biblatex}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\bibliography{../thesisref.bib}
+%\usepackage{changes}
+%\definechangesauthor[name=Yujie Pei, color=green]{Yuge}
+
+\begin{document}
+
+\begin{outline}[enumerate]
+
+  \centering{C1: Existing Morphological Descriptors for Root Systems}
+   \1 Background
+     \2 Importance of Roots
+       \3 Mechanical and functional abilities of plant roots
+       \3 Plant root plasticity in the resource-limited environment
+     \2 Importance of Research
+       \3 Demand in crop breeding programs
+       \3 Environment and Sustainability
+         \4 reduce the negative impacts of fertilization
+         \4 high crop productivity to feed the increasing global population
+       \3 Promising application in other branching structures
+         \4 Trees
+         \4 River networks in geography
+         \4 Blood vessels in medicine
+         \4 Leaf vein networks
+
+  \1 Summary of Existed Descriptors
+    \2 Metric
+      \3 Basic Geometric Descriptors
+        \4 maximum depth
+        \4 maximum width
+        \4 etc.
+      \3 Compound Descriptors (Computed From the Basic Descriptors)
+        \4 Density
+        \4 aspect ratio
+        \4 etc.
+      \3 Weaknesses
+        \4 Rely on the resolution of the images \cite{balduzzi2017reshaping}
+        \4 Only provide a general view of root morphology \cite{balduzzi2017reshaping}
+        \4 Difficult to assess the spatial configuration of roots
+        \4 Fail to describe the full complexity of root systems
+
+    \2 Non-metric
+      \3 Topological Analysis
+        \4 Persistent homology \cite{li2017persistent}
+          \begin{itemize}
+            \item Persistence barcode shows the number of branches.
+            \item Persistence barcode indicates how branched roots connect along the scale of the function (e.g. geodesic distance).
+            \item Compare the similarity of branching structures by a pair-wise distance matrix using the bottleneck distance method.
+          \end{itemize}
+          
+       \4 Horton-Strahler index \cite{toroczkai2001topological}
+         \begin{itemize}
+            \item Categorize the topological complexity of the whole branching structure.
+            \item Provide a numerical measure of connectedness and complexity of the branching at each vertex by a dimensionless ratio: bifurcation ratio.
+            \item The range of index and the length ratio indicate the size of the branching structure.
+         \end{itemize}
+                
+       \4 Fractal Analysis \cite{tatsumi1989fractal}
+         \begin{itemize}
+            \item Measure the complexity of branching structures.
+            \item Measure self-similarity of branching structures by fractal dimension of the root systems.
+         \end{itemize}
+
+     \3 Strengths
+       \4 Highly complementary to geometric descriptors to characterize how individual roots are connected through branching \cite{delory2018archidart}.
+       \4 Describe branching structures independent of transformation and deformation.
+
+     \3 Problems and Weaknesses
+       \4 Only analyze the connectedness of branching structures, which is a portion of the complexity of plant root systems.
+       \4 Fail to characterize spatial distribution.
+       \4 Some biologically topological indices analyze the root growth qualitatively based on line-linked systems \cite{fitter1986topology}, but not characterize the mathematical topological properties.
+       \4 The fractal analysis aims to describe self-similar structures, which grow by continually repeating simple growth rules \cite{fitter1992fractal}.
+
+  \1 Problem Statements
+    \2 Limitation of Data: large variance of length scales of root leads to the high requirement of the image resolution.
+    \2 Incompleteness and Low Efficiency
+      \3 The finite number of descriptors can not recover overall root system architecture.
+      \3 Diverse units of the measurement results in extra efforts in multivariate data analysis.
+      \3 Roots are not self-similar inherently.
+
+    
+  \newpage
+      
+  \centering{C2: An Alternative Mathematical Method for Shape Description}
+
+  \1 Kac’s Idea: Can One Hear the Shape of a Drum? \cite{kac1966can}
+  
+    \2 Interpretations of Kac's Problem
+      \3 When the drum vibrates, one can hear the sound, which is composed of tones of various frequencies. How much can shape features be inferred from hearing a discrete spectrum of pure tones produced by a drum?
+      \3 If a complete sequence of eigenvalues of the Dirichlet problem for the Laplacian can be obtained precisely, will people determine the shape of a planar?
+      
+    \2 Problem Statement by Mathematical Language
+      \3 Consider a simply connected membrane $\Omega$ in the Euclidean space bounded by a smooth convex curve $\partial \Omega$ (e.g. a drum without any holes)
+      \3 Find function $\phi$ on the closure of $\Omega$, which vanishes at the boundary $\partial \Omega$, and a number $\lambda$ satisfying $-\Delta \phi = \lambda \phi$.
+        \4 $\Delta$ is the Laplace operator. e.g. $\Delta = \sum_{i=1}^{n} \frac{\partial ^2}{\partial x_i^2}$ in Cartesian coordinate system.
+        
+        \4 If there exists a solution $\phi \neq 0$, the corresponding $\lambda$ is defined as a Dirichlet eigenvalue.
+        \4 For each domain $\Omega$, there has a sequence of eigenvalues $\lambda_1, \lambda_2, \lambda_3, ... $ corresponding to a set of eigenfunction $\phi_1, \phi_2, \phi_3, ...$.
+        \4 $\phi_k$ form an orthonormal basis of $L^2(\Omega)$ of real valued eigenfunctions; the corresponding discrete Dirichlet eigenvalues are positive ($\lambda_k \in \mathbb{R^{+}}$).
+      \3 An important function \cite{grieser2013hearing}: $h(t) = \sum_{k=1}^{k=\infty} e^{-\lambda_kt}$
+        \4 It is a Dirichlet series.
+        \4 It is called the spectral function or the heat trace.
+        \4 It is smooth and converges for every $t>0$.
+        
+    \2 Summarize the Results of Kac's Idea
+      \3 As $t \rightarrow 0^{+}$, the leading terms of the asymptotic expansion of $h(t)$ imply the geometrical attributes of $\Omega$
+        \4 the total area
+        \4 the perimeter
+        \4 the curvature
+      \3 If the domain $\Omega$ has the polygonal boundary, the third term shows in the information about the interior angles of the polygon \cite{grieser2013hearing}.
+
+   \2 Conclusion
+      \3 Advantages
+        \4 Kac proposed a novel analytical mathematical method for the shape description without using measuring tools, e.g. rulers.
+        \4 Other mathematicians extended Kac's idea in exploring the geometrical information of more complex domains with various boundary conditions \cite{khabou2007shape}\cite{gottlieb1985eigenvalues}\cite{gottlieb1983hearing} \cite{zayed1989heat}\cite{sleeman1984trace}.  
+     \3 Limitations
+        \4 It is only available for the convex domain, which has a smooth or piecewise smooth boundary.  
+        \4 Except in very few cases (i.e. rectangular, disk, certain triangles), the complete sequence of eigenvalues $\lambda_k$ can not be calculated \cite{grieser2013hearing}.
+        \4 Only the first few terms in the asymptotic expansion of $h(t)$ are explicitly available.
+
+  \newpage
+
+
+  \1 Extended Work of Kac’s Idea \cite{desjardins1994heat}\cite{vandenberg1994heat}: Heat Content
+    \2 Fouier's Heat Equation \cite{baron1878analytical}
+     \3 Mathematical Formula
+        \par
+        \begin{equation}\label{eq:heat_equation}
+          \frac{\partial u(\bm{s}, t)}{\partial t} = \Delta u(\bm{s}, t)
+        \end{equation}
+        
+      \3 Interpretation
+      \par
+      It is a deterministic model used to characterize the evolution of quantities over the space and time. (e.g. the flow of heat)
+    \2 Summarize the Idea
+      \3 Initial-Boundary Value Problem (IBVP)
+        \par
+        $u(\bm{s}, t)$ indicates the value of the tempretature at $\bm{s} \in \Omega$ at time $t$ satisfying Eq.~\ref{eq:heat_equation} and 
+         \4 Initial condition: $u(\bm{s}, t) = f(\bm{s})$ as $t \rightarrow 0$.
+         \4 Dirichlet boundary condition: $u(\bm{s}, t)=0$ for $\bm{s} \in \partial \Omega$
+         \par
+         It is also called the absorbing boundary condition; i.e. any molecule will be instantly absorbed when it touches the boundary $\partial \Omega$;
+         
+      \3 A Basic Integration
+         \par
+          \begin{align}
+            \beta_{\Omega}(f, g)(t) &= \int_{\Omega} \int_{\Omega} H_{\Omega}(\bm{s}, t | \bm{s_0}) f(\bm{s_0}) g(\bm{s}) d\bm{s_0} d\bm{s} \label{eq:integral_full} \\
+            &= \int_{\Omega} u(\bm{s}, t) g(\bm{s}) d\bm{s} \label{eq:integral_convol}
+          \end{align}
+         
+        \4 $H_{\Omega}(\bm{s}, t | \bm{s_0})$ is called the heat kernel of $\Omega$ describing the density of the heat at $\bm{s}$ after time $t$ when initially there is only one single hot source at $\bm{s_0}$. 
+        \4 $u(\bm{s}, t)$ is the general solution to Eq.~\ref{eq:heat_equation}, which can be expressed as the convolution of the initial condition with the heat kernel of the domain.
+        \4 $g(\bm{s})$ is an auxiliary test function for studying the distributional nature of the tempretature function $u(\bm{s}, t)$ near $\partial \Omega$. 
+
+     \3 Heat Content Calculation
+       \par
+       Given 
+       \begin{equation} \label{eq:g}
+         g(\bm{s}) = 1  
+       \end{equation}
+
+       \begin{align}
+         Q_{\Omega}(t) &= \int_{\Omega} \int_{\Omega} H_{\Omega}(\bm{s}, t | \bm{s_0}) f(\bm{s_0})  d\bm{s_0} d\bm{s} \label{eq:heat_content_integral_full} \\
+            &= \int_{\Omega} u(\bm{s}, t) d\bm{s} \label{eq:heat_content_integral_convol}
+       \end{align}
+       
+          
+        
+     \3 Shape Characterization
+        \4 As $t \rightarrow 0^{+}$, $Q_{\Omega}(t) \simeq \sum_{n=1}^{\infty} \beta_n(\Omega) t ^{\frac{n}{2}}$
+        \4 Obtain geometrical information of $\Omega$ from $\beta_n$
+         \begin{itemize}
+           \item area
+           \item length
+           \item scalar curvature
+           \item mass
+         \end{itemize}
+         
+
+    \2 Conclusion
+      \3 Strengthness
+        \4 Instead of calculating a complete sequence of the Dirichlet eigenvalues for exploring the shape attributes of geometry, the asymptotic expansion of the heat content, defined as integrating the solution to the heat equation over the space-dimension, also implies the geometrical characteristics.  
+      \3 Limitations
+        \4 Only the infinitly differentiable boundary $\partial \Omega$ is considered.
+        \4 Only the first few terms in the asymptotic expansion are explicitly known.
+        \4 Either irregular geometries or discontinuities lead to the complexities, so the explicit solutions $u(\bm{s}, t)$ are close to non-existed.
+        \4 The numerical evaluation of the analytical $u(\bm{s}, t)$ and $Q_{\Omega}(t)$ is usually by no means trivial because they are in the form of infinite series.
+        \4 Similiarly, only the first few coeffients $\beta_n$ in the asymptotic expansion of $Q_{\Omega}(t)$ can be expressed as the complicated explicit forms.
+
+   \newpage
+
+   \1 Numerical Methods for Solving Parabolic Partial Differential Equations
+    \2 Parabolic PDEs: to characterize time-dependent phenomena
+    \2 The intrinsically similar features of the traditional computational techniques are mesh discretization in time and space.
+    \2 Finite Difference Method (FDM) \cite{grossmann2007numerical}
+      \3 Basic Ideas: replace derivatives in the equation by the difference quotients; 
+      \3 A simpliest example of FDM in solving $2-$dimensional heat equation by Forward Time Centered Space (FTCS) \cite{pletcher2012computational}
+         \4 It is an explict method: utilize a simple explicit formula to evaluate the unknown function at each of the spatial mesh points at the new time level.
+         \4 Prilimarty step: discretize the domain by a set of mesh points.
+         \4 Secondary step: replace the derivatives by finite difference approximations based on FTCS.
+           \begin{itemize}
+             \item discretize the Laplace operator in space
+             \item discretize the time derivative
+           \end{itemize}
+         \4 Third step: determine the time and step size by a condition for numerical stability.
+         \4 Fourth step: fill in the initial and boundary values in the initialied matrix.
+         \4 Fifth step: estimate the field values (e.g. tempreature) at the finite number of space-time points by the iterations.
+         \4 Final Step: visualize the numerical results.
+
+      \3 Stengthness
+         \4 Compared with other numerical methods, it is the easy to code from the implementational point of view.
+      \3 Weakness \cite{crank1979mathematics} \cite{hoffman2018numerical}
+         \4 The truncation error appears in the process of ignoring the higher-order terms in the Taylor series to obtain the finite difference equations.
+         \4 Round-off error results from the loss of precision due to the computer rounding of decimal quantities.
+         \4 Discretization error can be reduced by decreasing the time size, grid size, or both of them, but the computational time will be longer.
+         \4 It will be inaccurate and arduous in the practical application when the problem is defined in the irregular geometries.
+      
+    \2 Finite Element Method (FEM) \cite{zlamal1968finite}
+      \3 Foundamental Concepts 
+         \4 Finite element: divide the complicated geometries, irregular shapes, and boundaries into an union of smaller and simpler subdomains (e.g. lattice, triangle, curvilinear polygons, etc.) \cite{logan2011first}; adjacent element are connected by the nodes.
+         \4 Element equation: reprsent each subdomain by the piecewise continuous polynomial basis function.
+         \4 Model the whole system: assemble all the element equations into a system of algebraic equations.
+         \4 Slove algebraic equations by minimizing the associated error function.
+      \3 Stengthness
+         \4 FEM can be used to solve a wide range of PDEs defined in a complex geometry.
+         \4 Spatial discretization is flexible since the mesh can adapt to irregularly shaped boundaries to reduce geometric errors.
+         \4 A specific region can be refined locally to give more resolution.
+         \4 For a considerable number of elements, the paralleling computation can be used to improve the computational efficiency.
+      \3 Weakness
+         \4 Users may make mistakes in building the FE model, checking the result, detecting and updating the model design.
+         \4 The round-off errors will affect the precision of the nuemrical results.
+         \4 FEM demands a longer execution time and an enormous amount of input data compared with FDM.
+      
+    \2 Other Tranditional Computational Methods
+      \3 Finite Volume Method (FVM) \cite{eymard2000finite}
+      \3 Boundary Element Method (BEM) \cite{attaway1991boundary}
+      
+    \2 Limitation in Practice  
+      \3 The size of the mesh, subdomain, or volumn will determine the precision of the approximated solution, the smaller being the better. However, the finer discretization will increase the demand for computational resources such as memory and processor time.
+      \3 In this thesis, the problem domain $\Omega$ is bounded by the border of the image and the edge of the whole extremly complicated root system with millions of pixels and various boundary conditions. The complexity of coding is the main practical limitation.
+      \3 The purpose of this thesis is to approxiate $Q_{\Omega}(t)$, defined as an integration over the space dimension, which results in the extra effort and errors.
+        
+
+   \newpage
+
+   \1 Monte Carlo Simulation for Approximating Heat Content $Q_{\Omega}(t)$
+
+    \2 Background \cite{jacobs2010stochastic}
+      \3 Stachasic Differential Equations (SDEs)
+        \4 Stochastic process
+        \4 Brownian motion
+      \3 Connection Between SDEs and Heat Equation 
+        \4 Ito calculus
+        \4 Intepretating the heat equation by the probability density of particles undergoing Brownian motion
+
+
+    \2 A Special Case of Heat Content Calculation  
+      \3 Uniform initial tempretaure distribution in Eq.~\ref{eq:heat_content_integral_full}
+          \par
+          \begin{equation}\label{eq:uniform_initial_condition}
+             f(\bm{s_0}) = \frac{1}{|\Omega|} 
+          \end{equation}
+          
+           \4 $|\Omega|$ is the area of the domain $\Omega$.
+           \4 Particles's initial positions are distributed uniformly in $\Omega$.
+          
+      \3 Intepretation of Eq.~\ref{eq:g}: observing all the Brownian particles unbiasedly.
+           
+      \3 Probabilistic Intepretation of Heat Kernel $H_{\Omega}(\bm{s}, t | \bm{s_0})$: conditional probability density function of Brownian particles
+
+      \3 Probabilistic Interpretation of $Q_{\Omega}(t)$: Survival Probability $S_{\Omega}(\tau)$
+         \4 First passgae time $\tau$: the time taken by the particle to encounter the absorbing boudary $\partial \Omega$ from the initial position.
+         \4 Derivation of $S_{\Omega}(\tau)$ based on $H_{\Omega}(\bm{s}, t | \bm{s_0})$.
+        
+
+%   \2 Monte Carlo Integration for Eq.~\ref{eq:heat_content_integral_full}
+ %     \3 Introduction     
+  %      \4 Definition: utilizing the random sampling of a function to compute an estimate of its integral numerically \cite{hammersley1960monte}.
+   %     \4 Uniform Sampling Method
+    %  \3 Given an initial position $\bm{s_0} \in \Omega$, approximating $H_{\Omega}(\bm{s}, t | \bm{s_0})$ by simulating Lattice Random Walks (LRWs)
+     %   \4   
+         
+    \2 Monte Carlo Simulation (LRWs) for approximating $S_{\Omega}(\tau)$
+      \3 Monte Carlo Integration
+        \4 Introduction
+          \begin{itemize}
+            \item Definition: utilizing the random sampling of a function to compute an estimate of its integral numerically \cite{hammersley1960monte}.
+            \item Uniform Sampling Method
+          \end{itemize}
+       \4 Given an initial position $\bm{s_0} \in \Omega$, approximating $H_{\Omega}(\bm{s}, t | \bm{s_0})$ by simulating the trajectories of a large number of particles by Lattice Random Walks (LRWs).
+       \4 Sampling a lager number of particles, whose initial sites are distributed uniformly within $\Omega$ to estimate $S_{\Omega}(\tau)$.
+          
+     \3 Design LRWs in the $2-$ dimensional image
+         \4 Initial condition: uniform distribution within $\Omega$, which is bounded by the border of the image and the edge of the target object.
+         \4 Boundary condition
+           \begin{itemize}
+             %\item Reflecting boundary condition on top and bottom edges of image;
+             \item Perodic boundary condition the edges of the image;
+             \item Absorbing boundary condition on the boundary of the target shape.
+           \end{itemize}
+      
+        %\4 Efficent Random Walks (ERWs) - Dave's code
+             
+      \3 Sample Size Determination - Dvoretzky–Kiefer–Wolfowitz (DKW) inequality \cite{dvoretzky1956asymptotic}
+        \4 Mathematical formula and interpretation
+        \4 Strengths
+          \begin{itemize}
+            \item Distribution-free
+            \item Sample size calculation does not depend on 
+              \begin{itemize}
+                \item Domain shape and size
+                \item Target geometry
+                \item B.C.s
+              \end{itemize}
+          \end{itemize}
+          
+     \3 Output Analysis (in theory)
+        \4 Kaplan-Meier Estimator \cite{kaplan1958nonparametric} \cite{aalen2008survival}
+        \4 Confidence Interval \cite{greenwoodnatural} \cite{hosmer2011applied} \cite{kalbfleisch2011statistical}\cite{sawyer2003greenwood}
+        \4 Two-Sample Statistical Tests (weighted logrank tests) \cite{custodio2007diagnostics} \cite{agarwal2012statistics} \cite{karadeniz2017examining} \cite{leton2001equivalence} \cite{etikan2017kaplan} \cite{harrington1982class}
+          \begin{itemize}
+            \item Wilcoxon
+            \item Tarone-Ware
+            \item Peto
+            \item Fleming-Harrington
+          \end{itemize}
+          
+
+
+  \newpage
+
+  \centering{C3: Method Validation in Annulus}
+  
+  
+  \1 Analytical Results
+    \2 Shape Description
+      \3 Problem domain $\Omega$: the region bounded by two concentric circles
+      \3 Radius of the larger circle: $b$
+      \3 Radius of the smaller circle: $a$
+    \2 Solving Initial-Boundary Value Problem (IBVP)
+      \3 Methods
+        \4 Dimensional Analysis: non-dimensional variables
+          \begin{itemize}
+            \item $\mu = \frac{b}{a}$
+            \item $\tau = \frac{t}{a^2}$
+            \item $\hat r = \frac{r}{a}$
+          \end{itemize}
+        \4 Method of separation of variables
+     \3 Mathematical Equations
+       \4 Diffusion equation
+       \begin{equation}\label{eq:DA_polar_diffusion}
+         u_\tau = (u_{\hat r \hat r} + \frac{1}{\hat r} u_{\hat r} + \frac{1}{\hat r ^2} u_{\theta\theta})
+       \end{equation}
+       \4 Uniform initial condition
+       \begin{equation}\label{eq:DA_initial_bc}
+         u(\hat r, \theta, 0) = \frac{1}{|\Omega|}
+       \end{equation}
+       \4 Homogenous Dirichlet B.C.
+       \begin{equation}\label{eq:DA_Dirichlet_bc}
+         u(1, \theta, \tau) = 0
+       \end{equation}
+       \4 Homogenous Neumann B.C.
+       \begin{equation}\label{eq:DA_Neumann_bc}
+         \hat r u'(\mu, \theta, \tau) = 0
+       \end{equation}
+       
+    \2 Heat Content Calculation
+      \begin{equation}\label{eq:heat_content_annulus}
+        S(\tau) = \int_{0}^{2\pi} d\theta \int_{1}^{\mu} \hat r d \hat r u(\hat r, \theta, \tau)
+      \end{equation}
+    
+  \1 Numerical Approximation
+    \2 Eigenvalues $\lambda_{0, n}$
+      \3 Properties
+        \4 $\lambda_{0, n} \in \mathbb{R^{+}}$, $(n \in \mathbb{N}_{+})$
+        \4 Monotonicity 
+        \4 Periodicity
+      \3 Estimation
+        \4 $\lambda_{0, n} \in ((n-1) \pi, (n+1) \pi)$ \cite{NIST:DLMF}
+        \4 Bisection method \cite{2020SciPy-NMeth}
+
+    \2 Approximation of $u(\hat r, \theta, \tau)$ and $S(\tau)$
+      \3 Direct summation
+      \3 Series acceleration methods   
+
+  \1 LRWs in Annulus
+    \2 Model Design
+    \2 Survival analysis in Python \cite{cameron_davidson_pilon_2020_4313838}
+       \3 Survival function $S(n)$
+       \3 Confidence interval
+    \2 Sampling Errors
+
+  \1 Comparison of Numerical and Analytical Results
+    \2 Sample Size Evaluation
+    \2 Comparison of $S(\tau)$ and $S(n)$
+    \2 Conclusion
+      \3 The numerical survival function of LRWs is consistent with the analytical result.
+      \3 The number of particles in LRWs determined by DKW inequality is large enough to generate reproducible statistical results. 
+
+
+
+  \newpage
+
+  \centering{C4: LRWs in Artificial Images}
+
+  \1 Circle and Rectangle
+    \2 Image Description
+       \3 Image size: $1200 \times 1000$ pixels
+       \3 Surface area of shapes: $90000$ pixels
+       \3 The centroid of the shape is located at the center of the image
+    \2 Purposes: Methodology Validation
+       \par 
+       Given two distinct convex geometries, whether
+       \3 the behaviours of the survival function of LRWs are consistent with the theoretical results \cite{DesjardinsS1994HAFO}.
+       \3 survival curves can be used to describe and distinguish them.
+
+  \1 Complicated Branching Structures
+       
+    \2 Image Description
+       \3 Image size: $1200 \times 1000$ pixels
+       \3 Surface area of shapes: $90000$ pixels
+       \3 Iterate the template $3, 4, 5, 6$ times to produce the targeted branching geometries labelled as $L_3, L_4, L_5, L_6$.
+       \3 Three groups of images labelled as $G_1, G_2, G_3$
+         \4 $G_1$: the target object $G_1 L_i$ ($i=3, 4, 5, 6$) is equidistant to the edges of an image.
+         \4 $G_2$: the template of $G_2 L_i$ ($i=3, 4, 5, 6$) is distinct from $G_1$ (thickness and aspect ratio). 
+         \4 $G_3$: Move $G_1 L_i$ right and up with $50$ pixels, respectively.
+
+    \2 Purpose: Assumption Verification
+      \3 Without calculating the asymptotic expansion, the survival function can characterize and differentiate distinct branching structures.
+    
+
+
+  \1 LRWs Simulation
+    \2 Algorithm
+    \2 Output Analysis
+      \3 $S(n)$, where $n$ is the number of steps taken by the particle
+      \3 Two-sample statistical tests of $S(n)$
+      \3 Distance matrices
+      \3 Multidimensional scaling plots
+      
+
+  \1 Conclusion
+  
+    \2 LRWs can reveal the intrinsic geometrical properties of the annulus.
+    \2 In a short time, the survival function of rectangular decays faster than that of the circle, which conforms with the theoretical results.
+    \2 The differences of estimated survival functions between circle and rectangle are statistically significant, which coincides with the real shape dissimilarities.
+
+    \2 Within the same group, when $t$ is small, the more branching the object is, the faster the survival function decays.
+
+    \2 Within the same group, the pairwise survival functions are statistically different.
+
+    \2 The corresponding target structures in $G_1$ and $G_3$ are invariant shapes under translation since their survival function are not statistically different. In other words, periodic boundary conditions of the image can eliminate the effect of the locations.
+
+    \2 LRWs can explore and classify the geometries, the spatial configurations of the complicated branching objects, and unoccupied area in the image.
+
+
+  \newpage
+
+  \centering{C5: LRWs in Real Root Images}
+
+  \1 Hypothesis
+   \par
+   Given $2-$dimensional root images, LRWs can be used to characterize and compare the plant root shapes at all scales.
+  
+  \1 Image Description
+     \2 Background
+     \2 $2-$dimensional Sorghum Images
+       \3 Genotypes
+       \3 Treatments
+       \3 Replicates
+    
+  \1 Output Analysis
+     \2 Survival Functions
+      \3 $S(n)$, where $n$ is the number of steps taken by the particle.
+      \3 $S(d)$, where $d$ is the displacement from the initial to the final position of a particle undergoing LRWs.
+      \3 $S(R)$, where $R$ is the radius of the largest disk, which is centered at the initial position and tangent the root system.
+      
+    \2 Analyze Survival Curves
+      \3 Explore the connection between particles' behaviours and the shape of the survival curve
+      \3 Describe morphological features and spatial distribution of roots
+      \3 Characterize the unoccupied area of the image
+
+      
+    \2 Fr\'echet Mean and Variance
+
+    
+    \2 Distance Matrics
+     \3 Survival Function
+     \3 Fr\'echet Mean
+     
+  \1 Conclusion
+  
+\end{outline}
+
+\newpage
+
+\printbibliography
+
+
+\end{document}

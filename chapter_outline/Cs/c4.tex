@@ -1,0 +1,94 @@
+
+
+%________________________________________________
+
+\subsection{Circle and Rectangle}
+
+   \subsubsection{Image Description}
+      \begin{itemize}
+        \item Image size: $1200 \times 1000$ pixels
+        \item Surface area of shapes: $90000$ pixels
+        \item The centroid of the shape is located at the center of the image
+      \end{itemize}
+      
+   \subsubsection{Purposes: Methodology Validation}
+       \par 
+       Given two distinct convex geometries, whether
+       \begin{itemize}
+         \item the behaviours of the survival function of LRWs are consistent with the theoretical results \cite{DesjardinsS1994HAFO}.
+         \item survival curves can be used to describe and distinguish them.
+       \end{itemize}
+       
+
+   \subsection{Complicated Branching Structures}
+       
+     \subsubsection{Image Description}
+       \begin{itemize}
+         \item Image size: $1200 \times 1000$ pixels
+         \item Surface area of shapes: $90000$ pixels
+         \item Iterate the template $3, 4, 5, 6$ times to produce the targeted branching geometries labelled as $L_3, L_4, L_5, L_6$.
+         \item Three groups of images labelled as $G_1, G_2$
+
+           \begin{itemize}
+             \item $G_1$: the target object $G_1 L_i$ ($i=3, 4, 5, 6$) is equidistant to the edges of an image.
+             \item $G_2$: the template of $G_2 L_i$ ($i=3, 4, 5, 6$) is distinct from $G_1$ (thickness and aspect ratio). 
+           \end{itemize}
+       \end{itemize}
+       
+           
+
+    \subsubsection{Purpose: Assumption Verification}
+      \par
+       Without calculating the asymptotic expansion, the survival function can characterize and differentiate branching objects.
+    
+
+
+  \subsection{LRWs Simulation}
+
+     \subsubsection{Survival Functions}
+
+        \subsubsubsection{$S(n)$}
+            \par
+            $n$ is the number of steps taken by the particle.
+        \subsubsubsection{$S(d)$}
+            \par
+            $d$ is the displacement from the initial to the final position of a particle undergoing LRWs.
+        \subsubsubsection{Empty Space Function: $S(R)$}
+            \par
+            $R$ is the radius of the largest disk, which is centered at the initial position and tangent to the root system \cite{baddeley1994empty}.
+
+     \subsubsection{Explore Information From Survival Curves}
+            
+     \subsubsection{Output Analysis}
+        \begin{itemize}
+          \item Two-sample statistical tests of $S(n)$
+          \item Distance matrices
+          \item Multidimensional scaling plot  
+        \end{itemize}
+        
+
+          
+         
+     
+      
+
+  \subsection{Conclusion}
+    \begin{itemize}
+      \item In a short time, the survival function of rectangle decays faster than the circle, which conforms to the analytical results.
+  
+      \item The differences of estimated survival functions between circle and rectangle are statistically significant, which coincides with the real shape dissimilarities.
+
+      \item Within a same group, when $t$ is small, the more branching the object is, the faster the survival function decays.
+
+      \item Within a same group, the pairwise survival functions are statistically different.
+
+      \item The corresponding target structures in $G_1$ and $G_3$ are invariant shapes under translation since their survival function are not statistically different. In other words, periodic boundary conditions of the image can eliminate the effect of the locations.
+
+      \item LRWs can describe and classify the geometries, their spatial configurations, and the unoccupied area in the image.
+    \end{itemize}
+    
+    
+
+
+
+

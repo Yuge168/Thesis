@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage{outlines}
+\usepackage{enumitem}
+\usepackage{verbatim}
+%\setenumerate[1]{label=\Roman*.}
+%\setenumerate[2]{label=\Alph*.}
+%\setenumerate[3]{label=\roman*.}
+%\setenumerate[4]{label=\alph*.}
+
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+
+\usepackage[backend=bibtex]{biblatex}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\bibliography{../thesisref.bib}
+%\usepackage{changes}
+%\definechangesauthor[name=Yujie Pei, color=green]{Yuge}
+\usepackage{sectsty}
+\sectionfont{\centering}
+
+
+
+\title{Outline of Chapters}
+
+\author{Yujie Pei}
+
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+%_____________ Chapter 1 ____________
+\section{Existing Morphological Descriptors for Root Systems}
+  \input{./Cs/c1.tex}
+
+
+%_____________ Chapter 2 ____________
+\newpage
+  
+\section{An Alternative Mathematical Method for Shape Description}
+  \input{./Cs/c2.tex}  
+
+
+\newpage
+
+%\section{Method Validation in Annulus}
+  %\input{./Cs/c3.tex}
+
+
+\newpage
+
+\section{LRWs in Artificial Images}
+  \input{./Cs/c4.tex}
+
+
+\newpage
+
+\section{LRWs in Real Root Images}
+  \input{./Cs/c5.tex}
+
+
+\newpage
+\section{Conclusion}
+  %\input{./Cs/c6.tex}
+
+
+\newpage
+
+\section{Future Work}
+
+\newpage
+
+
+\section{Appendices}
+  \input{./Cs/appendix.tex}
+
+\newpage
+  
+\printbibliography
+
+
+\newpage
+
+
+
+\end{document}
+
+

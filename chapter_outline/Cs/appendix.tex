@@ -1,0 +1,217 @@
+
+
+%__________________________________________
+
+\subsection{Numerical Methods for Solving Parabolic Partial Differential Equations}
+
+
+  \subsubsection{Introduction}
+
+    \begin{itemize}
+      \item Parabolic PDEs: to characterize time-dependent phenomena
+      \item The intrinsically similar features of the traditional computational techniques are mesh discretization in time and space.
+    \end{itemize}
+
+  \subsubsection{Summary of Numerical Techniques}
+    
+    \subsubsubsection{Finite Difference Method (FDM) \cite{grossmann2007numerical}}
+  
+      \begin{itemize}
+        \item Basic Ideas: replace derivatives in the equation by the difference quotients; 
+        \item A simpliest example of FDM in solving $2-$dimensional heat equation by Forward Time Centered Space (FTCS) \cite{pletcher2012computational}
+          \begin{itemize}
+            \item It is an explict method: utilize a simple explicit formula to evaluate the unknown function at each of the spatial mesh points at the new time level.
+            \item Prilimarty step: discretize the domain by a set of mesh points.
+            \item Secondary step: replace the derivatives by finite difference approximations based on FTCS.
+              \begin{itemize}
+                \item discretize the Laplace operator in space
+                \item discretize the time derivative
+              \end{itemize}
+              
+            \item Third step: determine the time and step size by a condition for numerical stability.
+            \item Fourth step: fill in the initial and boundary values in the initialied matrix.
+            \item Fifth step: estimate the field values (e.g. tempreature) at the finite number of space-time points by the iterations.
+            \item Final Step: visualize the numerical results.
+          \end{itemize}
+      
+        \item Stengthness
+          
+          \par Compared with other numerical methods, it is the easy to code from the implementational point of view.
+          
+        \item Weakness \cite{crank1979mathematics} \cite{hoffman2018numerical}
+          \begin{itemize}
+            \item The truncation error appears in the process of ignoring the higher-order terms in the Taylor series to obtain the finite difference equations.
+            \item Round-off error results from the loss of precision due to the computer rounding of decimal quantities.
+            \item Discretization error can be reduced by decreasing the time size, grid size, or both of them, but the computational time will be longer.
+            \item It will be inaccurate and arduous in the practical application when the problem is defined in the irregular geometries.
+          \end{itemize}
+      \end{itemize}
+      
+      
+          
+      
+   \subsubsubsection{Finite Element Method (FEM) \cite{zlamal1968finite}}
+      \begin{itemize}
+        \item Foundamental Concepts
+          \begin{itemize}
+            \item Finite element: divide the complicated geometries, irregular shapes, and boundaries into an union of smaller and simpler subdomains (e.g. lattice, triangle, curvilinear polygons, etc.) \cite{logan2011first}; adjacent element are connected by the nodes.
+            \item Element equation: reprsent each subdomain by the piecewise continuous polynomial basis function.
+            \item Model the whole system: assemble all the element equations into a system of algebraic equations.
+            \item Slove algebraic equations by minimizing the associated error function.
+          \end{itemize}
+          
+          
+        \item Stengthness
+          
+          \begin{itemize}
+            \item FEM can be used to solve a wide range of PDEs defined in a complex geometry.
+            \item Spatial discretization is flexible since the mesh can adapt to irregularly shaped boundaries to reduce geometric errors.
+            \item A specific region can be refined locally to give more resolution.
+            \item For a considerable number of elements, the paralleling computation can be used to improve the computational efficiency.
+          \end{itemize}
+          
+        \item Weakness
+          
+          \begin{itemize}
+            \item Users may make mistakes in building the FE model, checking the result, detecting and updating the model design.
+            \item The round-off errors will affect the precision of the nuemrical results.
+            \item FEM demands a longer execution time and an enormous amount of input data compared with FDM.
+          \end{itemize}
+          
+      \end{itemize}
+
+      
+      
+      
+   \subsubsubsection{Other Tranditional Computational Methods}
+
+       \subparagraph Finite Volume Method (FVM) \cite{eymard2000finite}
+       \subparagraph Boundary Element Method (BEM) \cite{attaway1991boundary}
+     
+   \subsubsection{Limitation in Practice}
+      \begin{itemize}
+        \item The size of the mesh, subdomain, or volumn will determine the precision of the approximated solution, the smaller being the better. However, the finer discretization will increase the demand for computational resources such as memory and processor time.
+        \item In this thesis, the problem domain $\Omega$ is bounded by the border of the image and the edge of the whole extremly complicated root system with millions of pixels and various boundary conditions. The complexity of coding is the main practical limitation.
+        \item The purpose of this thesis is to approxiate $Q_{\Omega}(t)$, defined as an integration over the space dimension, which results in the extra effort and errors.
+      \end{itemize}
+      
+      
+
+%__________________________________________
+\subsection{Method Validation in Annulus}
+      
+  \subsubsection{Analytical Results}
+
+    \subsubsubsection{Shape Description}
+
+      \begin{itemize}
+        \item Problem domain $\Omega$: the region bounded by two concentric circles
+        \item Radius of the larger circle: $b$
+        \item Radius of the smaller circle: $a$
+      \end{itemize}
+      
+    \subsubsubsection{Solving Initial-Boundary Value Problem (IBVP)}
+
+       \begin{itemize}
+
+          \item Methods
+         
+            \begin{itemize}
+              \item Dimensional Analysis: non-dimensional variables
+                \begin{itemize}
+                   \item $\mu = \frac{b}{a}$
+                   \item $\tau = \frac{t}{a^2}$
+                   \item $\hat r = \frac{r}{a}$
+                \end{itemize}
+                
+              \item Method of separation of variables
+            \end{itemize}
+            
+          \item Mathematical Equations
+
+            \begin{itemize}
+              
+               \item Diffusion equation
+                 \begin{equation}\label{eq:DA_polar_diffusion}
+                   u_\tau = (u_{\hat r \hat r} + \frac{1}{\hat r} u_{\hat r} + \frac{1}{\hat r ^2} u_{\theta\theta})
+                 \end{equation}
+                 
+               \item Uniform initial condition
+                 \begin{equation}\label{eq:DA_initial_bc}
+                   u(\hat r, \theta, 0) = \frac{1}{|\Omega|}
+                 \end{equation}
+                 
+               \item Homogenous Dirichlet B.C.
+                 \begin{equation}\label{eq:DA_Dirichlet_bc}
+                   u(1, \theta, \tau) = 0
+                 \end{equation}
+                 
+               \item Homogenous Neumann B.C.
+                 \begin{equation}\label{eq:DA_Neumann_bc}
+                   \hat r u'(\mu, \theta, \tau) = 0
+                 \end{equation}
+            \end{itemize}
+       \end{itemize}
+       
+
+       
+    \subsubsubsection{Heat Content Calculation}
+      \begin{equation}\label{eq:heat_content_annulus}
+        S(\tau) = \int_{0}^{2\pi} d\theta \int_{1}^{\mu} \hat r d \hat r u(\hat r, \theta, \tau)
+      \end{equation}
+
+   
+  \subsubsection{Numerical Approximation}
+      
+    \subsubsubsection{Eigenvalues $\lambda_{0, n}$}
+
+      \subparagraph{Properties}
+        \begin{itemize}
+          \item $\lambda_{0, n} \in \mathbb{R^{+}}$, $(n \in \mathbb{N}_{+})$
+          \item Monotonicity 
+          \item Periodicity
+        \end{itemize}
+        
+      \subparagraph{Estimation}
+        \begin{itemize}
+          \item $\lambda_{0, n} \in ((n-1) \pi, (n+1) \pi)$ \cite{NIST:DLMF}
+          \item Bisection method \cite{2020SciPy-NMeth}
+        \end{itemize}
+        
+        
+    \subsubsubsection{Approximation of $u(\hat r, \theta, \tau)$ and $S(\tau)$}
+      \subparagraph{Direct summation}
+      \subparagraph{Series acceleration methods}
+
+  \subsubsection{LRWs in Annulus}
+      
+    \subsubsubsection{Model Design}
+
+      \begin{itemize}
+        \item Uniform Sampling
+        \item B.C.s
+      \end{itemize}
+      
+      
+    \subparagraph{Survival analysis in Python \cite{cameron_davidson_pilon_2020_4313838}}
+
+       \begin{itemize}
+         \item Survival function $S(n)$, where $n$ is the number of steps taken by the particle. 
+         \item Confidence interval
+       \end{itemize}
+       
+    \subparagraph{Sampling Errors}
+
+
+  \subsubsection{Comparison of Numerical and Analytical Results}
+    \subsubsubsection{Sample Size Evaluation}
+    \subsubsubsection{Comparison of $S(\tau)$ and $S(n)$}
+
+  \subsubsection{Conclusion}
+    \begin{itemize}
+      \item The estimated survival function of LRWs is consistent with the analytical result.
+      \item The number of particles in LRWs determined by DKW inequality is large enough to generate reproducible statistical results. 
+    \end{itemize}
+    
+      
+

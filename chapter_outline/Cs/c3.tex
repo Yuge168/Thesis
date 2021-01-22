@@ -1,0 +1,79 @@
+\begin{outline}[enumerate]
+
+  
+
+\1 Analytical Results
+    \2 Shape Description
+      \3 Problem domain $\Omega$: the region bounded by two concentric circles
+      \3 Radius of the larger circle: $b$
+      \3 Radius of the smaller circle: $a$
+    \2 Solving Initial-Boundary Value Problem (IBVP)
+      \3 Methods
+        \4 Dimensional Analysis: non-dimensional variables
+          \begin{itemize}
+            \item $\mu = \frac{b}{a}$
+            \item $\tau = \frac{t}{a^2}$
+            \item $\hat r = \frac{r}{a}$
+          \end{itemize}
+        \4 Method of separation of variables
+     \3 Mathematical Equations
+       \4 Diffusion equation
+       \begin{equation}\label{eq:DA_polar_diffusion}
+         u_\tau = (u_{\hat r \hat r} + \frac{1}{\hat r} u_{\hat r} + \frac{1}{\hat r ^2} u_{\theta\theta})
+       \end{equation}
+       \4 Uniform initial condition
+       \begin{equation}\label{eq:DA_initial_bc}
+         u(\hat r, \theta, 0) = \frac{1}{|\Omega|}
+       \end{equation}
+       \4 Homogenous Dirichlet B.C.
+       \begin{equation}\label{eq:DA_Dirichlet_bc}
+         u(1, \theta, \tau) = 0
+       \end{equation}
+       \4 Homogenous Neumann B.C.
+       \begin{equation}\label{eq:DA_Neumann_bc}
+         \hat r u'(\mu, \theta, \tau) = 0
+       \end{equation}
+       
+    \2 Heat Content Calculation
+      \begin{equation}\label{eq:heat_content_annulus}
+        S(\tau) = \int_{0}^{2\pi} d\theta \int_{1}^{\mu} \hat r d \hat r u(\hat r, \theta, \tau)
+      \end{equation}
+    
+  \1 Numerical Approximation
+    \2 Eigenvalues $\lambda_{0, n}$
+      \3 Properties
+        \4 $\lambda_{0, n} \in \mathbb{R^{+}}$, $(n \in \mathbb{N}_{+})$
+        \4 Monotonicity 
+        \4 Periodicity
+      \3 Estimation
+        \4 $\lambda_{0, n} \in ((n-1) \pi, (n+1) \pi)$ \cite{NIST:DLMF}
+        \4 Bisection method \cite{2020SciPy-NMeth}
+
+    \2 Approximation of $u(\hat r, \theta, \tau)$ and $S(\tau)$
+      \3 Direct summation
+      \3 Series acceleration methods   
+
+  \1 LRWs in Annulus
+    \2 Model Design
+      \3 Uniform Sampling
+      \3 B.C.s
+    \2 Survival analysis in Python \cite{cameron_davidson_pilon_2020_4313838}
+       \3 Survival function $S(n)$, where $n$ is the number of steps taken by the particle. 
+       \3 Confidence interval
+    \2 Sampling Errors
+
+  \1 Comparison of Numerical and Analytical Results
+    \2 Sample Size Evaluation
+    \2 Comparison of $S(\tau)$ and $S(n)$
+
+  \1 Conclusion
+    \2 The estimated survival function of LRWs is consistent with the analytical result.
+    \2 The number of particles in LRWs determined by DKW inequality is large enough to generate reproducible statistical results. 
+
+      
+
+
+
+
+
+\end{outline}

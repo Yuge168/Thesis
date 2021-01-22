@@ -1,0 +1,12 @@
+\documentclass{article}
+\usepackage{outlines}
+\usepackage{enumitem}
+\usepackage{verbatim}
+\setenumerate[1]{label=\Roman*.}
+\setenumerate[2]{label=\Alph*.}
+\setenumerate[3]{label=\roman*.}
+\setenumerate[4]{label=\alph*.}
+\usepackage[backend=bibtex]{biblatex}
+\bibliography{main_ref.bib}
+\usepackage{amssymb}
+\usepackage{comment}

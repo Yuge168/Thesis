@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{outlines}
+\usepackage{enumitem}
+\usepackage{verbatim}
+\setenumerate[1]{label=\Roman*.}
+\setenumerate[2]{label=\Alph*.}
+\setenumerate[3]{label=\roman*.}
+\setenumerate[4]{label=\alph*.}
+\usepackage[backend=bibtex]{biblatex}
+\usepackage{amssymb}
+\usepackage{comment}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+
+\begin{document}
+
+\begin{outline}[enumerate]
+
+
+  \centering{C2 S2: Extended Works of Kac’s Idea: Heat Content}
+
+  \1 Mathematical Formula
+
+     \2 Heat Equation % should be in section 1: kac's works
+
+        \3 Fouier's heat equation
+         \4 mathematical interpretation: deterministic model for the heat flow; how temperature chages over the space and time;
+         \4 physical interpretation: conservation of heat per unit volume over an infinitesimally samll volumne lying in the interior of the flow domain;
+         
+        \3 Connection with the Diffusion Equation
+          \4 The diffusion equation describes the density fluctuations in a material undergoing diffusion.
+          \4 When the diffusion coefficient is independent of the density (i.e. constant diffusion coefficient), the diffusion equation is also named the heat equation.
+   
+        \3 Define an Initial-Boundary Value Problem (IBVP)
+          \4 Domain: $\Omega$; homogeneous and isotropic; 
+          \4 Heat equation: $\frac{\partial u(\bm{s}, t)}{\partial t} = \Delta u(\bm{s}, t)$
+          \4 Initial condition: $u(\bm{s}, t) = f(\bm{s})$ for $t=0$
+          \4 Dirichlet boundary condition: $u(\bm{s}, t) = 0$ for $t>0$ and $\bm{s} \in \partial \Omega$
+
+     \2 General Solution to the IBVP
+       \3 the forms
+          
+          %\4 the trigonometric series or a series of Bessel functions (separation of variables) ???? 
+
+       \3 $u(\bm{s}, t) = \sum_{k=1}^{k=\infty} a_ku_k(\bm{s})e^{-\lambda_kt}$ %%% whole part in section 1 this chapter
+          \4 obtained by separation of variables
+          \4 the $u_k$ form an orthonormal basis of $L^2(\Omega)$ of real valued eigenfunctions; the corresponding Dirichlet eigenvalues $\lambda_k \in \mathbb{R^{+}}$; $-\Delta u_k = \lambda_k u_k$
+          \4 $h(t) = \sum_{k=1}^{k=\infty} e^{-\lambda_kt}$ is the heat trace, which is a smooth function and converges for every $t>0$  % Kac's idea 
+          \4 $a_k = \int_{\Omega} f(\bm{s})u_k(\bm{s}) d\bm{s}$
+
+       \3 $u(\bm{s}, t) = \int_{\Omega} G(\bm{s}, t, \bm{s_0})  \delta(\bm{s} - \bm{s_0}) d\bm{s_0}$
+          \4 $\delta$ is the Dirac delta function.
+          \4 the initial condition: $u(\bm{s}, t) = \delta(\bm{s} - \bm{s_0})$ for $t=0$
+          \4 $G(\bm{s}, t, \bm{s_0}) = \sum_{k=1}^{\infty} u_k(\bm{s})u_k(\bm{s_0})e^{-\lambda_kt}$
+          \4 $u(\bm{s}, t)$ is the convolution of the initial condition with Green's function $G(\bm{s}, t, \bm{s_0})$
+          \4 $G(\bm{s}, t, \bm{s_0})$ is the foundamental solution (heat kernel of $\Omega$) describing the distribution of the heat after time $t$ when there has a single heat source at $\bm{s_0} \in \Omega$; 
+
+          
+     \2 Heat Content $Q_{\Omega}(t)$
+        \3 $Q_{\Omega}(t) = \int_{\Omega} d\bm{s} u(\bm{s}, t)$
+        \3 As $t \rightarrow 0$, $Q_{\Omega}(t) = 1 + \sum_{k=1}^{\infty} \beta_kt^{\frac{k}{2}}$ % only for infinitly smooth initial condition interiror of the domain
+        \3 Obtain geometrical information of $\Omega$ from $\beta_k$
+          \4 area
+          \4 length
+          \4 scalar Curvature
+          \4 mass
+          \4 etc.
+
+   \1 Difficulties in Application
+     \2 The pure analytical method for finding $u(\bm{s}, t)$:
+        \3 It can apply strictly only to the linear form of the boundary conditions and to constant diffusion properties.
+        \3 Except in very few cases (i.e. rectangular, disk, certain triangles), $\lambda_k$ can not be calculated. % eigenvalues are not necessary for computing the heat content
+        \3 Either irregular geometries or discontinuities lead to the complexities, so the explicit solutions $u(\bm{s}, t)$ are close to non-existed.
+     \2 Difficulties in calculating the asympotic expansion of $Q_{\Omega}(t)$ as $t \rightarrow 0$ because of the complicated forms of the coeffients $\beta_k$.
+     \2 The numerical evaluation of the analytical solutions $u(\bm{s}, t)$ and $Q_{\Omega}(t)$ is usually by no means trivial because they are in the form of infinite series.
+      
+
+
+
+
+\end{outline}
+
+\end{document}
+
