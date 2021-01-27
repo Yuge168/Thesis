@@ -1,13 +1,15 @@
 \documentclass{uofsthesis-cs}
 \usepackage{graphicx}
-\graphicspath{ {images/c2/}, {images/c3/} }
+\graphicspath{ {./images/c2/}, {./images/c3/}, {./images/}}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{changes}
 \usepackage{bm}
 \definechangesauthor[name=Dave Schneider, color=red]{djs}
 \definechangesauthor[name=Yujie Pei, color=green]{Yuge}
+\usepackage{caption}
 \usepackage{subcaption}
+\usepackage{booktabs}
 \usepackage{algorithmic} % package for generating algorithms
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
@@ -15,8 +17,7 @@
 
 
 
-\title{An Alternative Method for Characterization and Comparison of
-  Plant Root Shapes}
+\title{An Alternative Method for Characterization and Comparison of Plant Root Shapes}
 
 
 \author{Yujie Pei}
@@ -26,157 +27,122 @@
 %\Academicunit{Master of Environment and Sustainability}
 
 
-%\abstract{}
-%\acknowledgements{}
-%\dedication{}
-% LIST OF ABBREVIATIONS - Sample  
-% If you don't want a list of abbreviations, comment the following 4 lines.
-%\loa{\abbrev{SCUBA}{Self Contained Underwater Breathing Apparatus}
-%\abbrev{LOF}{List of Figures}
-%\abbrev{LOT}{List of Tables}
-%}
-
-
 
 \begin{document}
 
-\maketitle  
-%\frontmatter
-\tableofcontents
 
+% ___________________________ BEFORE THE BODY OF THESIS _______________
+
+% baesed on https://students.usask.ca/graduate/thesis-preparation.php#ArrangementofContents
+
+\maketitle % 1. Title Page
+
+% 2. Permission to use and disclaimer Statement
+
+%\abstract{}  % 3. abstract
+
+%\acknowledgements{}  % 4. Acknowledgements
+
+% 5. Permission to Reproduce 
+
+%\dedication{}  % 6. Dedication
+
+\tableofcontents % 7. Table of content
+
+% 8. List of tables
+
+% 9. List of figures
+
+% 10. List of abbreviation
+
+
+
+% 11. Body of the Thesis
+
+% ___________________________ BODY OF THESIS _________________________
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Existing Morphological Descriptors for Root Systems} 
+\chapter{Existing Morphological Descriptors for Root Systems}
 
-  %___________ Section 1: Background ______________________
-  \include{chapters/c1/c1_s1_background/background}
-  %___________ Section 2: Summarize Current Descriptors____
-  \include{chapters/c1/c1_s2_current_descriptors/current_descriptors}
-  %___________ Section 3: Problem Statment ________________
-  \include{chapters/c1/c1_s3_problem_stat/prob_stat}
+  %\include{}
 
-
+  
+  
 %%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{An Alternative Mathematical Method for Shape Description}
 
-  %__________ Section 1: Kac's idea _______________________
-  \include{chapters/c2/c2_s1_kac_idea/kac_idea}
+ 
 
-  
-  %__________ Section 2: Heat Content in Annulus __________
-  \include{chapters/c2/c2_s2_heat_content/heat_content}
 
-  %__________ Section 3: Numerical Methods ________________
-  \include{chapters/c2/c2_s3_numerical_methods/numerical_methods} % background
-    \include{chapters/c2/c2_s3_numerical_methods/subs1_FDM}
-    \include{chapters/c2/c2_s3_numerical_methods/subs2_FEM}
-    \include{chapters/c2/c2_s3_numerical_methods/subs3_others_numerical}
-    \include{chapters/c2/c2_s3_numerical_methods/subs4_conclusion_numerical_method}
-
-  %__________ Section 4: Monte Calo Methods for Solving PDEs___
-  \include{chapters/c2/c2_s4_mcm_solve_pde}  
-
-  %__________ Section 4: Monte Carlo Methods ______________
-  \include{chapters/c2/c2_s5_mcm/monte_carlo_method}
-    \include{chapters/c2/c2_s5_mcm/subs1_background}
-    \include{chapters/c2/c2_s5_mcm/subs2_integration}
-    \include{chapters/c2/c2_s5_mcm/subs3_lrws}
-    \include{chapters/c2/c2_s5_mcm/subs4_output_analysis}
     
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-\chapter{Method Validation in Annulus}
+\chapter{LRWs in Artificial Images}
 
-  %__________ Section 1: Analytical Results _______________
-  \include{chapters/c3/c3_s1_analytical_results/analytical_results}
+  %______________ Section 1: Circle and Rectangle ______________
+  \include{./Cs/c3/circle_rect}
 
-  %__________ Section 2: Numerical Approximation __________
-  \include{chapters/c3/c3_s2_numerical_approximation/numerical_approximation}
+  %_______ Section 2: Complicated Branching Structures _________
+  \include{./Cs/c3/branchs}
 
-  %__________ Section 3: Lattice Random Walks Implementation __________
-  \include{chapters/c3/c3_s3_lrws/lrw}
-
-  %__________ Section 4: Comparesion of Numerical and Analytical Results _____
-  \include{chapters/c3/c3_s4_comparsion/compare_numerical_analytical_results}
+  % _____________ Section 3: Conclusion ________________________
+  %\include{./Cs/c3/conclusion}
 
 
+  
   
 %%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Lattice Random Walks on Artificial Images}
+\chapter{LRWs in Real Root Images}
 
-  %__________ Section 1: Shape Design ___________________
-  \include{chapters/c4/c4_s1_shape_design/shape_design}
-
-  %__________ Section 2: Assumption Verification ________
-  \include{chapters/c4/c4_s2_assumption_verification/assumption_verification}
-
-  %__________ Section 3: Conclusion _____________________
-  \include{chapters/c4/c4_s3_conclusion/conclusion}
-
+ 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Lattice Random Walks in Real Root Images}
-  
-  %___________ Section 1: Description of ERWs ___________
-  %\include{chapters/c5/c5_s1_description_efficient_random_walks/description_erws}
-
-  %__________ Section 2: Image Description _____________
-  \include{chapters/c5/c5_s2_image_description/real_root_image_description}
-
-  %__________ Section 3: Output Analysis _______________
-  \include{chapters/c5/c5_s3_output_analysis/output_analysis}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusion}
+  
+
+
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Future Work}
 
   %___________ Section 1: Conclusion __________________
-  \include{chapters/c6/conclusion}
+  %\include{chapters/c6/conclusion}
  
 
 
 
-  % The Bibliograpy should go here. BEFORE appendices!
-  %
-  % I am not sure if alphabetical ordering is required, but it
-  % certainly makes the text difficult to read, especially where
-  % one has multiple references in a single \cite{} command.
-  %
-  %\bibliographystyle{unsrt}
+
+% ___________________________ AFTER BODY OF THESIS _________________________
+
+% 12. Referencing Other Works
+  % includes quotations, borrowed thoughts or expression
+
+
+% 13. Appendices
+  \uofsappendix % Activate thesis appendix mode
+
+  \begin{appendices}
+
+    \chapter{Numerical Methods for Solving Parabolic Partial Differential Equations}
+      \include{./Cs/appendix/numerical_methods}
+
+    \chapter{Method Validation in Annulus}
+      \include{./Cs/appendix/method_validation_annulus}
+    
+  \end{appendices}
+  
+  
+
+% 14. Referencing and Bibliography
+  % should be arranged either alphabetically or numerically
   \uofsbibliography{thesisref}
+  %\bibliographystyle{unsrt}
 
 
+% 15. Electronic Supplements
 
-
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% APPENDICES
-%
-% Any chapters appearing after the \appendix command get numbered with
-% capital letters starting with appendix 'A'.
-% New chapters from here on will be called 'Appendix A', 'Appendix B'
-% as opposed to 'Chapter 1', 'Chapter 2', etc.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Activate thesis appendix mode.
-%\uofsappendix
-
-% Put appendix chapters in the appendices environment so that they appear correcty
-% in the table of contents.  You can use \input's here as well.
-
-%\begin{appendices}
-
-%\chapter{Sample Appendix}
-
-%Stuff for this appendix goes here.
-
-%\chapter{Another Sample Appendix}
-
-%Stuff for this appendix goes here.
-
-%\end{appendices}
 
 \end{document}

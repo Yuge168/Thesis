@@ -1,0 +1,147 @@
+\section{Complicated Branching Structures}
+
+
+   \subsection{Image Description}
+
+     \begin{itemize}
+         \item Image size: $1200 \times 1000$ pixels
+         \item Surface area of shapes: $90000$ pixels
+         \item Iterate the template $3, 4, 5, 6$ times to produce the targeted branching geometries labelled as $L_3, L_4, L_5, L_6$.
+         \item Two groups of images labelled as $G_1, G_2$
+
+           \begin{itemize}
+             \item $G_1$: the target object $G_1 L_i$ ($i=3, 4, 5, 6$) is equidistant to the edges of an image.
+             \item $G_2$: the template of $G_2 L_i$ ($i=3, 4, 5, 6$) is distinct from $G_1$ (thickness and aspect ratio). 
+           \end{itemize}
+           
+     \end{itemize}
+
+
+
+   \subsection{Output Analysis}
+    
+      \begin{figure}[h!]
+        \centering
+        
+        \begin{subfigure}[b]{0.45\textwidth}
+          \includegraphics[width=\textwidth]{G_1_steps_sf.png}
+          \caption{}
+          \label{fig:sf_g1_branch_steps}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.45\textwidth}
+          \includegraphics[width=\textwidth]{G_2_steps_sf.png}
+          \caption{}
+          \label{fig:sf_g2_branch_steps}
+        \end{subfigure}
+
+        \caption{}
+        \label{fig:sf_branch_steps}
+
+      \end{figure}
+
+
+
+      \begin{table}
+        \centering
+      \begin{tabular}{llrr}
+\toprule
+  &   &  test\_statistic &         p \\
+\midrule
+0 & 1 &        0.598229 &  0.439254 \\
+  & 2 &       17.623951 &  0.000027 \\
+  & 3 &       21.155333 &  0.000004 \\
+1 & 2 &       11.478964 &  0.000704 \\
+  & 3 &       13.587124 &  0.000228 \\
+2 & 3 &        0.126305 &  0.722294 \\
+\bottomrule
+      \end{tabular}
+
+      
+
+
+
+
+      \begin{figure}[h!]
+        \centering
+        
+        \begin{subfigure}[b]{0.45\textwidth}
+          \includegraphics[width=\textwidth]{G_1_unwrap_disp_sf.png}
+          \caption{}
+          \label{fig:sf_g1_branch_disp}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.45\textwidth}
+          \includegraphics[width=\textwidth]{G_2_unwrap_disp_sf.png}
+          \caption{}
+          \label{fig:sf_g2_branch_disp}
+        \end{subfigure}
+
+        \caption{}
+        \label{fig:sf_branch_disp}
+
+      \end{figure}
+
+
+      
+      \begin{figure}[h!]
+        \centering
+        
+        \begin{subfigure}[b]{0.45\textwidth}
+          \includegraphics[width=\textwidth]{G_1_initial_radius_sf.png}
+          \caption{}
+          \label{fig:sf_g1_branch_radius}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.45\textwidth}
+          \includegraphics[width=\textwidth]{G_2_initial_radius_sf.png}
+          \caption{}
+          \label{fig:sf_g2_branch_radius}
+        \end{subfigure}
+
+        \caption{}
+        \label{fig:sf_branch_radius}
+
+      \end{figure}
+      
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    \subsection{Conclusion}
+
+      \begin{itemize}
+         \item In a short time, the survival function of rectangle decays faster than the circle, which conforms to the analytical results.
+  
+         \item The differences of estimated survival functions between circle and rectangle are statistically significant, which coincides with the real shape dissimilarities.
+
+         \item Within a same group, when $t$ is small, the more branching the object is, the faster the survival function decays.
+
+         \item Within a same group, the pairwise survival functions are statistically different.
+
+         \item The corresponding target structures in $G_1$ and $G_3$ are invariant shapes under translation since their survival function are not statistically different. In other words, periodic boundary conditions of the image can eliminate the effect of the locations.
+
+         \item LRWs can describe and classify the geometries, their spatial configurations, and the unoccupied area in the image.
+    \end{itemize}
+
+
+
+
