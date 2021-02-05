@@ -1,0 +1,79 @@
+
+
+\section{Kac’s Idea: Can One Hear the Shape of a Drum? \cite{kac1966can}}
+
+
+
+  \subsection{Interpretations of Kac's Problem}
+
+     \begin{itemize}
+       \item When the drum vibrates, one can hear the sound, which is composed of tones of various frequencies. How much can shape features be inferred from hearing a discrete spectrum of pure tones produced by a drum?
+       \item If a complete sequence of eigenvalues of the Dirichlet problem for the Laplacian can be obtained precisely, will people determine the shape of a planar?
+     \end{itemize}
+
+
+
+
+    \subsection{Problem Statement}
+
+     \begin{itemize}     
+       \item Consider a simply connected membrane $\Omega$ in the Euclidean space bounded by a smooth convex curve $\partial \Omega$ (e.g. a drum without any holes)
+       \item Find function $\phi$ on the closure of $\Omega$, which vanishes at the boundary $\partial \Omega$, and a number $\lambda$ satisfying $-\Delta \phi = \lambda \phi$.
+
+         \begin{itemize}
+           \item $\Delta$ is the Laplace operator. e.g. $\Delta = \sum_{i=1}^{n} \frac{\partial ^2}{\partial x_i^2}$ in Cartesian coordinate system.
+           \item If there exists a solution $\phi \neq 0$, the corresponding $\lambda$ is defined as a Dirichlet eigenvalue.
+           \item For each domain $\Omega$, there has a sequence of eigenvalues $\lambda_1, \lambda_2, \lambda_3, ... $ corresponding to a set of eigenfunction $\phi_1, \phi_2, \phi_3, ...$.
+           \item $\phi_k$ form an orthonormal basis of $L^2(\Omega)$ of real valued eigenfunctions; the corresponding discrete Dirichlet eigenvalues are positive ($\lambda_k \in \mathbb{R}^{+}$).
+         \end{itemize}
+         
+       \item An important function \cite{grieser2013hearing}:
+
+         \begin{equation}\label{eq:heat_trace}
+           h(t) = \sum_{k=1}^{\infty} e^{-\lambda_kt}
+         \end{equation}
+         
+         \begin{itemize}  
+           \item It is a Dirichlet series.
+           \item It is called the spectral function or the heat trace.
+           \item It is smooth and converges for every $t>0$.
+         \end{itemize}
+     \end{itemize}
+
+
+
+     \subsection{Summarize the Results of Kac's Idea}
+
+       \begin{equation}\label{eq:kac_result}
+          h(t) = \sum_{k=1}^{\infty} e^{-\lambda_kt} \sim \frac{|\Omega|}{2\pi t} - \frac{L}{4} \frac{1}{\sqrt{2\pi t}} + \frac{1}{6}
+       \end{equation}
+     
+      \begin{itemize} 
+        \item As $t \rightarrow 0^{+}$, the leading terms of the asymptotic expansion of $h(t)$ imply the geometrical attributes of $\Omega$
+          \begin{itemize}
+            \item the total area
+            \item the perimeter
+            \item the curvature
+          \end{itemize}
+          
+        \item If the domain $\Omega$ has the polygonal boundary, the third term shows in the information about the interior angles of the polygon \cite{grieser2013hearing}.
+      \end{itemize}
+
+
+
+    \subsection{Conclusion}
+
+     \subsubsection{Advantages}
+
+        \begin{itemize}
+          \item Kac proposed a novel analytical mathematical method for the shape description without using measuring tools, e.g. rulers.
+          \item Other mathematicians extended Kac's idea in exploring the geometrical information of more complex domains with various boundary conditions \cite{khabou2007shape}\cite{gottlieb1985eigenvalues}\cite{gottlieb1983hearing} \cite{zayed1989heat}\cite{sleeman1984trace}.
+        \end{itemize}
+        
+     \subsubsection{Limitations}
+        
+        \begin{itemize}
+          \item It is only available for the convex domain, which has a smooth or piecewise smooth boundary.  
+          \item Except in very few cases (i.e. rectangular, disk, certain triangles), the complete sequence of eigenvalues $\lambda_k$ can not be calculated \cite{grieser2013hearing}.
+          \item Only the first few terms in the asymptotic expansion of $h(t)$ are explicitly available.
+        \end{itemize}

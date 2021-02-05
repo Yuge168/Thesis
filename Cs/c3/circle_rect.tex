@@ -1,33 +1,62 @@
+
+
+The fixed-time step Monte Carlo simulation, LRWs, has been validated
+in the annulus in Appendix \ref{appendix:method_validation_annulus} by
+comparing the analytical and numerical survival function. The further
+validation of LRWs is to distinguish the geometries and explore their
+structural features from both short and long time behaviours of the
+survival function.
+
+
+
 \section{Circle and Rectangle}
 
+Given two simple convex shapes with the same area, circle and
+rectangle, we are interested in how and whether their corresponding
+survival curves differ from each other. For the equal-area geometries,
+rectangle and circle, Eq. \ref{eq:kac_result} indicates that the
+survival function of the former decays faster than the latter as the
+time approaches zero.
 
- \subsection{Image Description}
-
-  \begin{itemize}
-     \item Image size: $1200 \times 1000$ pixels
-     \item Surface area of shapes: $90000$ pixels
-     \item The centroid of the shape is located at the center of the image
-  \end{itemize}
-
+The preliminary step of testing the research hypothesis is to generate
+two black-and-white images with the same dimensions as shown in
+Fig.~\ref{fig:simple_imgs}. In the binary images, circle and rectangle
+have an equal number of white pixels. For simplicity, the centroid of
+shapes located at the center of the image. Then, simulating LRWs in
+the images and estimating survival functions by Kaplan-Meier
+estimator.
 
 
  \subsection{Output Analysis}
  
-   \begin{figure}[h!]
+   \begin{figure}
      \centering
      \includegraphics[width=\textwidth]{circle_rect_steps_sf.png}
      \label{fig:sf_simple_shape_steps}
-     \caption{}
+     \caption{In the inset plot, the decay rate of the survival function for the rectangle is slightly larger than for the circle, which coincides with the theoretical result.}
+   \end{figure}
+
+  The differences between survival functions for the circle and
+  rectangle are not visible. Moreover, the approximate $95\%$
+  confidence intervals of the survival functions overlap. In this
+  case, non-parametric statistical tests can be used to compare entire
+  survival distributions and assess their dissimilarities. The logrank
+  test has maximum power if the proportional hazards assumption is
+  satisfied. 
+
+   \begin{figure}
+     \centering
+     \includegraphics[width=\textwidth]{circle_rect_steps_ph.png}
+     \label{fig:ph_test_simple_shapes}
+     \caption{This is a graphical method for checking proportionality by looking for parallelism. As shown in the inset plot, two curves cross at some points and their shapes vary over time. Moreover, $p < 0.05$ in the non-proportional test. Thus, the survival data for circle and rectangle does not satisfy the proportional hazard assumption.}
    \end{figure}
 
 
-   \begin{table}[h!]
+   \begin{table}
      \centering
      \begin{tabular}{lrr}
         \toprule
          {} &  test\_statistic &             p \\
-         \midrule
-         Peto & 137.23 & 0.0 \\
          \midrule
          Logrank & 137.23 & 0.0 \\
          \midrule
@@ -38,19 +67,19 @@
          Fleming-Harrington & 123.83 & 0.0 \\
          \bottomrule
      \end{tabular}
-     \caption{}
+     \caption{Survival functions for circle and rectangle are statistically different since p values equal zeros.}
      \label{tab:test_simple_shape_steps}
    \end{table}
-   
-   
 
-   
-   
+
+
 \subsection{Conclusion}
 
-Given two distinct convex geometries
-  \begin{itemize}
-     \item the behaviours of the survival function of LRWs are consistent with the theoretical results.
-     \item survival curves can be used to describe and distinguish them.
-  \end{itemize}
+
+Although the proportional hazard assumption test is failed as shown in
+Fig.~\ref{fig:ph_test_simple_shapes}, the weighted logrank tests
+indicate that the null hypothesis should be rejected. In conclusion,
+LRWs is an alternative tool to quantify and distinguish the geometries
+in the $2-$ dimensional image without measuring the predefined shape
+descriptors.
   

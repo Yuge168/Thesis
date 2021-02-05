@@ -1,11 +1,99 @@
+\label{appendix:method_validation_annulus}
+
 \section{Analytical Results}
 
+   \subsection{Shape Description}
+     \begin{itemize}
+      \item Problem domain $\Omega$: the region bounded by two concentric circles
+      \item Radius of the larger circle: $b$
+      \item Radius of the smaller circle: $a$
+     \end{itemize}
+     
+   \subsection{Solving Initial-Boundary Value Problem (IBVP)}
+     
+     \subsubsection{Methods}
 
+       \begin{itemize}
+         \item  Dimensional Analysis: non-dimensional variables
+            \begin{itemize}
+              \item $\mu = \frac{b}{a}$
+              \item $\tau = \frac{t}{a^2}$
+              \item $\hat r = \frac{r}{a}$
+            \end{itemize}
+            
+          \item Method of separation of variables
+       \end{itemize}
+
+    \subsubsection{Mathematical Equations}
+      \begin{itemize}
+        \item Diffusion equation
+          \begin{equation}\label{eq:DA_polar_diffusion}
+             u_\tau = (u_{\hat r \hat r} + \frac{1}{\hat r} u_{\hat r} + \frac{1}{\hat r ^2} u_{\theta\theta})
+          \end{equation}
+
+        \item Uniform initial condition
+          \begin{equation}\label{eq:DA_initial_bc}
+            u(\hat r, \theta, 0) = \frac{1}{|\Omega|}
+          \end{equation}
+
+        \item Homogenous Dirichlet B.C.
+          \begin{equation}\label{eq:DA_Dirichlet_bc}
+            u(1, \theta, \tau) = 0
+          \end{equation}
+
+        \item Homogenous Neumann B.C.
+           \begin{equation}\label{eq:DA_Neumann_bc}
+              \hat r u'(\mu, \theta, \tau) = 0
+           \end{equation}
+           
+      \end{itemize}
+
+       
+
+     \subsubsection{Heat Content Calculation}
+       \begin{equation}\label{eq:heat_content_annulus}
+         S(\tau) = \int_{0}^{2\pi} d\theta \int_{1}^{\mu} \hat r d \hat r u(\hat r, \theta, \tau)
+       \end{equation}
+       
+          
 \section{Numerical Approximation}
 
+   \subsection{Eigenvalues $\lambda_{0, n}$}
+     \begin{itemize}
+       \item Properties
+         \begin{itemize}
+            \item $\lambda_{0, n} \in \mathbb{R}^{+}$, $(n \in \mathbb{N}_{+})$
+            \item Monotonicity and Periodicity
+         \end{itemize}
+         
+       \item Estimation
+         \begin{itemize}
+          \item $\lambda_{0, n} \in ((n-1) \pi, (n+1) \pi)$ \cite{NIST:DLMF}
+          \item Bisection method \cite{2020SciPy-NMeth}
+         \end{itemize}
+   
+     \end{itemize}
+
+ 
+   \subsection{Approximation of $u(\hat r, \theta, \tau)$ and $S(\tau)$}
+     \begin{itemize}
+       \item Direct summation
+       \item Series acceleration methods
+     \end{itemize}
+     
+
+ \section{Comparison of Numerical and Analytical Results}
+
+   \subsection{Sample Size Evaluation}
+
+   \subsection{Comparison of $S(\tau)$ and $S(n)$}
 
 
-\section{Comparison of Numerical and Analytical Results}
-
-
+   
 \section{Conclusion}
+
+  \begin{itemize}
+    \item The estimated survival function of LRWs is consistent with the analytical result.
+    \item The number of particles in LRWs determined by DKW inequality is large enough to generate reproducible statistical results. 
+  \end{itemize}
+

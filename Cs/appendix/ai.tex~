@@ -1,0 +1,29 @@
+
+
+\section{Simple Shapes}
+
+
+   \begin{figure}
+
+     \centering
+        
+        \begin{subfigure}[b]{0.45\textwidth}
+          \includegraphics[width=\textwidth]{circle.png}
+          \caption{Circle}
+          \label{fig:circle}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.45\textwidth}
+          \includegraphics[width=\textwidth]{rectangle.png}
+          \caption{Rectangle}
+          \label{fig:rectangle}
+        \end{subfigure}
+
+        \caption{Each image size is $1200$ by $1000$ pixels with
+          $90000$ white pixels.}
+        \label{fig:simple_imgs}
+
+   \end{figure}
+   
+
+\section{Complicated Branching Structures}

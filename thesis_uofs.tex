@@ -1,8 +1,8 @@
 \documentclass{uofsthesis-cs}
 \usepackage{graphicx}
-\graphicspath{ {./images/c2/}, {./images/c3/}, {./images/}}
+\graphicspath{ {./images/c2/}, {./images/c3/}, {./images/}, {./images/appendix/ai/}}
+\usepackage{amssymb}
 \usepackage{amsmath}
-\usepackage{amsfonts}
 \usepackage{changes}
 \usepackage{bm}
 \definechangesauthor[name=Dave Schneider, color=red]{djs}
@@ -75,8 +75,8 @@
 
 \chapter{An Alternative Mathematical Method for Shape Description}
 
- 
-
+  %______________ Section 1: Kac’s Idea _______________________
+  \include{./Cs/c2/kac_idea}
 
     
 
@@ -127,12 +127,16 @@
   \uofsappendix % Activate thesis appendix mode
 
   \begin{appendices}
-
+    
     \chapter{Numerical Methods for Solving Parabolic Partial Differential Equations}
       \include{./Cs/appendix/numerical_methods}
 
     \chapter{Method Validation in Annulus}
       \include{./Cs/appendix/method_validation_annulus}
+
+    \chapter{Artificial Images}
+      \include{./Cs/appendix/ai}
+
     
   \end{appendices}
   
