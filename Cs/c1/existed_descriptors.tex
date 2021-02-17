@@ -1,0 +1,75 @@
+
+
+
+\section{Summary of Existed Descriptors}
+ 
+   \subsection{Metric}
+
+     \subsubsection{Basic Geometric Descriptors}
+       \begin{itemize}
+         \item maximum depth
+         \item maximum width
+         \item etc.
+       \end{itemize}
+       
+     \subsubsection{Compound Descriptors (Computed From the Basic Descriptors)}
+       \begin{itemize}
+         \item Density
+         \item aspect ratio
+         \item etc.
+       \end{itemize}
+       
+     \subsubsection{Weaknesses}
+
+       \begin{itemize}
+         \item Rely on the resolution of the images \cite{balduzzi2017reshaping}
+         \item Only provide a general view of root morphology \cite{balduzzi2017reshaping}
+         \item Difficult to assess the spatial configuration of roots
+         \item Fail to describe the full complexity of root systems
+       \end{itemize}
+
+       
+   \subsection{Non-metric}
+       
+    \subsubsection{Topological Analysis}
+
+      \begin{itemize}
+        \item Persistent homology \cite{li2017persistent}
+          \begin{itemize}
+            \item Persistence barcode shows the number of branches.
+            \item Persistence barcode indicates how branched roots connect along the scale of the function (e.g. geodesic distance).
+            \item Compare the similarity of branching structures by a pair-wise distance matrix using the bottleneck distance method.
+          \end{itemize}
+          
+       \item Horton-Strahler index \cite{toroczkai2001topological}
+         \begin{itemize}
+            \item Categorize the topological complexity of the whole branching structure.
+            \item Provide a numerical measure of connectedness and complexity of the branching at each vertex by a dimensionless ratio: bifurcation ratio.
+            \item The range of index and the length ratio indicate the size of the branching structure.
+         \end{itemize}
+                
+       \item Fractal Analysis \cite{tatsumi1989fractal}
+         \begin{itemize}
+            \item Measure the complexity of branching structures.
+            \item Measure self-similarity of branching structures by fractal dimension of the root systems.
+         \end{itemize}
+      \end{itemize}
+      
+
+   \subsubsection{Strengths}
+     \begin{itemize}
+       \item Highly complementary to geometric descriptors to characterize how individual roots are connected through branching \cite{delory2018archidart}.
+       \item Describe branching structures independent of transformation and deformation.
+     \end{itemize}
+     
+
+   \subsubsection{Problems and Weaknesses}
+     \begin{itemize}  
+       \item Only analyze the connectedness of branching structures, which is a portion of the complexity of plant root systems.
+       \item Fail to characterize spatial distribution.
+       \item Some biologically topological indices analyze the root growth qualitatively based on line-linked systems \cite{fitter1986topology}, but not characterize the mathematical topological properties.
+       \item The fractal analysis aims to describe self-similar structures, which grow by continually repeating simple growth rules \cite{fitter1992fractal}.
+     \end{itemize}
+     
+
+       

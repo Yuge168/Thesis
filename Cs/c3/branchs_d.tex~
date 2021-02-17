@@ -1,0 +1,78 @@
+%____________________________________________________________
+
+
+
+       \newpage
+
+       
+      \subsubsection{$S(d)$}
+
+
+
+      \begin{figure}
+        \centering
+        
+        \begin{subfigure}[b]{0.45\textwidth}
+          \includegraphics[width=\textwidth]{G_1_unwrap_disp_sf.png}
+          \caption{}
+          \label{fig:sf_g1_branch_disp}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.45\textwidth}
+          \includegraphics[width=\textwidth]{G_2_unwrap_disp_sf.png}
+          \caption{}
+          \label{fig:sf_g2_branch_disp}
+        \end{subfigure}
+
+        \caption{}
+        \label{fig:sf_branch_disp}
+
+      \end{figure}
+
+
+
+
+      \begin{table}
+        \centering
+        \begin{tabular}{llrrrr}
+          \toprule
+                       &             &         &  p &    &     \\
+          \cmidrule{3-6}
+                       &             & Logrank & TW & GB & FH  \\
+          \midrule
+          $G_1$ $L_3$  & $G_1$ $L_4$  &  0.0 &  0.0 &  0.0 &  0.0     \\
+                       & $G_1$ $L_5$  & 0.0 & 0.0 & 0.0 & 0.0    \\
+                       & $G_1$ $L_6$  & 0.0 & 0.0 & 0.0 & 0.0      \\
+          $G_1$ $L_4$  & $G_1$ $L_5$  & 0.0072 & 0.0 & 0.0 & 0.0      \\
+                       & $G_1$ $L_6$  & 0.0003 & 0.0 & 0.0 & 0.0       \\
+          $G_1$ $L_5$   & $G_1$ $L_6$ & 0.2883 &  0.0 & 0.0 & 0.0      \\
+          \bottomrule
+        \end{tabular}
+        \label{tab:g1_ingroup_tests_disp}
+        \caption{}
+      \end{table}
+
+
+      \begin{table}
+        \centering
+        \begin{tabular}{llrrrr}
+          \toprule
+                       &             &         &  p &    &     \\
+          \cmidrule{3-6}
+                       &             & Logrank & TW & GB & FH  \\
+          \midrule
+          $G_2$ $L_3$  & $G_2$ $L_4$  &  0.0 &  0.0 &  0.0 &  0.0     \\
+                       & $G_2$ $L_5$  & 0.0 & 0.0 & 0.0 & 0.0    \\
+                       & $G_2$ $L_6$  & 0.0 & 0.0 & 0.0 & 0.0      \\
+          $G_2$ $L_4$  & $G_2$ $L_5$  & 0.0001 & 0.0 & 0.0 & 0.0      \\
+                       & $G_2$ $L_6$  & 0.0015 & 0.0 & 0.0 & 0.0       \\
+          $G_2$ $L_5$   & $G_2$ $L_6$ & 0.7019 &  0.0 & 0.0 & 0.0      \\
+          \bottomrule
+        \end{tabular}
+        \label{tab:g2_ingroup_tests_disp}
+        \caption{}
+      \end{table}
+
+
+
+      

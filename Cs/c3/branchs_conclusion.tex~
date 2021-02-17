@@ -1,0 +1,16 @@
+
+    \subsection{Conclusion}
+
+      \begin{itemize}
+         \item In a short time, the survival function of rectangle decays faster than the circle, which conforms to the analytical results.
+  
+         \item The differences of estimated survival functions between circle and rectangle are statistically significant, which coincides with the real shape dissimilarities.
+
+         \item Within a same group, when $t$ is small, the more branching the object is, the faster the survival function decays.
+
+         \item Within a same group, the pairwise survival functions are statistically different.
+
+         \item The corresponding target structures in $G_1$ and $G_3$ are invariant shapes under translation since their survival function are not statistically different. In other words, periodic boundary conditions of the image can eliminate the effect of the locations.
+
+         \item LRWs can describe and classify the geometries, their spatial configurations, and the unoccupied area in the image.
+    \end{itemize}

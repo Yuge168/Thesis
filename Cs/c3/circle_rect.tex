@@ -1,15 +1,13 @@
 
-
 The fixed-time step Monte Carlo simulation, LRWs, has been validated
 in the annulus in Appendix \ref{appendix:method_validation_annulus} by
 comparing the analytical and numerical survival function. The further
 validation of LRWs is to distinguish the geometries and explore their
-structural features from both short and long time behaviours of the
-survival function.
+structural features from both short and long time survival behaviours.
 
 
 
-\section{Circle and Rectangle}
+\section{\highlight[id=Yuge]{Circle and Rectangle}}
 
 Given two simple convex shapes with the same area, circle and
 rectangle, we are interested in how and whether their corresponding
@@ -33,7 +31,7 @@ estimator.
      \centering
      \includegraphics[width=\textwidth]{circle_rect_steps_sf.png}
      \label{fig:sf_simple_shape_steps}
-     \caption{In the inset plot, the decay rate of the survival function for the rectangle is slightly larger than for the circle, which coincides with the theoretical result.}
+     \caption{In the inset, the decay rate of the survival function for the rectangle is slightly larger than for the circle, which coincides with the theoretical result.}
    \end{figure}
 
   The differences between survival functions for the circle and
@@ -48,7 +46,7 @@ estimator.
      \centering
      \includegraphics[width=\textwidth]{circle_rect_steps_ph.png}
      \label{fig:ph_test_simple_shapes}
-     \caption{This is a graphical method for checking proportionality by looking for parallelism. As shown in the inset plot, two curves cross at some points and their shapes vary over time. Moreover, $p < 0.05$ in the non-proportional test. Thus, the survival data for circle and rectangle does not satisfy the proportional hazard assumption.}
+     \caption{It is a graphical method for checking proportionality by looking for parallelism. As shown in the inset plot, two curves cross at some points and their shapes vary over time. Moreover, $p < 0.05$ in the non-proportional test. Thus, the survival functions for circle and rectangle do not satisfy the proportional hazard assumption.}
    \end{figure}
 
 
