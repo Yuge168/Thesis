@@ -51,6 +51,17 @@
      respectively. $D$ is diffusion coefficient which is related to
      the variance of the independent displacements of the
      particle. In the simulation, $D$ equals $1$.
+     
+      
+      \begin{figure}
+         \centering
+         \includegraphics[width=\textwidth]{G_1_L_3_msd_n.png}
+         \caption{Particles in $G_1L_3$ are divided into several
+           subgroups based on various intervals of steps, and their
+           colours are as identical as the segments in
+           Fig.~\ref{fig:steps_seg_curve_G_1_L_3}.}
+         \label{fig:G_1_L_3_msd_n}
+      \end{figure}
 
 
      Eq.~\ref{eq:mds_N} indicates a linear relationship between the
@@ -58,44 +69,67 @@
      steps. It is a feature of the normal diffusive
      behavior. Fig.~\ref{fig:G_1_L_3_msd_n} shows how the difference
      between MSD of the particle and $4n$ varying over $\log_{10}n$ in
-     LRWs in $G_1L_3$. Moreover, the points are divided into several
-     subgroups based on various intervals of steps, and their colours
-     are as identical as the segments in
-     Fig.~\ref{fig:steps_seg_curve_G_1_L_3}. When $n \leq 4064.0$, the
-     variation is not equal to $0$ with larger fluctuation, which
-     implies that blue, yellow, and pink particles undergo anomalous
-     diffusion process. In other words,
+     LRWs. When $n \leq 4064.0$, the variation is not
+     equal to $0$ with larger fluctuation, which implies that blue,
+     yellow, and pink particles undergo anomalous diffusion
+     process. In other words,
 
      \begin{equation}\label{eq:anomalous_diffusion}
        \langle \lvert \bm{r}(n) \lvert^2 \rangle \propto n^{\gamma}
      \end{equation}
      where $\gamma \ne 1$. In Fig.~\ref{fig:steps_seg_curve_G_1_L_3},
-     positive variation implies $\gamma < 1$ called subdiffusion
-     process, while negative value denotes $\gamma > 1$ named
-     superdiffusion.
+     negative variation implies $\gamma < 1$ called sub-diffusion
+     process, while positive value denotes $\gamma > 1$ named
+     super-diffusion.
 
      
-      
-      \begin{figure}
-         \centering
-         \includegraphics[width=\textwidth]{G_1_L_3_msd_n.png}
-         \caption{}
-         \label{fig:G_1_L_3_msd_n}
-      \end{figure}
-
       \begin{figure}
          \centering
          \includegraphics[width=\textwidth]{G_1_L_3_steps_blue_initial_stop_pos_var.png}
-         \caption{}
+         \caption{In the left figure, $696$ dark blue pluses refer to
+           super-diffusion particles, which are distributed closer and
+           more concentrated to the fringe of the branching
+           structure. $15198$ pale blue points represent sub-diffusion
+           particles and scatter mainly around the edges of the
+           image. In-between the branches, there has only six
+           super-diffusion particles and an enormous amount of
+           sub-diffusion ones. The middle and right depict the stop
+           positions for super and sub-diffusion particles,
+           respectively, coloured by a perceptually uniform sequential
+           colormap based on their maximum displacement in the tiling
+           space.}
          \label{fig:G_1_L_3_var_initial_stop_pos}
       \end{figure}
 
+      To understand the underlying mechanism of the anomalous-type
+      diffusion process, initial and stop positions of particles in
+      Fig.~\ref{fig:G_1_L_3_steps_blue_initial_pos_distribution},
+      whose steps ranged from $4064$ to $32586$, are illustrated in
+      Fig.~\ref{fig:G_1_L_3_var_initial_stop_pos}. Suppose particles
+      are trapped in the narrow space in-between the branches or
+      initially start LRWs near the branching structure. In that case,
+      their movements will be restricted because of the nearby
+      absorbing boundary condition, causing the sub-diffusion
+      phenomenon. As shown in the middle subplot of
+      Fig.~\ref{fig:G_1_L_3_var_initial_stop_pos}, the maximum
+      displacement of sub-diffusion particles is less than
+      $200$. There also have exceptional circumstances that $6$
+      particles, in-between the limbs, undergo super-diffusion since
+      they can explore a large portion of space within a predefined
+      range of steps, as shown in the right subfigure of
+      Fig.~\ref{fig:G_1_L_3_var_initial_stop_pos}. Generally,
+      particles around the edges of the image will be more likely to
+      pass through the periodic boundary, reappear in the adjacent
+      cell, and continue LRWs with the same velocity until hitting the
+      absorbing boundary, which results in large displacement and the
+      super-diffusion process.
       
       
 
+      \subsubsection{Estimated Survival Functions}
+      
       \begin{figure}
         \centering
-        
         \begin{subfigure}[b]{0.45\textwidth}
           \includegraphics[width=\textwidth]{G_1_unwrap_disp_sf.png}
           \caption{}
@@ -107,19 +141,34 @@
           \caption{}
           \label{fig:sf_g2_branch_disp}
         \end{subfigure}
-
-        \caption{}
+        \caption{(a) and (b) are the estimated survival functions
+          associated with particles' displacement in LRWs in $G_1$ and
+          $G_2$, respectively.}
         \label{fig:sf_branch_disp}
-
       \end{figure}
 
-
+      Similar to Fig.~\ref{fig:sf_branch_steps}, it is arduous to
+      detect the variation among the survival curves by eyes. However,
+      their short-term behaviours can be enlarged in insets in
+      Fig.~\ref{fig:sf_branch_disp}, and we can conclude that the
+      bigger $L_i$, $i=3, ..., 6$, leads to faster decay of survival
+      function. The survival curve is analyzed segment by segment
+      based on particles' initial and stop positions, shown in
+      Fig.~\ref{fig:G_1_L_3_disp_red_initial_pos_distribution},
+      Fig.~\ref{fig:G_1_L_3_disp_green_initial_pos_distribution},
+      Fig.~\ref{fig:G_1_L_3_disp_blue_initial_pos_distribution},
+      Fig.~\ref{fig:G_1_L_3_disp_yellow_initial_pos_distribution}, and
+      Fig.~\ref{fig:G_1_L_3_disp_pink_initial_pos_distribution}, for
+      the further understanding.
+      
 
 
       \begin{figure}
          \centering
          \includegraphics[width=\textwidth]{unwrap_disp_seg_curve_G_1_L_3.png}
-         \caption{}
+         \caption{The estimated survival function is separated into
+           five coloured segments based on various intervals of
+           displacement.}
          \label{fig:disp_seg_curve_G_1_L_3}
       \end{figure}
 
