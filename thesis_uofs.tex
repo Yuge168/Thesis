@@ -13,8 +13,10 @@
 \usepackage{algorithmic} % package for generating algorithms
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
-
 \newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+\usepackage{titlesec}
+\newcommand{\subsectionbreak}{\clearpage}
+\newcommand{\subsubsectionbreak}{\clearpage}
 
 
 
@@ -77,7 +79,9 @@
 \chapter{An Alternative Mathematical Method for Shape Description}
 
   %______________ Section 1: Kac’s Idea _______________________
-  \include{./Cs/c2/kac_idea}
+   \include{./Cs/c2/kac_idea}
+   \include{./Cs/c2/heat_content}
+   \include{./Cs/c2/MC_heat_content}
 
     
 
@@ -90,10 +94,12 @@
 
   %_______ Section 2: Complicated Branching Structures _________
   \include{./Cs/c3/branchs}
-  \include{./Cs/c3/branchs_n}
-  
-  \include{./Cs/c3/branchs_d}
   \include{./Cs/c3/branchs_R}
+  \include{./Cs/c3/branchs_n_d}
+  
+  %\include{./Cs/c3/branchs_n}  
+  %\include{./Cs/c3/branchs_d}
+  
   \include{./Cs/c3/branchs_conclusion}
 
   % _____________ Section 3: Conclusion ________________________
