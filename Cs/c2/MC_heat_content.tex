@@ -1,4 +1,4 @@
-\section{Monte Carlo Simulation for Approximating Heat Content $Q_{\Omega}(t)$}
+\section{Monte Carlo Simulation for Approximating Heat Content $Q_{\Omega}(t)$}\label{section:MC_heat_content}
 
 
   \subsection{Background \cite{jacobs2010stochastic}}
@@ -60,7 +60,39 @@
            \item Initial condition: uniform distribution within $\Omega$, which is bounded by the border of the image and the edge of the target object.
            \item Boundary condition
              \begin{itemize}
-               \item Perodic boundary condition the edges of the image;
+               \item Perodic boundary condition the edges of the image.
+               \par
+
+               
+                 \begin{figure}
+                   \centering
+                   \includegraphics[width=\textwidth]{lrw_perodic_bc.png}
+                   \caption{This plane is constructed by choosing a
+                     primitive cell with four red sides and a green
+                     point and replicating it infinitely to tile the
+                     whole $2-$ dimensional space. Moreover, there has
+                     no overlaps and voids between copies of the
+                     cell. A particle initially started LRWs from the
+                     orange site and be absorbed by any of the green
+                     points.  To ensure smoothness and consistency, if
+                     the particle leaves the cell through one edge, it
+                     will appear in the adjacent cell with the same
+                     velocity. The black line segments show the
+                     particle's random trajectories, and the length of
+                     the blue dotted arrow is defined as its
+                     displacement.}
+                   \label{fig:pbc_lrws}
+                 \end{figure}
+
+
+                 In this thesis, periodic boundary conditions (PBCs)
+                 are employed to minimize the influence of images'
+                 edges. Fig.~\ref{fig:pbc_lrws} is a simplest example
+                 of implementing PBCs in the Euclidean plane $E^2$ and
+                 tracks the trajectory of a particle undergoing LRWs.
+
+
+               
                \item Absorbing boundary condition on the boundary of the target shape.
              \end{itemize}
        \end{itemize}
@@ -85,10 +117,10 @@
 
 
 
-      \subsubsection{Output Analysis (in theory)}
+      \subsubsection{Output Analysis}
 
         \begin{itemize}
-          \item Kaplan-Meier Estimator \cite{kaplan1958nonparametric} \cite{aalen2008survival}
+          \item Kaplan-Meier Estimator \cite{kaplan1958nonparametric} \cite{aalen2008survival}\cite{cameron_davidson_pilon_2021_4505728}
           \item Confidence Interval \cite{greenwoodnatural} \cite{hosmer2011applied} \cite{kalbfleisch2011statistical}\cite{sawyer2003greenwood}
           \item Two-Sample Statistical Tests (weighted logrank tests) \cite{custodio2007diagnostics} \cite{agarwal2012statistics} \cite{karadeniz2017examining} \cite{leton2001equivalence} \cite{etikan2017kaplan} \cite{harrington1982class}
             \begin{itemize}
@@ -99,6 +131,9 @@
             \end{itemize}
             
         \end{itemize}
+
+
+        
       
       
     

@@ -1,0 +1,46 @@
+
+The fixed-time step Monte Carlo simulation, LRWs, has been validated
+in the annulus in Appendix \ref{appendix:method_validation_annulus} by
+comparing the analytical heat content and numerical survival
+function. The further validation of LRWs is based on
+Eq.\ref{eq:heat_content_asy}, which indicates that the geometric
+features of a region with a smooth boundary in $\mathbb{R}^2$ can be
+deduced from the asymptotic properties of the heat
+content. Specifically, the coefficient of the first term is only
+associated with the total area of the region, and the second one can
+only be affected by the total length of the boundary of the
+region. Theoretically, for the equal-area shapes, the larger perimeter
+causes a faster decay rate of the short-term survival function because
+of a minus sign in front of the second term in the asymptotic series.
+
+
+However, unlike simulating LRWs inside of the target region, i.e. the
+annulus in Appendix \ref{appendix:method_validation_annulus},
+particles are distributed uniformly outside of the target shape filled
+with white pixels and undergo LRWs in the unoccupied space filled with
+black pixels in the $2-$dimensional image. In other words, the
+geometric attributes and spatial patterns of the target shapes are
+reflected and implied through exploring the unoccupied space by
+particles in the image. Therefore, we are interested in acknowledging
+whether the short-term behaviours of survival functions of the
+numerical simulation still coincide with the analytical
+results. Moreover, it is vital to assess the difference between
+survival functions to test whether they are reliable to compare and
+distinguish the shapes. 
+
+
+In this chapter, the preliminary step of testing the hypothesis is to
+generate black-and-white images with the same dimensions as shown in
+Fig.~\ref{fig:simple_imgs}, Fig.~\ref{fig:G1_imgs}, and
+Fig.~\ref{fig:G2_imgs}. In the binary images, the objects are convex
+shapes with the same area or an equal number of white pixels. The next
+step is to simulate LRWs and estimate survival functions by
+Kaplan-Meier estimator \cite{kaplan1958nonparametric} implemented in
+lifelines library in Python
+\cite{cameron_davidson_pilon_2021_4505728}. Then, some commonly
+applied nonparametric statistical tests, as proposed in section
+~\ref{section:MC_heat_content}, are utilized to test the equality of
+survival functions. Except for investigating how survival functions
+differ from each other by statistical tests and dissimilarities
+calculation, and it is meaningful and helpful to reveal why they are
+distinct by studying the underlying stochastic process.

@@ -1,0 +1,106 @@
+
+
+\section{Novel Applications of Monte Carlo Simulation for Shape Characterization}
+
+Survival analysis is a series of statistical methods dealing with
+variables that have both a time and event associated with them. It can
+be applied in a variety of fields \cite{clark2003survival}, including
+cancer studies in clinical research, event-history analysis in
+sociology, failure-time analysis in engineering, and so on. As
+introduced in the last section ~\ref{section:MC_heat_content}, the
+event we are interested in is whether the particle hit the absorbing
+boundary or not, and the time refers to the number of steps, $n$,
+taken by the particle in LRWs. However, in this section, two novel
+forms of functions stem from the underlying survival process are
+developed for characterizing the shape of the object in the image.
+
+
+\subsection{Survival Analysis of Displacement $S(d)$}
+
+In some survival analysis applications, the origin-destination
+distance can be an alternative random variable to the time. For
+example, in the study of transport habits
+\cite{anastasopoulos2017transport} \cite{su12166331}, trip
+distance-based survival analysis can reveal traveller preference and
+trip patterns and measure the effects of explanatory variables. In
+Monte Carlo simulations, the displacement of a particle, $d$, is the
+shortest distance from the initial to the stop position in the
+infinite tiling space, which is affected by the number of steps
+$n$. Suppose $\mathcal{D}$ is a non-negative random variable
+representing the displacement moved by the particle from the origin to
+any sites of absorbing boundary. Like the $S(n)$, for any $d>0$, we
+can define $S(d)$ as
+
+\begin{equation}\label{eq:sf_disp}
+  S(d) = Pr(\mathcal{D} > d) = 1 - F(d)
+\end{equation}
+where $S(d)$ indicates the probability that the particle has not yet
+been absorbed when the displacement beyond $d$, and $F$ is the
+cumulative distribution function. Moreover, both $S(d)$ and $F(d)$ are
+right continuous in this thesis.
+
+As mentioned before, the KM \cite{kaplan1958nonparametric}, or
+product-limit, can be used to estimate the survival function
+nonparametrically. Suppose that $N$ particles determined by
+Dvoretzky–Kiefer–Wolfowitz (DKW) inequality
+\cite{dvoretzky1956asymptotic} undergo LRWs independently in the
+simulation with distinct increasing non-negative displacements $d_1<
+d_2< ...<d_j <...<d_k$. The probability of particles being alive at
+displacement $d_j$, $S(d_j)$, is calculated from $S(d_{j-1})$ by
+
+\begin{equation}\label{eq:km_disp}
+  S(d_j) = S(d_{j-1}) \Big( 1-\frac{\tilde{n}_j}{n_j} \Big)
+\end{equation}
+where $n_j$ is the number of particles have not hit the target
+boundary within the displacement $d_j$, and $\tilde{n}_j$ is the number of
+particles being absorbed at displacement $d_j$. 
+
+
+
+
+\subsection{Empty Space Function $S(R)$}
+
+
+Before introducing the empty space function, it is preliminary and
+necessary to know the definition of the spatial point process
+\cite{zahle1982random}. $1-$dimensional point process can be used to
+model a sequence of random times when a specific event happens. For
+example, given any period of time, a restaurant can receive calls at
+random instants or points of time. Suppose we map the caller locations
+on a particular day. In that case, the map will constitute a random
+pattern of points in two dimensions because there will have an
+arbitrary number of such points, and their positions are
+random. Therefore, a spatial point process can model the random
+pattern of points in $2-$dimensional space. Moreover, if both the time
+and locations are recorded, we can consider it as a point process in
+three dimensions.
+
+
+For a point $u \in \mathbb{R}^k$ and a set $A \subseteq \mathbb{R}^k$,
+the shortest distance from $u$ to $A$ is
+
+\begin{equation}\label{eq:dist_point_set}
+  \rho(u, A) = inf{\lVert u-a \lVert: a \in A}
+\end{equation}
+
+Let $\bm{X}$ be a stationary point process in $\mathbb{R}^k$, the
+empty space function \cite{baddeley2007spatial}, $F(r)$, also named
+spherical contact distribution function, is the cumulative
+distribution function of the distance from a fixed point $u$ to the
+nearest point of random set $\bm{X}$,
+
+\begin{equation}\label{eq:dist_point_process}
+  F(r) = Pr(\rho(u, \bm{X}) \leq r) =  Pr(R \leq r) = 
+\end{equation}
+
+which is the shortest distance from $u$ to 
+
+From a fixed point $\bm{s} \in \mathbb{R}^k$, $F(R)$ is the
+empty space function, or ,
+
+
+
+
+
+
+
