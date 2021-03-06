@@ -1,16 +1,145 @@
 \section{Complicated Branching Structures}
 
 
+In the preceding section, LRWs are simulated in the $2-$dimensional
+images of equal-area simply connected domains (i.e. without holes in
+them) with smooth or piecewise smooth boundary. Both short and
+long-term behaviours of survival functions for the circle and
+rectangle are analyzed and compared to verify LRWs in the application
+of shape comparison. However, the plant root shape is an extremely
+complicated branching structure, consisting of the primary roots,
+taproots, secondary roots, etc. 
 
-In the preceding section, the research hypothesis has been tested by
-the comparison of simple shapes. More complex branching structures, as
-shown in Fig.~\ref{fig:G1_imgs} and Fig.~\ref{fig:G2_imgs}, are
-produced in this section for further validation of the research
-assumption and understanding of the survival curve. The branching
-structures in the images are equal-area and vertically symmetric, but
-the template in $G_1$ is shorter and narrower than in $G_2$. In $G_i$,
-$i=1, 2$, the larger number of iterations $j$, the more complicated
-structures $L_j$, $j=3, 4, 5, 6$, with more nodes.
+Hence, this section is outlined as follows. First of all, some
+branching structures, as shown in Fig.~\ref{fig:G1_imgs} and
+Fig.~\ref{fig:G2_imgs}, are designed and generated in equal size
+$2-$dimensional images. Secondly, without the simulation of LRWs, the
+spatial pattern and structural features of the branching structures
+are discussed by the interpretation of the survival function $S(R)$,
+where $R$ is the nearest distance from an arbitrary point in the space
+to the fixed boundary of the target object. Thirdly, the other two
+survival functions, $S(n)$ and $S(d)$, of the branching structures are
+estimated and compared, where $n$ and $d$ are the numbers of steps
+taken by the particle from the initial to the stop position and its
+corresponding displacement in the tiling space, respectively. However,
+three types of survival functions and their interpretation of the
+underlying stochastic process in this section are intimately related.
+
+
+
+\subsection{Artificial Branching Structure Construction}
+
+
+The plant root shape can be represented as a spatial structural system
+consisting of separate branches, and each of them forks out at a
+specific point, or knot, into at least two branches.  Moreover, such
+branching structure can constantly subjected to tension, compression,
+flexion, bending, and torsion.  In this section, as shown in
+Fig.~\ref{fig:G1_imgs} and Fig.~\ref{fig:G2_imgs}, the design of two
+groups of artificial images builds upon and extends the definition of
+the perfect binary tree structure \cite{rosen1999discrete} in graph
+theory \cite{west2001introduction}. A binary tree is a data structure
+consisting of nodes, each of which has up to two childer named left
+and right child nodes. It starts with a single topmost node called the
+root. A perfect binary tree is a specific type of binary tree in which
+all the interval nodes are connected with two child nodes, and all
+leaves are at the same level. The root is at level $0$, its child
+nodes are at level $1$, and so on.
+
+
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.45\textwidth}
+          \includegraphics[width=\textwidth]{G_1_L_1.png}
+          \caption{}
+          \label{fig:g1_template}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.45\textwidth}
+          \includegraphics[width=\textwidth]{G_2_L_1.png}
+          \caption{}
+          \label{fig:sf_g2_template}
+        \end{subfigure}
+        \caption{(a) and (b) are branch templates with identical area
+          for generating artificial branching structures in $G_1$ and
+          $G_2$, respectively. Templates in (a) and (b) have same
+          maximum width (i.e. $150$), but different maximum depth
+          (i.e. $1050$ and $1200$, respectively).}
+        \label{fig:branch_templates}
+    \end{figure}
+    
+
+
+
+As shown in Fig.~\ref{fig:branch_templates}, the branch templates for
+$G_1$ and $G_2$ are slightly distinct in shapes, connection, the
+thickness of the left and right child branches, and aspect
+ratio. According to the concept of perfect binary tree structures, the
+template can be decomposed into three branches, one main or parent
+branch and two child branches. The main branch is connected with a
+left and right child branch equidistantly and symmetrically without
+voids and overlays. The equal-area artificial branching structures in
+Fig.~\ref{fig:G1_imgs} and Fig.~\ref{fig:G2_imgs} are generated based
+on the principle of fractal geometry \cite{falconer2004fractal} by
+repeating the branch template at an increasingly smaller scale from
+top to bottom. The following algorithm summarizes how to construct a
+binary branching structure:
+
+  \begin{algorithm}
+    \SetAlgoLined
+    \KwResult{$2-$dimensional Artifical Branching Image with Area $A$}
+
+      Set number of levels of the branching structure $j$\;
+      Given a branch template $\widehat{T}$ with a predefined surface area $A$\;
+      Generate an all-black image $Img$\;
+      
+      \For{$l = 0;\ l < j;\ l = l+1$}{
+        
+          define $l-$th level branch template as $\widehat{T}_{j, l}$ by multiplying $\widehat{T}$ with a scaling factor $s_{j,l}$\;
+          
+          \eIf{$l == 0$}{
+
+            draw a branch template $\widehat{T}_{j, l}$ in $Img$\;
+            find the bottom left and right convex corners of $\widehat{T}_{j, l}$\;
+          }{
+
+            draw and put $2^l$ branch templates, $\widehat{T}_{j, l}$, at every convex corner\;
+            find the bottom left and right convex corners of all $\widehat{T}_{j, l}$\;
+            take a union of previous $Img$ with the collection of smaller-scale branches and redefine $Img$\;   
+
+          }        
+      }
+      
+      \eIf{number of white pixels $N$ $!=$ A}{
+        add $A-N$ white pixels around branch templates in $Img$
+      }
+    
+      \caption{Generate Artifical Branching Structure}
+      \label{alg:branch_iteration}
+  \end{algorithm}
+
+
+Those artificial structures in Fig.~\ref{fig:G1_imgs} and
+Fig.~\ref{fig:G2_imgs} are iteratively-defined geometries as described
+in the algorithm \ref{alg:branch_iteration}, and their complexities grow
+with the number of hierarchical branching or levels. The large-scale
+or low-level branches mimic thick roots near the soil surface. In
+contrast, the smaller-scale branches at the higher level represent the
+fine roots that gradually become vertical in deeper horizons because
+of the positive response of gravity in soil. 
+
+
+From the perspective of mathematics, in each image, the region
+occupied by white pixels and bounded by a piecewise smooth curve is a
+$2-$dimensional simply connected domain. As similar to the methodology
+validation in the last section, we will compare the short-term
+survival function behaviours and assess their discrepancy by
+statistical results. However, the primary purpose is to interpret the
+survival curves and reveal the spatial pattern information.
+
+
+
 
 
 
