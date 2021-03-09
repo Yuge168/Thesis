@@ -58,17 +58,21 @@ particles being absorbed at displacement $d_j$.
 
 
 
-\subsection{Empty Space Function $F(r)$}
+\subsection{Survival Analysis of Radius S(r)}
 
-Another function generated in the Monte Carlo simulation is associated
-with the discs centred at the initial positions of particles. The
-radius, $R$, of a disc is the shortest distance from a random initial
-site, $s \in \mathbb{R}^2$, to the fixed absorbing boundary, $\Gamma
-\subseteq \mathbb{R}^2$, in the whole tiling of the plane.
+
+Another function generated in this thesis for analyzing the spatial
+point patterns in the image is based on a union of discs of
+independent random radius centred at the uniform sampling points. The
+radius, $R$, of a disc is the shortest distance from an arbitrary
+initial site, $s \in \bm{I} \subseteq \mathbb{R}^2$, to the fixed
+absorbing boundary, $\Gamma \subseteq \mathbb{R}^2$, in the whole
+tiling of the plane. $R$ is defined as
 
 \begin{equation}\label{eq:dist_point_set}
-  R = \rho(s, \Gamma) = \inf \left\{ \lVert s-a \lVert : a \in \Gamma \right\}
+  R = \rho(\Gamma, s) = \inf \left\{ \lVert a-s \lVert : a \in \Gamma \right\}
 \end{equation}
+
 
 The empty space function \cite{baddeley2007spatial} of a point process
 \cite{zahle1982random} gives us an insight into the distribution of
@@ -76,46 +80,52 @@ the random variable $R$. A point process is a collection of points
 located randomly in some underlying mathematical spaces. It evolved
 gradually from renewal theory and the statistical analysis of life
 tables dating back to the $17$th century
-\cite{daley2007introduction}. Point process data has been applied in
-various fields, such as epidemiology, ecology, forestry, mining,
-hydrology, astronomy, ecology, and meteorology. $1-$dimensional point
-process can be used to model a sequence of random times when a
-specific event happens. For example, given any period of time, a
-restaurant can receive calls at random instants or points of
-time. Suppose we map the caller locations on a particular day. Then,
-the map will constitute a random pattern of points in two dimensions
-because there will have an arbitrary number of such points, and their
-positions are random. Therefore, a spatial point process can model the
-random pattern of points in $2-$dimensional space. If both the time
-and locations are recorded, we can consider it as a space-time point
-process in three dimensions. It is also a simple instance of the
-marked point process \cite{baddeley2007spatial} since each location in
-$\mathbb{R}^2$ is labelled or marked by the time of the call in
-$\mathbb{R}$.
+\cite{daley2007introduction}. Point process data has wide applications
+in various fields \cite{daley2007introduction}, including
+epidemiology, ecology, forestry, mining, astronomy, ecology,
+meteorology, etc.
 
-$$....$$
-$$....$$
-$$....$$
+$1-$dimensional point process can be used to model a sequence of
+random times when a specific event happens. For example, given any
+period of time, a call center can receive calls at random instants or
+points of time. Suppose we map the caller locations on a particular
+day. Then, the map will constitute a random pattern of points in two
+dimensions because there will have an arbitrary number of such points,
+and their positions are random. Therefore, a spatial point process can
+model the random pattern of points in $2-$dimensional space. If both
+the time and locations are recorded, we can consider it as a
+space-time point process in three dimensions. It is also a simple
+instance of the marked point process \cite{baddeley2007spatial} since
+each location in $\mathbb{R}^2$ is labelled or marked by the time of
+the call in $\mathbb{R}$.
 
 Let $\bm{X}$ be a stationary point process in $\mathbb{R}^k$, the
 empty space function \cite{baddeley2007spatial}, $F(r)$, also named
 spherical contact distribution function, is the cumulative
-distribution function of the distance from a fixed point $u$ to the
-nearest point of random set $\bm{X}$,
+distribution function of the contact distance, $dist(u, \bm{X})$, from
+a fixed point $u$ to the nearest point of random set $\bm{X}$.
 
-%\begin{equation}\label{eq:dist_point_process}
- % F(r) = Pr(\rho(u, \bm{X}) \leq r) = Pr(\rho(0, \bm{X}) \leq r)
-%\end{equation}
-%where $r \geq 0$ and $F(r)$ is independent on $u$ because of the
-%stationarity. 
-
-
-$$....$$
-$$....$$
-$$....$$
+\begin{equation}\label{eq:empty_space_function}
+  F(r) = Pr(dist(u, \bm{X}) \leq r) = Pr(N(b(u, r)) > 0)
+\end{equation}
+where $r \geq 0$, and $N(b(u, r))$ is a random variable indicating the
+number of discs with radius $r$ centered at $u$. $F(r)$ is independent
+on $u$ because of the stationarity.
 
 
+$$......... how ? why ?$$
 
+
+%Since all points, initial positions of particles, are uniformly and
+%independently placed in the empty space in the image
+
+In the light of the definition of empty space function of a stationary
+or uniform point process, the survival function $S(r)$ can be
+expressed as
+
+\begin{equation}\label{eq:sf_radius}
+  S(r) = Pr(R > r) = 1 - F(r) = 1 - Pr(R \leq r)
+\end{equation}
 
 
 
