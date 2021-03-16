@@ -1,46 +1,113 @@
 
+
+
+Some commonly used descriptors for plant root morphology in $2-$
+dimensional black-and-white images and their limitations are
+summarized in chapter ~\ref{chap:existing_descriptors}. Overall, some
+of them only extract and characterize a set of representative
+geometric features of plant roots from images, and some can only
+describe the connectedness of branches. However, none of them provide
+information about the spatial distribution of roots.
+
+
+In chapter \ref{chap:math_methods}, we have a perceptual shift and
+begin understanding the plant root images from a reversing view, that
+is, to explore and distinguish the unoccupied space in the image,
+i.e. a region without roots. Also, we are intrigued by Kac's
+idea \cite{kac1966can} about using analytical mathematical tools for
+shape characterization to overcome the limitations of conventional
+ruler-based measurements. Based on the research inspariation, two
+mathematical processes, point process and stochastic process
+(i.e. LRWs), are proposed to explore and characterize the unoccupied
+space and summarize the geometric attributes and spatial arrangements
+of object in the image without rulers.
+
+
+
+From the point process \cite{zahle1982random} view, for a
+$2-$dimensional image, we can map the object or figure consisting of
+white pixels as a fixed set of points and regard the uniform
+distributed points in the unoccupied space as a $2-$dimensional random
+point pattern. The survival function of radius or shortest distance,
+$R$, from the fixed set to random points of a point process can be
+estimated by Kaplan-Meier
+estimator \cite{kaplan1958nonparametric} \cite{aalen2008survival} \cite{cameron_davidson_pilon_2021_4505728}. Therefore,
+one of the primary purposes of this chapter is to interpret the
+survival function of radius, $S(R)$, and to demonstrate the underlying
+spatial information about an image.
+
+
+
+The heat content
+calculation \cite{desjardins1994heat} \cite{vandenberg1994heat} is an
+extension of Kac's idea \cite{kac1966can}, which presents a relatively
+practicable mathematical technique to describe an irregular compact
+region with a smooth boundary. Eq.\ref{eq:heat_content_asy} indicates
+that the geometric features of a region with a smooth boundary in
+$\mathbb{R}^2$ can be deduced from the asymptotic properties of the
+heat content, which is the integration of the solution to the heat
+equation over the predefined domain. However, the implementation in
+practice is by no means trivial. First of all, the analytical methods
+and solutions are restricted to simple geometries and constant
+diffusion properties, but the image unoccupied region is usually
+extremely complicated. Additionally, the numerical evaluation of the
+solution, heat content, and asymptotic expansion is complex or
+sometimes inaccessible because they are in the form of infinite
+series. Last but not least, more spatial information might be hidden
+in the long-term behaviours of heat content. Therefore, a stochastic
+process \cite{schuss2009theory}, i.e. lattice random walks (LRWs), is
+proposed, and the fixed-time step Monte Carlo simulation is designed
+to approximate the heat content.
+
+
 The fixed-time step Monte Carlo simulation, LRWs, has been validated
 in the annulus in Appendix \ref{appendix:method_validation_annulus} by
 comparing the analytical heat content and numerical survival
-function. The further validation of LRWs is based on
-Eq.\ref{eq:heat_content_asy}, which indicates that the geometric
-features of a region with a smooth boundary in $\mathbb{R}^2$ can be
-deduced from the asymptotic properties of the heat
-content. Specifically, the coefficient of the first term is only
-associated with the total area of the region, and the second one can
-only be affected by the total length of the boundary of the
-region. Theoretically, for the equal-area shapes, the larger perimeter
-causes a faster decay rate of the short-term survival function because
-of a minus sign in front of the second term in the asymptotic series.
+function. In a word, the estimated survival function of $N$ particles
+undergoing LRWs in the annulus converges to the analytical heat
+content, where $N$ is determined by DKW inequality in section
+~\ref{section:sample_size_determination}. Eq.\ref{eq:heat_content_asy}
+gives a clue on how to carry out the further validation of LRWs. The
+coefficient of the first term is only associated with the total area
+of the region, and the second one can only be affected by the total
+length of the boundary. Hence, theoretically, for the equal-area
+shapes, the larger perimeter causes a faster decay rate of the
+short-term survival function because of a minus sign in front of the
+second term in the asymptotic series in Eq.\ref{eq:heat_content_asy}. 
 
 
-However, unlike simulating LRWs inside of the target region, i.e. the
-annulus in Appendix \ref{appendix:method_validation_annulus},
-particles are distributed uniformly outside of the target shape filled
-with white pixels and undergo LRWs in the unoccupied space filled with
-black pixels in the $2-$dimensional image. In other words, the
-geometric attributes and spatial patterns of the target shapes are
-reflected and implied through exploring the unoccupied space by
-particles in the image. Therefore, we are interested in acknowledging
-whether the short-term behaviours of survival functions of the
-numerical simulation still coincide with the analytical
-results. Moreover, it is vital to assess the difference between
-survival functions to test whether they are reliable to compare and
-distinguish the shapes. 
+The fundamental motivation behind equal-area branching structures
+devised in this chapter is the predictable short-term survival
+function behaviours in Eq.\ref{eq:heat_content_asy}. Without
+calculating the asymptotic expansion, we are interested in knowing
+whether short-term behaviours of survival functions coincide with
+analytical results, testing whether survival curves for distinct
+shapes are statistically distinguishable, and understanding the
+survival curve to unveil the geometric and spatial information about
+the image.  
 
 
-In this chapter, the preliminary step of testing the hypothesis is to
-generate black-and-white images with the same dimensions as shown in
-Fig.~\ref{fig:simple_imgs}, Fig.~\ref{fig:G1_imgs}, and
-Fig.~\ref{fig:G2_imgs}. In the binary images, the objects are convex
-shapes with the same area or an equal number of white pixels. The next
-step is to simulate LRWs and estimate survival functions by
-Kaplan-Meier estimator \cite{kaplan1958nonparametric} implemented in
-lifelines library in Python
-\cite{cameron_davidson_pilon_2021_4505728}. Then, some commonly
-applied nonparametric statistical tests, as proposed in section
-~\ref{section:MC_heat_content}, are utilized to test the equality of
-survival functions. Except for investigating how survival functions
-differ from each other by statistical tests and dissimilarities
-calculation, and it is meaningful and helpful to reveal why they are
-distinct by studying the underlying stochastic process.
+ 
+Thus, this chapter is outlined as follows. In section
+~\ref{section:circle_rectangle}, two simple regular shapes with the
+identical area, i.e. the circle and rectangle, are generated in
+black-and-white images with the same dimensions as shown in
+Fig.~\ref{fig:simple_imgs}. Commonly applied two-sample statistical
+tests assess the distinctions between the survival functions of the
+circle and the rectangle, which is a preliminary examination of LRWs
+to know whether we can differentiate geometries by comparing survival
+curves. In section ~\ref{section:branching_structures}, the
+motivation, layout, and algorithm of producing the branching
+structures shown in Fig.~\ref{fig:G1_imgs} and Fig.~\ref{fig:G2_imgs}
+are construed in detail. And then, the survival functions of the
+radius (i.e. $R$), the number of steps (i.e. $n$), and the distance
+(i.e. $d$) are interpreted and analyzed by exploring the underlying
+static and dynamic random processes, which reveal both geometric and
+spatial attributes of branching structures. Except for studying why
+survival functions for branching structures are distinct, it is also
+essential to investigate how they differ by statistical tests and
+dissimilarities calculation to validate LRWs further. Finally, section
+~\ref{section:branch_conclusion} summarizes the demonstration and
+verification of LRWs in the artificial images.
+
+
